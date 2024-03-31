@@ -40,3 +40,16 @@ main {
   align-items: center;
   background-color: blue;
 }
+
+.profile-image-content {
+  display: flex;
+  justify-content: space-between;
+  width: 960px;
+  background-color: chartreuse;
+}
+
+.profile-image {
+  border-radius: 100%;
+}
+
+
