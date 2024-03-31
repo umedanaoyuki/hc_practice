@@ -1,2 +1,42 @@
+li {
+  list-style-type: none;
+}
 
+.header {
+  background-color: aqua;
+  display: flex;
+  width: 960px;
+  justify-content: space-between;
+  margin-right: auto;
+  margin-left: auto;
+}
 
+.navigation {
+  display: flex;
+}
+
+main {
+  width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.footer {
+  text-align: center;
+}
+
+.section-title {
+  text-align: center;
+}
+
+.self-introduction-content {
+  background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+}
+
+.self-introduction-image {
+  display: flex;
+  align-items: center;
+  background-color: blue;
+}
