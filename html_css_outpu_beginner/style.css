@@ -2,6 +2,15 @@
   padding: 4%;
 } */
 
+body,
+p,
+ul,
+td,
+th {
+  margin: 0;
+  padding: 0;
+}
+
 li {
   list-style-type: none;
 }
@@ -15,8 +24,15 @@ li {
   margin-left: auto;
 }
 
-.navigation {
+.navigation ul {
+  background-color: blueviolet;
+  align-items: center;
+  height: 100%;
   display: flex;
+}
+
+.navigation li {
+  margin-right: 20px;
 }
 
 main {
