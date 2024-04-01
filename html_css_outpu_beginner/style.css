@@ -24,6 +24,12 @@ li:first-child {
   font-weight: bold;
 }
 
+h2 {
+  display: inline-block;
+  border-bottom: 2px solid black;
+
+}
+
 .header {
   background-color: aqua;
   display: flex;
@@ -48,6 +54,7 @@ main {
   width: 960px;
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: 100px;
 }
 
 .footer {
@@ -56,12 +63,19 @@ main {
 
 .section-title {
   text-align: center;
+  margin-bottom: 30px;
 }
+
+.self-introduction {
+  text-align: center;
+}
+  
 
 .self-introduction-content {
   background-color: aquamarine;
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 .name {
@@ -83,6 +97,14 @@ main {
 
 .profile-image {
   border-radius: 100%;
+}
+
+.profile-images {
+  text-align: center;
+}
+
+.main-image {
+ margin-bottom: 50px;
 }
 
 .main-image img {
