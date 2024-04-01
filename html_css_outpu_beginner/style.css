@@ -20,6 +20,10 @@ li {
   list-style-type: none;
 }
 
+li:first-child {
+  font-weight: bold;
+}
+
 .header {
   background-color: aqua;
   display: flex;
@@ -60,13 +64,17 @@ main {
   justify-content: center;
 }
 
+.name {
+  font-weight: bold;
+}
+
 .self-introduction-image {
   display: flex;
   align-items: center;
   background-color: blue;
 }
 
-.profile-image-content {
+.profiles {
   display: flex;
   justify-content: space-between;
   width: 960px;
@@ -80,4 +88,20 @@ main {
 .main-image img {
   width: 100%;
   background-color: darkorange;
+}
+
+.profile {
+  display: inline-block;
+  width: 33%;
+  margin: 8px;
+  background-color: deepskyblue;
+  text-align: center;
+}
+
+.profile img {
+  width: 100%;
+}
+
+.profile li {
+  padding: 4px;
 }
