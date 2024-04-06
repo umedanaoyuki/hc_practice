@@ -121,6 +121,7 @@ footer {
 .self-introduction-image {
   display: flex;
   align-items: center;
+  border-radius: var(--percentage-100);
 }
 
 .profile-wrapper {
@@ -130,10 +131,6 @@ footer {
 
 .profile ul li:first-child {
   font-weight: bold;
-}
-
-.profile-image {
-  border-radius: var(--percentage-100);
 }
 
 .main-image-wrapper {
@@ -191,6 +188,7 @@ footer {
     justify-content: center;
     align-items: center;
   }
+
   .profile-wrapper {
     display: flex;
     flex-direction: column;
@@ -200,13 +198,6 @@ footer {
 
   .profile {
     width: var(--percentage-100);
-  }
-
-  .image-wrapper {
-    margin: var(--pixel-size-large);
-    margin-left: auto;
-    margin-right: auto;
-    object-fit: cover;
   }
 }
 
