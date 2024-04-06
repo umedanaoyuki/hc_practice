@@ -1,7 +1,10 @@
 :root {
+  /* color */
   --black: #000000;
   --white: #ffffff;
   --dark-navy: #00071a;
+
+  /* content-width */
   --content-width-pc: 960px;
   --media-query-with-1: 600px;
   --media-query-with-2: 398px;
@@ -13,6 +16,8 @@
   --pixel-size-small: 4px;
   --pixel-size-medium: 8px;
   --pixel-size-large: 10px;
+
+  /* margin size */
   --margin-right-left-medium: 20px;
   --margin-bottom-small: 30px;
   --margin-bottom-medium: 50px;
@@ -20,13 +25,13 @@
 }
 
 body {
-  max-width: 960px;
-  padding: 0 4%;
+  max-width: var(--content-width-pc);
+  padding: var(--pixel-size-none) 4%;
 }
 
 ul {
-  margin: 0;
-  padding: 0;
+  margin: var(--pixel-size-none);
+  padding: var(--pixel-size-none);
 }
 
 li {
@@ -36,11 +41,11 @@ li {
 h2 {
   display: inline-block;
   text-align: center;
-  border-bottom: 2px solid var(--black);
+  border-bottom: var(--pixel-size-very-small) solid var(--black);
 }
 
 h1 {
-  padding: 10px;
+  padding: var(--pixel-size-large);
   background-color: var(--dark-navy);
 }
 
@@ -52,7 +57,7 @@ h1 a {
 header {
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
+  margin: var(--pixel-size-none) auto;
 }
 
 main {
@@ -124,7 +129,7 @@ footer {
 
 .main-image-test {
   width: 100vw;
-  margin: 0 calc(50% - 50vw);
+  margin: var(--pixel-size-none) calc(50% - 50vw);
 }
 
 .main-image img {
@@ -134,7 +139,7 @@ footer {
 .profile {
   display: inline-block;
   width: 33%;
-  margin: 8px;
+  margin: var(--pixel-size-medium);
   text-align: center;
 }
 
@@ -143,7 +148,7 @@ footer {
 }
 
 .profile li {
-  padding: 4px;
+  padding: var(--pixel-size-small);
 }
 
 @media screen and (max-width: 600px) {
@@ -161,7 +166,7 @@ footer {
 
   .main-image-test {
     width: 100vw;
-    margin: 0 calc(50% - 50vw);
+    margin: var(--pixel-size-none) calc(50% - 50vw);
     object-fit: cover;
   }
 
@@ -186,7 +191,7 @@ footer {
     width: 100%;
   }
   .image-wrapper {
-    margin: 10px;
+    margin: var(--pixel-size-large);
     margin-left: auto;
     margin-right: auto;
     object-fit: cover;
