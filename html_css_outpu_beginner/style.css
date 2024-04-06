@@ -7,10 +7,6 @@ li {
   list-style-type: none;
 }
 
-li:first-child {
-  font-weight: bold;
-}
-
 h2 {
   display: inline-block;
   border-bottom: 2px solid black;
@@ -18,13 +14,11 @@ h2 {
 
 .title-wrapper {
   margin-left: 30px;
-  /* background-color: navy; */
-  /* margin: 4px 0 4px 30px; */
 }
 
 h1 {
   padding: 10px;
-  background-color: olivedrab;
+  background-color: navy;
 }
 
 h1 a {
