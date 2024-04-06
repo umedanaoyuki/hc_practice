@@ -10,6 +10,9 @@
   --media-query-with-2: 431px;
   --main-picture-width: 1920px;
 
+  /* image-height */
+  --image-height: 600px;
+
   /* pixel size */
   --pixel-size-none: 0px;
   --pixel-size-very-small: 2px;
@@ -30,6 +33,8 @@
   --percentage-4: 4%;
 
   /* viewport width */
+  --viewport-width-50: 50vw;
+  --viewport-width-100: 100vw;
 }
 
 body {
@@ -136,12 +141,13 @@ footer {
 }
 
 .main-image-test {
-  width: 100vw;
-  margin: var(--pixel-size-none) calc(var(--percentage-50) - 50vw);
+  width: var(--viewport-width-100);
+  margin: var(--pixel-size-none)
+    calc(var(--percentage-50) - var(--viewport-width-50));
 }
 
 .main-image img {
-  height: 600px;
+  height: var(--image-height);
 }
 
 .profile {
@@ -174,7 +180,8 @@ footer {
 
   .main-image-test {
     width: 100vw;
-    margin: var(--pixel-size-none) calc(var(--percentage-50) - 50vw);
+    margin: var(--pixel-size-none)
+      calc(var(--percentage-50) - var(--viewport-width-50));
     object-fit: cover;
   }
 
