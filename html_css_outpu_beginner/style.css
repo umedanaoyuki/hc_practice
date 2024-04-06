@@ -1,3 +1,9 @@
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --dark-navy: #00071a;
+}
+
 body {
   max-width: 960px;
   padding: 0 4%;
@@ -15,16 +21,16 @@ li {
 h2 {
   display: inline-block;
   text-align: center;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--black);
 }
 
 h1 {
   padding: 10px;
-  background-color: #00071a;
+  background-color: var(--dark-navy);
 }
 
 h1 a {
-  color: white;
+  color: var(--white);
   text-decoration: none;
 }
 
