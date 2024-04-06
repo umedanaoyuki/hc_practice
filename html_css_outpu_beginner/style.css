@@ -12,10 +12,6 @@ h2 {
   border-bottom: 2px solid black;
 }
 
-.title-wrapper {
-  margin-left: 30px;
-}
-
 h1 {
   padding: 10px;
   background-color: navy;
@@ -33,9 +29,19 @@ header {
   justify-content: space-between;
 }
 
+main {
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 100px;
+}
+
 footer {
   text-align: center;
   background-color: aquamarine;
+}
+
+.title-wrapper {
+  margin-left: 30px;
 }
 
 .navigation ul {
@@ -46,12 +52,6 @@ footer {
 
 .navigation li {
   margin-right: 20px;
-}
-
-main {
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 100px;
 }
 
 .section-title {
@@ -81,6 +81,10 @@ main {
 .profiles {
   display: flex;
   justify-content: space-between;
+}
+
+.profile ul li:first-child {
+  font-weight: bold;
 }
 
 .profile-image {
@@ -120,11 +124,16 @@ main {
 }
 
 @media screen and (max-width: 600px) {
+  #name {
+    display: flex;
+    color: green;
+    justify-content: center;
+  }
   header {
     background-color: red;
     justify-content: space-around;
   }
-  .footer {
+  footer {
     background-color: red;
   }
   .self-introduction-content {
@@ -133,11 +142,6 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  #name {
-    display: flex;
-    color: green;
-    justify-content: center;
   }
   .profiles {
     background-color: royalblue;
