@@ -30,9 +30,10 @@ h1 a {
 
 header {
   max-width: 960px;
-  padding: 4%;
+  padding: 0 4%;
   display: flex;
   justify-content: space-between;
+  margin: 0 auto;
 }
 
 main {
