@@ -8,7 +8,6 @@
   --content-width-pc: 960px;
   --media-query-with-1: 600px;
   --media-query-with-2: 431px;
-  --main-picture-width: 1920px;
 
   /* image-height */
   --image-height: 600px;
@@ -54,12 +53,6 @@ li {
   list-style-type: none;
 }
 
-h2 {
-  display: inline-block;
-  text-align: center;
-  border-bottom: var(--pixel-size-very-small) solid var(--black);
-}
-
 h1 {
   padding: var(--pixel-size-large);
   background-color: var(--dark-navy);
@@ -68,6 +61,12 @@ h1 {
 h1 a {
   color: var(--white);
   text-decoration: none;
+}
+
+h2 {
+  display: inline-block;
+  text-align: center;
+  border-bottom: var(--pixel-size-very-small) solid var(--black);
 }
 
 header {
@@ -100,13 +99,13 @@ footer {
   margin-right: var(--margin-right-left-medium);
 }
 
+.section-title-wrapper {
+  text-align: center;
+}
+
 .section-title {
   text-align: center;
   margin-bottom: var(--margin-bottom-small);
-}
-
-.section-title-wrapper {
-  text-align: center;
 }
 
 .self-introduction-content {
@@ -124,7 +123,7 @@ footer {
   align-items: center;
 }
 
-.profiles {
+.profile-wrapper {
   display: flex;
   justify-content: space-between;
 }
@@ -137,19 +136,16 @@ footer {
   border-radius: var(--percentage-100);
 }
 
-.main-image {
+.main-image-wrapper {
   width: var(--percentage-100);
   margin-bottom: var(--margin-bottom-small);
   object-fit: cover;
 }
 
-.main-image-test {
+.main-image {
   width: var(--viewport-width-100);
   margin: var(--pixel-size-none)
     calc(var(--percentage-50) - var(--viewport-width-50));
-}
-
-.main-image img {
   height: var(--image-height);
 }
 
@@ -169,19 +165,20 @@ footer {
 }
 
 @media screen and (max-width: 600px) {
-  #name {
+  header {
+    justify-content: space-evenly;
+  }
+
+  .name {
     display: flex;
     justify-content: center;
   }
 
-  header {
-    justify-content: space-evenly;
-  }
   .navigation {
     justify-content: space-between;
   }
 
-  .main-image-test {
+  .main-image {
     width: 100vw;
     margin: var(--pixel-size-none)
       calc(var(--percentage-50) - var(--viewport-width-50));
@@ -194,7 +191,7 @@ footer {
     justify-content: center;
     align-items: center;
   }
-  .profiles {
+  .profile-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -205,9 +202,6 @@ footer {
     width: var(--percentage-100);
   }
 
-  .profile-image-one {
-    width: var(--percentage-100);
-  }
   .image-wrapper {
     margin: var(--pixel-size-large);
     margin-left: auto;
@@ -216,7 +210,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 431px) {
+@media screen and (max-width: 500px) {
   header {
     font-size: var(--viewport-minimum);
   }
