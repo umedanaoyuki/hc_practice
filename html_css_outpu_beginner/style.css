@@ -16,27 +16,32 @@ h2 {
   border-bottom: 2px solid black;
 }
 
+.title-wrapper {
+  margin-left: 30px;
+  /* background-color: navy; */
+  /* margin: 4px 0 4px 30px; */
+}
+
+h1 {
+  padding: 10px;
+  background-color: olivedrab;
+}
+
+h1 a {
+  color: white;
+  text-decoration: none;
+}
+
 header {
   background-color: aqua;
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
-@media screen and (max-width: 600px) {
-  header {
-    background-color: red;
-    justify-content: space-around;
-  }
-}
 
 footer {
   text-align: center;
   background-color: aquamarine;
-}
-@media screen and (max-width: 600px) {
-  .footer {
-    background-color: red;
-  }
 }
 
 .navigation ul {
@@ -69,25 +74,9 @@ main {
   justify-content: center;
   margin-bottom: 50px;
 }
-@media screen and (max-width: 600px) {
-  .self-introduction-content {
-    background-color: lightcoral;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-}
 
 .name {
   font-weight: bold;
-}
-@media screen and (max-width: 600px) {
-  #name {
-    display: flex;
-    color: green;
-    justify-content: center;
-  }
 }
 
 .self-introduction-image {
@@ -108,17 +97,10 @@ main {
   text-align: center;
   background-color: darkorange;
 }
-@media screen and (max-width: 600px) {
-  .profiles {
-    background-color: royalblue;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
 
 .main-image {
-  margin-bottom: 50px;
+  margin-bottom: 32px;
+  /* height: 600px; */
 }
 
 .main-image img {
@@ -138,4 +120,32 @@ main {
 
 .profile li {
   padding: 4px;
+}
+
+@media screen and (max-width: 600px) {
+  header {
+    background-color: red;
+    justify-content: space-around;
+  }
+  .footer {
+    background-color: red;
+  }
+  .self-introduction-content {
+    background-color: lightcoral;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #name {
+    display: flex;
+    color: green;
+    justify-content: center;
+  }
+  .profiles {
+    background-color: royalblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
