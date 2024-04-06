@@ -18,7 +18,9 @@
   --pixel-size-large: 10px;
 
   /* margin size */
-  --margin-right-left-medium: 20px;
+  --margin-both-right-left-medium: 20px;
+  --margin-right-small: 20px;
+  --margin-left-medium: 30px;
   --margin-bottom-small: 30px;
   --margin-bottom-medium: 50px;
   --margin-bottom-large: 100px;
@@ -84,7 +86,7 @@ footer {
 }
 
 .title-wrapper {
-  margin-left: var(--margin-right-left-medium);
+  margin-left: var(--margin-both-right-left-medium);
 }
 
 .navigation a {
@@ -98,8 +100,8 @@ footer {
   display: flex;
 }
 
-.navigation li {
-  margin-right: var(--margin-right-left-medium);
+.self-introduction-link {
+  margin-right: var(--margin-right-small);
 }
 
 .section-title-wrapper {
@@ -125,6 +127,7 @@ footer {
   display: flex;
   align-items: center;
   border-radius: var(--percentage-100);
+  margin-left: var(--margin-left-medium);
 }
 
 .profile-wrapper {
