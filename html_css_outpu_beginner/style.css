@@ -159,7 +159,7 @@ footer {
   padding: var(--pixel-size-small);
 }
 
-@media screen and (max-width: var(--media-query-with-1)) {
+@media screen and (max-width: 600px) {
   #name {
     display: flex;
     justify-content: center;
@@ -206,7 +206,7 @@ footer {
   }
 }
 
-@media screen and (max-width: var(--media-query-with-2)) {
+@media screen and (max-width: 431px) {
   header {
     font-size: 3vmin;
   }
