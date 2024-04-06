@@ -7,7 +7,7 @@
   /* content-width */
   --content-width-pc: 960px;
   --media-query-with-1: 600px;
-  --media-query-with-2: 398px;
+  --media-query-with-2: 431px;
   --main-picture-width: 1920px;
 
   /* pixel size */
@@ -22,11 +22,19 @@
   --margin-bottom-small: 30px;
   --margin-bottom-medium: 50px;
   --margin-bottom-large: 100px;
+
+  /* percentage */
+  --percentage-100: 100%;
+  --percentage-50: 50%;
+  --percentage-33: 33%;
+  --percentage-4: 4%;
+
+  /* viewport width */
 }
 
 body {
   max-width: var(--content-width-pc);
-  padding: var(--pixel-size-none) 4%;
+  padding: var(--pixel-size-none) var(--percentage-4);
 }
 
 ul {
@@ -76,7 +84,7 @@ footer {
 
 .navigation ul {
   align-items: center;
-  height: 100%;
+  height: var(--percentage-100);
   display: flex;
 }
 
@@ -118,18 +126,18 @@ footer {
 }
 
 .profile-image {
-  border-radius: 100%;
+  border-radius: var(--percentage-100);
 }
 
 .main-image {
-  width: 100%;
+  width: var(--percentage-100);
   margin-bottom: var(--margin-bottom-small);
   object-fit: cover;
 }
 
 .main-image-test {
   width: 100vw;
-  margin: var(--pixel-size-none) calc(50% - 50vw);
+  margin: var(--pixel-size-none) calc(var(--percentage-50) - 50vw);
 }
 
 .main-image img {
@@ -138,20 +146,20 @@ footer {
 
 .profile {
   display: inline-block;
-  width: 33%;
+  width: var(--percentage-33);
   margin: var(--pixel-size-medium);
   text-align: center;
 }
 
 .profile img {
-  width: 100%;
+  width: var(--percentage-100);
 }
 
 .profile li {
   padding: var(--pixel-size-small);
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: var(--media-query-with-1)) {
   #name {
     display: flex;
     justify-content: center;
@@ -166,7 +174,7 @@ footer {
 
   .main-image-test {
     width: 100vw;
-    margin: var(--pixel-size-none) calc(50% - 50vw);
+    margin: var(--pixel-size-none) calc(var(--percentage-50) - 50vw);
     object-fit: cover;
   }
 
@@ -184,11 +192,11 @@ footer {
   }
 
   .profile {
-    width: 100%;
+    width: var(--percentage-100);
   }
 
   .profile-image-one {
-    width: 100%;
+    width: var(--percentage-100);
   }
   .image-wrapper {
     margin: var(--pixel-size-large);
@@ -198,7 +206,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 431px) {
+@media screen and (max-width: var(--media-query-with-2)) {
   header {
     font-size: 3vmin;
   }
