@@ -29,17 +29,23 @@ h2 {
   border-bottom: 2px solid black;
 }
 
-.header {
+header {
   background-color: aqua;
   display: flex;
-  width: 960px;
+  /* width: 100%; */
   justify-content: space-between;
   margin-right: auto;
   margin-left: auto;
 }
+@media screen and (max-width: 600px) {
+  header {
+    background-color: red;
+    justify-content: space-around;
+  }
+}
 
 .navigation ul {
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   align-items: center;
   height: 100%;
   display: flex;
