@@ -87,6 +87,11 @@ footer {
   margin-left: var(--margin-right-left-medium);
 }
 
+.navigation a {
+  text-decoration: none;
+  color: var(--black);
+}
+
 .navigation ul {
   align-items: center;
   height: var(--percentage-100);
@@ -171,6 +176,10 @@ footer {
 
   .navigation {
     justify-content: space-between;
+  }
+
+  .navigation a {
+    text-decoration: none;
   }
 
   .main-image {
