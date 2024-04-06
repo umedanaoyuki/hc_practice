@@ -27,7 +27,6 @@ li:first-child {
 h2 {
   display: inline-block;
   border-bottom: 2px solid black;
-
 }
 
 .header {
@@ -57,10 +56,6 @@ main {
   margin-bottom: 100px;
 }
 
-.footer {
-  text-align: center;
-}
-
 .section-title {
   text-align: center;
   margin-bottom: 30px;
@@ -69,7 +64,6 @@ main {
 .self-introduction {
   text-align: center;
 }
-  
 
 .self-introduction-content {
   background-color: aquamarine;
@@ -104,7 +98,7 @@ main {
 }
 
 .main-image {
- margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .main-image img {
@@ -126,4 +120,14 @@ main {
 
 .profile li {
   padding: 4px;
+}
+
+footer {
+  text-align: center;
+  background-color: aquamarine;
+}
+@media screen and (max-width: 600px) {
+  .footer {
+    background-color: red;
+  }
 }
