@@ -15,7 +15,7 @@ h2 {
 
 h1 {
   padding: 10px;
-  background-color: navy;
+  background-color: #00071a;
 }
 
 h1 a {
@@ -24,7 +24,7 @@ h1 a {
 }
 
 header {
-  background-color: aqua;
+  /* background-color: aqua; */
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -38,7 +38,7 @@ main {
 
 footer {
   text-align: center;
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
 }
 
 .title-wrapper {
@@ -94,7 +94,7 @@ footer {
 
 .profile-images {
   /* text-align: center; */
-  background-color: darkorange;
+  /* background-color: darkorange; */
 }
 
 .main-image {
@@ -131,18 +131,18 @@ footer {
 @media screen and (max-width: 600px) {
   #name {
     display: flex;
-    color: green;
+    /* color: green; */
     justify-content: center;
   }
   header {
-    background-color: red;
+    /* background-color: red; */
     justify-content: space-around;
   }
   footer {
-    background-color: red;
+    /* background-color: red; */
   }
   .self-introduction-content {
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -170,7 +170,7 @@ footer {
   .image-wrapper {
     /* width: 300%; */
     margin: 10px 10px 10px 10px;
-    background-color: navy;
+    /* background-color: navy; */
     margin-left: auto;
     margin-right: auto;
     object-fit: cover;
@@ -179,7 +179,7 @@ footer {
 
 @media screen and (max-width: 398px) {
   header {
-    background-color: yellow;
+    /* background-color: yellow; */
     font-size: 95%;
   }
 }
