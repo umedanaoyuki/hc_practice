@@ -35,6 +35,9 @@
   /* viewport width */
   --viewport-width-50: 50vw;
   --viewport-width-100: 100vw;
+
+  /* viewport minimum */
+  --viewport-minimum: 3vmin;
 }
 
 body {
@@ -215,6 +218,6 @@ footer {
 
 @media screen and (max-width: 431px) {
   header {
-    font-size: 3vmin;
+    font-size: var(--viewport-minimum);
   }
 }
