@@ -8,6 +8,7 @@
 
   /* content-width */
   --content-width-pc: 960px;
+  --content-width-main-image: 1920px;
 
   /* image-height */
   --image-height: 600px;
@@ -19,6 +20,9 @@
   --pixel-size-medium: 8px;
   --pixel-size-large: 10px;
 
+  /* padding */
+  --padding-size-none: 0px;
+
   /* margin size */
   --margin-both-right-left-medium: 20px;
   --margin-right-small: 20px;
@@ -28,10 +32,10 @@
   --margin-bottom-large: 100px;
 
   /* percentage */
-  --percentage-100: 100%;
-  --percentage-50: 50%;
-  --percentage-33: 33%;
   --percentage-4: 4%;
+  --percentage-33: 33%;
+  --percentage-50: 50%;
+  --percentage-100: 100%;
 
   /* viewport width */
   --viewport-width-50: 50vw;
@@ -39,11 +43,6 @@
 
   /* viewport minimum */
   --viewport-minimum: 3vmin;
-}
-
-body {
-  /* max-width: var(--content-width-pc); */
-  /* padding: var(--pixel-size-none) var(--percentage-4); */
 }
 
 ul {
@@ -75,13 +74,13 @@ header {
   display: flex;
   justify-content: space-between;
   margin: var(--pixel-size-none) auto;
-  max-width: 960px;
-  padding: 0 4%;
+  max-width: var(--content-width-pc);
+  padding: var(--padding-size-none) var(--percentage-4);
 }
 
 main {
-  max-width: 960px;
-  padding: 0 4%;
+  max-width: var(--content-width-pc);
+  padding: var(--padding-size-none) var(--percentage-4);
   margin-right: auto;
   margin-left: auto;
   margin-bottom: var(--margin-bottom-large);
@@ -145,18 +144,12 @@ footer {
   font-weight: bold;
 }
 
-.main-image-wrapper {
-}
-
 #main-image {
   object-fit: cover;
-  width: 100%;
-  max-width: 1920px;
+  width: var(--percentage-100);
+  max-width: var(--content-width-main-image);
   margin-bottom: var(--margin-bottom-small);
   height: var(--image-height);
-  /* width: var(--viewport-width-100);
-  margin: var(--pixel-size-none)
-    calc(var(--percentage-50) - var(--viewport-width-50)); */
 }
 
 .profile {
@@ -193,7 +186,7 @@ footer {
   }
 
   .main-image {
-    width: 100vw;
+    width: var(--viewport-width-100);
     margin: var(--pixel-size-none)
       calc(var(--percentage-50) - var(--viewport-width-50));
     object-fit: cover;
