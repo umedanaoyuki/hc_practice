@@ -42,8 +42,8 @@
 }
 
 body {
-  max-width: var(--content-width-pc);
-  padding: var(--pixel-size-none) var(--percentage-4);
+  /* max-width: var(--content-width-pc); */
+  /* padding: var(--pixel-size-none) var(--percentage-4); */
 }
 
 ul {
@@ -75,9 +75,13 @@ header {
   display: flex;
   justify-content: space-between;
   margin: var(--pixel-size-none) auto;
+  max-width: 960px;
+  padding: 0 4%;
 }
 
 main {
+  max-width: 960px;
+  padding: 0 4%;
   margin-right: auto;
   margin-left: auto;
   margin-bottom: var(--margin-bottom-large);
@@ -142,16 +146,17 @@ footer {
 }
 
 .main-image-wrapper {
-  width: var(--percentage-100);
-  margin-bottom: var(--margin-bottom-small);
-  object-fit: cover;
 }
 
-.main-image {
-  width: var(--viewport-width-100);
-  margin: var(--pixel-size-none)
-    calc(var(--percentage-50) - var(--viewport-width-50));
+#main-image {
+  object-fit: cover;
+  width: 100%;
+  max-width: 1920px;
+  margin-bottom: var(--margin-bottom-small);
   height: var(--image-height);
+  /* width: var(--viewport-width-100);
+  margin: var(--pixel-size-none)
+    calc(var(--percentage-50) - var(--viewport-width-50)); */
 }
 
 .profile {
