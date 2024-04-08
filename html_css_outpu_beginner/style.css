@@ -74,6 +74,7 @@ h2 {
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: var(--pixel-size-none) auto;
   max-width: var(--content-width-pc);
   padding: var(--padding-size-none) var(--percentage-4);
@@ -102,8 +103,6 @@ footer {
 }
 
 .navigation ul {
-  align-items: center;
-  height: var(--percentage-100);
   display: flex;
 }
 
