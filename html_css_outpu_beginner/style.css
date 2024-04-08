@@ -26,11 +26,14 @@
   /* margin size */
   --margin-both-right-left-medium: 20px;
   --margin-right-small: 20px;
-  --margin-left-medium: 30px;
   --margin-bottom-very-small: 10px;
   --margin-bottom-small: 30px;
   --margin-bottom-medium: 50px;
   --margin-bottom-large: 100px;
+
+  /* gap */
+  --gap-size-very-small: 10px;
+  --gap-size-small: 30px;
 
   /* percentage */
   --percentage-4: 4%;
@@ -131,6 +134,7 @@ footer {
   display: flex;
   justify-content: center;
   margin-bottom: var(--margin-bottom-medium);
+  gap: var(--gap-size-small);
 }
 
 .name {
@@ -141,7 +145,6 @@ footer {
   display: flex;
   align-items: center;
   border-radius: var(--percentage-100);
-  margin-left: var(--margin-left-medium);
 }
 
 .profile-wrapper {
@@ -186,6 +189,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: var(--gap-size-very-small);
   }
 
   .name {
