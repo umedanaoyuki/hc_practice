@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 # グループを定義
-group = ["A", "B", "C", "D", "E", "F"]
-# グループをシャッフル
+group = %w[A B C D E F]
 shuffled_group = group.shuffle
 
 # puts shuffledGroup
