@@ -1,28 +1,26 @@
-# グループ分け
-group = ['A', 'B', 'C', 'D', 'E', 'F']
-# シャッフル
-shuffledGroup = group.shuffle
+# グループを定義
+group = ["A", "B", "C", "D", "E", "F"]
+# グループをシャッフル
+shuffled_group = group.shuffle
 
-puts shuffledGroup
+# puts shuffledGroup
 
-# ２種類の配列を決める
+# １つ目のグループ（配列）の長さをランダムで決定
 key = [2, 3].shuffle
 
-puts key[0]
+# puts key[0]
 
 # １つ目のグループの長さ
-groupOneLength = key[0]
+group_one_length = key[0]
+
 # １つ目のグループの配列作成
+group_one = shuffled_group[0..group_one_length - 1]
+
+# ２つ目のグループの配列作成
+group_two = shuffled_group[group_one_length..5]
 
 puts '1つ目のグループ'
-groupOne = shuffledGroup[0 .. groupOneLength - 1]
-puts groupOne
-
-
-# 2つ目のグループの長さ
-groupTwoLength = 6 - key[0]
-# ２つ目のグループの配列作成
-groupTwo = shuffledGroup[groupOneLength .. 5]
+puts group_one
 
 puts '2つ目のグループ'
-puts  groupTwo
+puts group_two
