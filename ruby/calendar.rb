@@ -2,23 +2,32 @@
 
 require 'date'
 
-a = Date.new(1993, 2, 24)
-p a
-b = Date.parse('1993-02-25')
-p b
-b += 10
+date = Date.today
+# カレンダーの表紙
+puts "#{date.strftime('%B')} #{date.year}"
 
-p a
-p b
+week_day = ['月', '火', '水', '木', '金', '土', '日']
 
-p b - a
-#=> 10
+# p date.strftime('%a')
+p week_day[date.wday - 1]
 
-p b.year
-#=> 1993
+# a = Date.new(1993, 2, 24)
+# p a
+# b = Date.parse('1993-02-25')
+# p b
+# b += 10
 
-p b.strftime('%a')
-#=> "Sat"
+# p a
+# p b
 
-yesterday = Date.today - 1
-p yesterday
+# p b - a
+# #=> 10
+
+# p b.year
+# #=> 1993
+
+# p b.strftime('%a')
+# #=> "Sat"
+
+# yesterday = Date.today - 1
+# p yesterday
