@@ -1,15 +1,24 @@
 # frozen_string_literal: true
 
 require 'date'
-require 'optparse'
 
-values = []
+a = Date.new(1993, 2, 24)
+p a
+b = Date.parse('1993-02-25')
+p b
+b += 10
 
-opt = OptionParser.new
-opt.on('-a int') { |i| values << i.to_i }
-opt.on('-b int') { |i| values << i.to_i }
+p a
+p b
 
-opt.parse!(ARGV)
+p b - a
+#=> 10
 
-sum = values.sum
-p sum
+p b.year
+#=> 1993
+
+p b.strftime('%a')
+#=> "Sat"
+
+yesterday = Date.today - 1
+p yesterday
