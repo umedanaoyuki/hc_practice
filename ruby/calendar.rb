@@ -37,14 +37,26 @@ mapped_week_day = {
 w_day_number = first_date.wday.to_i
 # puts mapped_week_day[w_day_number]
 
+# 土曜日までの日数を求める
+days_to_saturday = 6 - w_day_number
+# p '土曜日までの日数'
+# p days_to_saturday
+
 # 該当月の最終日
 last_date = Date.new(date.year, month.to_i, -1)
 # 型変換
 numbered_last_date = last_date.day.to_i
 
-empty_space = ' '
+
+
+
+
+
+
+
+# empty_space = ' '
 for num in 1..numbered_last_date do
-  if num % 7 == 0
+  if num == 1 + days_to_saturday
       print "#{num}\n"
   else
     print "#{num} "
