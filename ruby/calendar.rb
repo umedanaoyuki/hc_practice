@@ -47,20 +47,16 @@ last_date = Date.new(date.year, month.to_i, -1)
 # 型変換
 numbered_last_date = last_date.day.to_i
 
-
-
-
-
-
-
-
+temp_number = 1 + days_to_saturday
 # empty_space = ' '
 for num in 1..numbered_last_date do
-  if num == 1 + days_to_saturday
-      print "#{num}\n"
-  else
-    print "#{num} "
+  # p 'temp_number'
+  # p temp_number
+  if num == temp_number
+    temp_number += 7
+    print "#{num}\n"
   end
+    print "#{num} "
 end
 
 
