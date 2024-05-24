@@ -11,21 +11,50 @@ week_day = %w(日 月 火 水 木 金 土)
 
 # 曜日を表示
 week_day.each do |wday|
+  # 曜日を表示したあと、空欄を入れてprintする
   print "#{wday} "
 end
 
+# 改行
 print "\n"
-p '該当月の初日'
+
+# p '該当月の初日'
 first_date = Date.new(date.year, month.to_i, 1)
-p first_date
+# p "firstDate:#{first_date}"
 
-p '該当月の初日の曜日'
-puts week_day[first_date.wday]
+# 曜日の番号と日本語の曜日をマッピングするオブジェクトを作成
+mapped_week_day = {
+  0 => '日',
+  1 => '月',
+  2 => '火',
+  3 => '水',
+  4 => '木',
+  5 => '金',
+  6 => '土'
+}
 
-p '該当月の最終日'
+#  該当月の初日の曜日
+w_day_number = first_date.wday.to_i
+# puts mapped_week_day[w_day_number]
+
+# 該当月の最終日
 last_date = Date.new(date.year, month.to_i, -1)
-p last_date
+# 型変換
+numbered_last_date = last_date.day.to_i
 
-p 'その月の日数'
-total_days = last_date - first_date
-p total_days.to_i
+empty_space = ' '
+for num in 1..numbered_last_date do
+  if num % 7 == 0
+      print "#{num}\n"
+  else
+    print "#{num} "
+  end
+end
+
+
+# print empty_space * number
+# 初日が何曜日か 曜日によって空白を出力
+# i から最初の土曜日を引いた結果が7の倍数なら、iを表示後に改行する
+
+
+# puts "#{empty_space * number * 2}#{first_date.day}"
