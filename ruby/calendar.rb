@@ -6,14 +6,18 @@ require 'optparse'
 opt = OptionParser.new
 opt.on('-m') { |v| p v }
 
-puts 'プリント'
-puts ARGV[0]
-
+# 今年の年の取得
+current_year = Date.today.year.to_i
+# 現在の月を取得
 current_month = Date.today.month.to_i
-date = Date.new(2024, ARGV[1] ? ARGV[1].to_i : current_month, 1)
+# 月の初めの日（直接Date.newに代入してもいいが、マジックナンバー化してしまうことを回避）
+initial_date = 1
+month_to_display = ARGV[1] ? ARGV[1].to_i : current_month
+date = Date.new(current_year, month_to_display, initial_date)
 # カレンダーの表紙
-month = date.strftime('%m')
-puts "      #{month.to_i}月 #{date.year}"
+calendar_top_month = date.strftime('%m')
+calendar_top_space = '      '
+puts "#{calendar_top_space}#{calendar_top_month.to_i}月 #{date.year}"
 
 week_day = %w(日 月 火 水 木 金 土)
 
@@ -27,7 +31,7 @@ end
 print "\n"
 
 # p '該当月の初日'
-first_date = Date.new(date.year, month.to_i, 1)
+first_date = Date.new(date.year, month_to_display.to_i, 1)
 # p "firstDate:#{first_date}"
 
 # 曜日の番号と日本語の曜日をマッピングするオブジェクトを作成
@@ -51,7 +55,7 @@ days_to_saturday = 6 - w_day_number
 # p days_to_saturday
 
 # 該当月の最終日
-last_date = Date.new(date.year, month.to_i, -1)
+last_date = Date.new(date.year, month_to_display.to_i, -1)
 # 型変換
 numbered_last_date = last_date.day.to_i
 
