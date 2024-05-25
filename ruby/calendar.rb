@@ -7,7 +7,7 @@ opt = OptionParser.new
 opt.on('-m') { |v| p v }
 
 # カレンダー表示のメソッド
-def showCalendar
+def show_calendar
   # 今年の年の取得
   current_year = Date.today.year.to_i
   # 現在の月を取得
@@ -25,9 +25,9 @@ def showCalendar
 
   # 曜日を表示
   week_day.each do |wday|
-  # 曜日を表示したあと、空欄を入れてprintする
-  print "#{wday} "
-end
+    # 曜日を表示したあと、空欄を入れてprintする
+    print "#{wday} "
+  end
 
   # 改行
   print "\n"
@@ -59,7 +59,7 @@ end
 end
 
 if ARGV[1].nil?
-  showCalendar
+  show_calendar
   exit
 end
 
