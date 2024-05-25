@@ -8,11 +8,11 @@ opt.on('-m') { |v| p v }
 
 # opt.parse!(ARGV)
 
-p 'v'
-p ARGV
+# p 'v'
+# p ARGV
 
 # // ARGV ? ARGV[1].to_i : 5
-date = Date.new(2024, 5, 1)
+date = Date.new(2024, ARGV ? ARGV[1].to_i : 5, 1)
 # カレンダーの表紙
 month = date.strftime('%m')
 puts "      #{month.to_i}月 #{date.year}"
