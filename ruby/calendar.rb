@@ -6,12 +6,6 @@ require 'optparse'
 opt = OptionParser.new
 opt.on('-m') { |v| p v }
 
-# opt.parse!(ARGV)
-
-# p 'v'
-# p ARGV
-
-# // ARGV ? ARGV[1].to_i : 5
 date = Date.new(2024, ARGV ? ARGV[1].to_i : 5, 1)
 # カレンダーの表紙
 month = date.strftime('%m')
@@ -67,10 +61,3 @@ for num in 1..numbered_last_date do
     print "#{num} "
   end
 end
-
-# print empty_space * number
-# 初日が何曜日か 曜日によって空白を出力
-# i から最初の土曜日を引いた結果が7の倍数なら、iを表示後に改行する
-
-
-# puts "#{empty_space * number * 2}#{first_date.day}"
