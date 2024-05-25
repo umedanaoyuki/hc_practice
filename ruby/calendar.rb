@@ -6,7 +6,11 @@ require 'optparse'
 opt = OptionParser.new
 opt.on('-m') { |v| p v }
 
-date = Date.new(2024, ARGV ? ARGV[1].to_i : 5, 1)
+puts 'プリント'
+puts ARGV[0]
+
+current_month = Date.today.month.to_i
+date = Date.new(2024, ARGV[1] ? ARGV[1].to_i : current_month, 1)
 # カレンダーの表紙
 month = date.strftime('%m')
 puts "      #{month.to_i}月 #{date.year}"
