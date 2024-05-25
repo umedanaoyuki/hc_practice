@@ -35,7 +35,7 @@ def show_calendar
   # 該当月の初日
   first_date = Date.new(date.year, month_to_display.to_i, 1)
 
-  #  該当月の初日の曜日の番号を取得
+  # 該当月の初日の曜日の番号を取得
   week_day_to_number = first_date.wday.to_i
 
   # 月の最初の土曜日を求める
@@ -58,11 +58,13 @@ def show_calendar
   end
 end
 
+# 引数がない場合、カレンダーを表示
 if ARGV[1].nil?
   show_calendar
   exit
 end
 
+# 引数が適切でない場合、エラーメッセージを表示
 if ARGV[1].to_i > 12 || ARGV[1].to_i < 1
   puts "#{ARGV[1]} is neither a month number (1..12) nor a name"
   exit
