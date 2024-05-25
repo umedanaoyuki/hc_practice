@@ -6,6 +6,11 @@ require 'optparse'
 opt = OptionParser.new
 opt.on('-m') { |v| p v }
 
+if ARGV[1].to_i > 12 || ARGV[1].to_i < 1
+  puts "#{ARGV[1]} is neither a month number (1..12) nor a name"
+  exit
+end
+
 # 今年の年の取得
 current_year = Date.today.year.to_i
 # 現在の月を取得
