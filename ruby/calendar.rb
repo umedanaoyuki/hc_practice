@@ -32,7 +32,6 @@ print "\n"
 
 # p '該当月の初日'
 first_date = Date.new(date.year, month_to_display.to_i, 1)
-# p "firstDate:#{first_date}"
 
 #  該当月の初日の曜日の番号を取得
 week_day_to_number = first_date.wday.to_i
@@ -45,13 +44,12 @@ last_date = Date.new(date.year, month_to_display.to_i, -1)
 # 該当月の最終日をInteger型に変換
 numbered_last_date = last_date.day.to_i
 
-
 # 月の土曜日に変数名を置き換える
 saturdays = first_saturday
-for num in 1..numbered_last_date do
+(initial_date..numbered_last_date).each do |num|
   if num == saturdays
     saturdays += 7
-    print "#{num}\n"
+    puts num
   else
     print "#{num} "
   end
