@@ -34,36 +34,23 @@ print "\n"
 first_date = Date.new(date.year, month_to_display.to_i, 1)
 # p "firstDate:#{first_date}"
 
-# 曜日の番号と日本語の曜日をマッピングするオブジェクトを作成
-mapped_week_day = {
-  0 => '日',
-  1 => '月',
-  2 => '火',
-  3 => '水',
-  4 => '木',
-  5 => '金',
-  6 => '土'
-}
+#  該当月の初日の曜日の番号を取得
+week_day_to_number = first_date.wday.to_i
 
-#  該当月の初日の曜日
-w_day_number = first_date.wday.to_i
-# puts mapped_week_day[w_day_number]
-
-# 土曜日までの日数を求める
-days_to_saturday = 6 - w_day_number
-# p '土曜日までの日数'
-# p days_to_saturday
+# 月の最初の土曜日を求める
+first_saturday = 7 - week_day_to_number
 
 # 該当月の最終日
 last_date = Date.new(date.year, month_to_display.to_i, -1)
-# 型変換
+# 該当月の最終日をInteger型に変換
 numbered_last_date = last_date.day.to_i
 
-saturday_number = 1 + days_to_saturday
-# empty_space = ' '
+
+# 月の土曜日に変数名を置き換える
+saturdays = first_saturday
 for num in 1..numbered_last_date do
-  if num == saturday_number
-    saturday_number += 7
+  if num == saturdays
+    saturdays += 7
     print "#{num}\n"
   else
     print "#{num} "
