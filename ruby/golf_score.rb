@@ -3,28 +3,26 @@
 # 1番目の標準入力を受けとる変数
 input_line = gets.split(',')
 
-# 2番目の標準入力を受け取る変数
-numbered_s = 0
-numbered_t = 0
+# 2番目の標準入力を受け取る配列
+numbered_s = []
 
-temp_number = 1
-temp_number.times do
-  s = gets.chomp.split(',')
-  # 2番目に入力した文字をintegerに変換
-  numbered_s = s[0].to_i
-  numbered_t = s[1].to_i
+# temp_number = 1
+# temp_number.times do
+s = gets.chomp.split(',')
+
+# puts s
+
+temp_num = 0
+s.each do |n|
+  numbered_s[temp_num] = n.to_i
+  temp_num += 1
 end
-
-puts 'input_line[0]'
-puts input_line[0].to_i
 
 puts 'numbered_s'
 puts numbered_s
-puts 'numbered_t'
-puts numbered_t
 
 puts 'numbered_s実行'
-case numbered_s
+case numbered_s[0]
 when 1
   puts 'ホールインワン'
 when input_line[0].to_i
@@ -37,12 +35,12 @@ when input_line[0].to_i - 3
   puts 'アルバトロス'
 when input_line[0].to_i - 4
   puts 'コンドル'
-when input_line[0].to_i < numbered_s
+when input_line[0].to_i < numbered_s[0]
   puts 'ボギー'
 end
 
-puts 'numbered_t実行'
-case numbered_t
+puts 'numbered_s実行'
+case numbered_s[1]
 when 1
   puts 'ホールインワン'
 when input_line[1].to_i
@@ -55,6 +53,6 @@ when input_line[1].to_i - 3
   puts 'アルバトロス'
 when input_line[1].to_i - 4
   puts 'コンドル'
-when input_line[1].to_i < numbered_s
+when input_line[1].to_i < numbered_s[1]
   puts 'ボギー'
 end
