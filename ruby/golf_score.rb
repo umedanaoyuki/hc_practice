@@ -1,58 +1,78 @@
 # frozen_string_literal: true
 
 # 1番目の標準入力を受けとる変数
-input_line = gets.split(',')
+golf_scores = gets.split(',')
+# 2番目の標準入力を受け取る
+par_numbers = gets.split(',')
+
+
 
 # 2番目の標準入力を受け取る配列
-numbered_s = []
+# par_number_array = []
 
-# temp_number = 1
-# temp_number.times do
-s = gets.chomp.split(',')
+# array_num = 0
+# par_numbers.each do |n|
+#   par_number_array[array_num] = n.to_i
+#   array_num += 1
+# end
 
-# puts s
+puts 'デバッグスタート'
 
-temp_num = 0
-s.each do |n|
-  numbered_s[temp_num] = n.to_i
-  temp_num += 1
+number = 0
+golf_scores.each do |golf_score|
+    case golf_score.to_i
+    when 1
+      puts 'ホールインワン'
+    when par_numbers[number].to_i
+      puts 'パー'
+    when par_numbers[number].to_i - 1
+      puts 'バーディ'
+    when par_numbers[number].to_i - 2
+      puts 'イーグル'
+    when par_numbers[number].to_i - 3
+      puts 'アルバトロス'
+    when par_numbers[number].to_i - 4
+      puts 'コンドル'
+    else
+    # when (golf_score.to_i - par_numbers[number].to_i).positive?
+      puts 'ボギー'
+    end
+    number += 1
 end
 
-puts 'numbered_s'
-puts numbered_s
+puts '一旦終了'
 
-puts 'numbered_s実行'
-case numbered_s[0]
+case par_number_array[0]
 when 1
   puts 'ホールインワン'
-when input_line[0].to_i
+when golf_scores[0].to_i
   puts 'パー'
-when input_line[0].to_i - 1
+when golf_scores[0].to_i - 1
   puts 'バーディ'
-when input_line[0].to_i - 2
+when golf_scores[0].to_i - 2
   puts 'イーグル'
-when input_line[0].to_i - 3
+when golf_scores[0].to_i - 3
   puts 'アルバトロス'
-when input_line[0].to_i - 4
+when golf_scores[0].to_i - 4
   puts 'コンドル'
-when input_line[0].to_i < numbered_s[0]
+when golf_scores[0].to_i < par_number_array[0]
   puts 'ボギー'
 end
 
 puts 'numbered_s実行'
-case numbered_s[1]
+case par_number_array[1]
 when 1
   puts 'ホールインワン'
-when input_line[1].to_i
+when golf_scores[1].to_i
   puts 'パー'
-when input_line[1].to_i - 1
+when golf_scores[1].to_i - 1
   puts 'バーディ'
-when input_line[1].to_i - 2
+when golf_scores[1].to_i - 2
   puts 'イーグル'
-when input_line[1].to_i - 3
+when golf_scores[1].to_i - 3
   puts 'アルバトロス'
-when input_line[1].to_i - 4
+when golf_scores[1].to_i - 4
   puts 'コンドル'
-when input_line[1].to_i < numbered_s[1]
+when golf_scores[1].to_i < par_number_array[1]
   puts 'ボギー'
 end
