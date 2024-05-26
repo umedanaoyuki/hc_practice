@@ -1,47 +1,60 @@
 # frozen_string_literal: true
 
-puts '1番目の標準入力'
-input_line = gets.to_i
+# 1番目の標準入力を受けとる変数
+input_line = gets.split(',')
 
 # 2番目の標準入力を受け取る変数
 numbered_s = 0
-
-# input_line.times do
+numbered_t = 0
 
 temp_number = 1
-
 temp_number.times do
-  s = gets.chomp.split(' ')
+  s = gets.chomp.split(',')
   # 2番目に入力した文字をintegerに変換
   numbered_s = s[0].to_i
+  numbered_t = s[1].to_i
 end
 
-puts '結果出力'
+puts 'input_line[0]'
+puts input_line[0].to_i
 
-puts input_line - numbered_s
+puts 'numbered_s'
+puts numbered_s
+puts 'numbered_t'
+puts numbered_t
 
-# 結果 - 規定打数
-cal_number = numbered_s - input_line
-
-case cal_number
+puts 'numbered_s実行'
+case numbered_s
 when 1
   puts 'ホールインワン'
-when input_line
+when input_line[0].to_i
   puts 'パー'
-when input_line - 1
+when input_line[0].to_i - 1
   puts 'バーディ'
-when input_line - 2
+when input_line[0].to_i - 2
   puts 'イーグル'
-when input_line - 3
+when input_line[0].to_i - 3
   puts 'アルバトロス'
-when input_line - 4
+when input_line[0].to_i - 4
   puts 'コンドル'
-when input_line < numbered_s
+when input_line[0].to_i < numbered_s
   puts 'ボギー'
 end
 
-# ホールインワン
-# 1の場合
-
-# ボギー
-# 規定打数よりも多い場合
+puts 'numbered_t実行'
+case numbered_t
+when 1
+  puts 'ホールインワン'
+when input_line[1].to_i
+  puts 'パー'
+when input_line[1].to_i - 1
+  puts 'バーディ'
+when input_line[1].to_i - 2
+  puts 'イーグル'
+when input_line[1].to_i - 3
+  puts 'アルバトロス'
+when input_line[1].to_i - 4
+  puts 'コンドル'
+when input_line[1].to_i < numbered_s
+  puts 'ボギー'
+end
