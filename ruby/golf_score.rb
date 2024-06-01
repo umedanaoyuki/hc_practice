@@ -35,7 +35,16 @@ golf_scores.each do |golf_score|
   number += 1
 end
 
-score_judge.each do |score|
-  # TODO:  コンマをはずす方法がわからない（最後だけ別のprintにする）
-  print "#{score},"
+# score_judge.each do |score|
+#   # TODO:  コンマをはずす方法がわからない（最後だけ別のprintにする）
+#   print "#{score},"
+# end
+
+# score_judge.each do |score|
+for i in 0..score_judge.length - 1 do
+  if i == score_judge.length - 1
+    print score_judge.last
+    break
+  end
+  print "#{score_judge[i]},"
 end
