@@ -34,9 +34,7 @@ golf_scores.each do |golf_score|
   number += 1
 end
 
-array_count = score_judge.length
-for i in 0..array_count.to_i - 2
-  print "#{score_judge[i]},"
+score_judge.each do |score|
+  # TOOD: コンマをはずす方法がわからない（最後だけ別のprintにする）
+  print "#{score},"
 end
-
-print score_judge[array_count - 1]
