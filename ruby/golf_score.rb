@@ -15,6 +15,7 @@ golf_scores.each do |golf_score|
   cal_score = par_numbers[number].to_i - golf_score.to_i
 
   if golf_score.to_i == 1
+    # TODO: イーグルを表示させる実装
     score_judge.push('ホールインワン')
   elsif cal_score.zero?
     score_judge.push('パー')
@@ -35,6 +36,6 @@ golf_scores.each do |golf_score|
 end
 
 score_judge.each do |score|
-  # TOOD: コンマをはずす方法がわからない（最後だけ別のprintにする）
+  # TODO:  コンマをはずす方法がわからない（最後だけ別のprintにする）
   print "#{score},"
 end
