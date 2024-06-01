@@ -12,6 +12,7 @@ score_judge = []
 number = 0
 
 golf_scores.each do |golf_score|
+  # ゴルフの判定を行うための変数
   cal_score = par_numbers[number].to_i - golf_score.to_i
 
   if golf_score.to_i == 1
