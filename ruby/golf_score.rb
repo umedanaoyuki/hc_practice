@@ -26,10 +26,10 @@ golf_scores.each do |golf_score|
     score_judge.push('アルバトロス')
   elsif cal_score == 4
     score_judge.push('コンドル')
-  elsif cal_score == -1
+  elsif cal_score == - 1
     score_judge.push('ボギー')
   else
-    score_judge.push("#{cal_score}ボギー")
+    score_judge.push("#{golf_score.to_i - par_numbers[number].to_i}ボギー")
   end
   number += 1
 end
