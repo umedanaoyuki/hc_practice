@@ -19,6 +19,7 @@ def show_calendar
   date = Date.new(current_year, month_to_display, initial_date)
   # カレンダーの表紙
   calendar_cover_month = date.strftime('%m').to_i
+  # 真ん中に年月をするための空欄
   calendar_cover_space = '      '
   puts "#{calendar_cover_space}#{calendar_cover_month}月 #{date.year}"
 
@@ -46,8 +47,6 @@ def show_calendar
 
   # 該当月の最終日を求める
   last_date = Date.new(date.year, month_to_display, -1).day.to_i
-  # 該当月の最終日をInteger型に変換
-  # numbered_last_date = last_date.day.to_i
 
   # 月の土曜日に変数名を置き換える
   saturdays = first_saturday
