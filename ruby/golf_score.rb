@@ -15,8 +15,9 @@ golf_scores.each do |golf_score|
   # ゴルフの判定を行うための変数
   cal_score = par_numbers[number].to_i - golf_score.to_i
 
-  if golf_score.to_i == 1
-    # TODO: イーグルを表示させる実装
+  if par_numbers[number].to_i == 5 && golf_score.to_i == 1
+    score_judge.push('コンドル')
+  elsif golf_score.to_i == 1
     score_judge.push('ホールインワン')
   elsif cal_score.zero?
     score_judge.push('パー')
