@@ -53,7 +53,7 @@ def show_calendar_dates(first_date, last_date)
 
   # temp_array = [1,2,3]
   # print "#{initial_empty}#{temp_array[0].to_s.rjust(2)} "
-  puts ''
+  print "\n"
   # puts '完了'
 
   # 土曜日ごとの日付をこの変数に格納していくため、変数名を置き換える
