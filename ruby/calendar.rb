@@ -41,21 +41,13 @@ def show_calendar_dates(first_date, last_date)
   # 月の最初の土曜日の日付 = 7 - 該当月の初日の曜日の番号
   first_saturday = 7 - week_day_of_first_date
 
-    # 最初の日が日曜日でない場合空欄を設ける処理を記載
-    if week_day_of_first_date != 0
-      temp = '   ' * week_day_of_first_date
-      temp.to_s.rjust(2)
-    end
-
   # 土曜日ごとの日付をこの変数に格納していくため、変数名を置き換える
   saturdays = first_saturday
   # 1日から月末までの日付を表示する
   # 土曜日になったら改行して表示する
   (1..last_date).each do |num|
-    if num == 1
-      initial_empty = '   ' * week_day_of_first_date
-      puts "#{initial_empty.to_s.rjust(2)}#{num.to_s.rjust(2)}"
-    end
+    initial_empty = '   ' * week_day_of_first_date
+    # {initial_empty.to_s.rjust(2)}
 
     if num == saturdays
       saturdays += 7
