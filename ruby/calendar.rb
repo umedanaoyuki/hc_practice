@@ -6,6 +6,12 @@ require 'optparse'
 opt = OptionParser.new
 opt.on('-m') { |v| p v }
 
+# 引数が適切でない場合、エラーメッセージを表示
+if ARGV[1].to_i > 12 || ARGV[1].to_i < 1
+  puts "#{ARGV[1]} is neither a month number (1..12) nor a name"
+  exit
+end
+
 # 今年の年の取得
 current_year = Date.today.year.to_i
 # カレンダーの表示する月を決める（引数がない場合、現在の月を表示）
@@ -74,11 +80,6 @@ if ARGV[1].nil?
   show_calender_upper_area(date)
   show_calendar_dates(first_date, last_date)
   exit
-end
-
-# 引数が適切でない場合、エラーメッセージを表示
-if ARGV[1].to_i > 12 || ARGV[1].to_i < 1
-  puts "#{ARGV[1]} is neither a month number (1..12) nor a name"
 end
 
 # 引数が適切な場合、カレンダーを表示
