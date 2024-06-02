@@ -43,16 +43,26 @@ def show_calendar_dates(first_date, last_date)
 
   initial_empty = '   ' * week_day_of_first_date
 
-  temp_array = [1,2,3]
-  print "#{initial_empty}#{temp_array[0].to_s.rjust(2)} "
+  first_week_days = (1..first_saturday).to_a
+  # print "#{initial_empty}#{first_week_days[0].to_s.rjust(2)} "
+  print initial_empty
+  first_week_days.each do |day|
+    print "#{day.to_s.rjust(2)} "
+  end
+
+
+  # temp_array = [1,2,3]
+  # print "#{initial_empty}#{temp_array[0].to_s.rjust(2)} "
   puts ''
-  puts '完了'
+  # puts '完了'
 
   # 土曜日ごとの日付をこの変数に格納していくため、変数名を置き換える
-  saturdays = first_saturday
+  # 2回目以降の土曜日
+  saturdays = first_saturday + 7
   # 1日から月末までの日付を表示する
   # 土曜日になったら改行して表示する
-  (1..last_date).each do |num|
+  first_sunday = first_saturday + 1
+  (first_sunday..last_date).each do |num|
     # initial_empty = '   ' * week_day_of_first_date
     # {initial_empty.to_s.rjust(2)}
 
