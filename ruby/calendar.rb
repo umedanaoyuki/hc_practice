@@ -43,7 +43,7 @@ def show_calendar_dates(first_date, last_date)
 
     # 最初の日が日曜日でない場合空欄を設ける処理を記載
     if week_day_of_first_date != 0
-      temp = '111' * week_day_of_first_date
+      temp = '   ' * week_day_of_first_date
       temp.to_s.rjust(2)
     end
 
@@ -54,9 +54,13 @@ def show_calendar_dates(first_date, last_date)
   # 土曜日になったら改行して表示する
   (1..last_date).each do |num|
 
+    if num == 1
+      puts "#{'   '.to_s.rjust(2)}#{num.to_s.rjust(2)}"
+    end
+
     if num == saturdays
       saturdays += 7
-      puts "#{num.to_s.rjust(2)}"
+      puts num.to_s.rjust(2)
     else
       print "#{num.to_s.rjust(2)} "
     end
