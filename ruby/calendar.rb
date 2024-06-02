@@ -62,7 +62,7 @@ def show_calendar_dates(first_date, last_date)
 
   # 2回目の土曜日
   saturdays = first_saturday + 7
-  # 最初の日曜日から月末までの日付を表示する
+  # 2回目の土曜日が存在する日曜日から月末までの日付を表示する
   # 土曜日になったら改行して日付を表示
   first_sunday = first_saturday + 1
   (first_sunday..last_date).each do |num|
