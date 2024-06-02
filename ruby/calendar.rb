@@ -10,12 +10,10 @@ opt.on('-m') { |v| p v }
 def show_calendar
   # 今年の年の取得
   current_year = Date.today.year.to_i
-  # 現在の月を取得
-  current_month = Date.today.month.to_i
   # 月の初めの日
   initial_date = 1
   # カレンダーの表示する月を決める（引数がない場合、現在の月を表示）
-  month_to_display = ARGV[1] ? ARGV[1].to_i : current_month
+  month_to_display = ARGV[1] ? ARGV[1].to_i : Date.today.month.to_i
   date = Date.new(current_year, month_to_display, initial_date)
   # カレンダーの表紙
   calendar_cover_month = date.strftime('%m').to_i
