@@ -28,15 +28,7 @@ def show_calender_upper_area(date)
   puts "#{calendar_cover_space}#{calendar_cover_month}月 #{date.year}"
 
   week_day = %w(日 月 火 水 木 金 土)
-
-  # 曜日を表示
-  week_day.each do |wday|
-    # 曜日を表示したあと、空欄を入れてprintする
-    print "#{wday} "
-  end
-
-  # 改行
-  print "\n"
+  puts week_day.join(' ')
 end
 
 # カレンダーの日付の表示のメソッド
