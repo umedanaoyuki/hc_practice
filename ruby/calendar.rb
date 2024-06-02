@@ -43,6 +43,7 @@ def show_calendar_dates(first_date, last_date)
 
   # 月の土曜日に変数名を置き換える
   saturdays = first_saturday
+  # 1日から月末までの日付を表示する
   # 土曜日になったら改行して表示する
   (1..last_date).each do |num|
     if num == saturdays
