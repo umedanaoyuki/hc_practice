@@ -48,9 +48,9 @@ def show_calendar_dates(first_date, last_date)
   (1..last_date).each do |num|
     if num == saturdays
       saturdays += 7
-      puts num
+      puts num.to_s.rjust(2)
     else
-      print "#{num} "
+      print "#{num.to_s.rjust(2)} "
     end
   end
 end
