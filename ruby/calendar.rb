@@ -39,8 +39,8 @@ def show_calender_upper_area(date)
   print "\n"
 end
 
-# カレンダー表示のメソッド
-def show_calendar(first_date, last_date)
+# カレンダーの日付の表示のメソッド
+def show_calendar_dates(first_date, last_date)
   # 該当月の初日の曜日を取得
   # 0:日曜日, 1:月曜日, 2:火曜日, 3:水曜日, 4:木曜日, 5:金曜日, 6:土曜日
   week_day_of_first_date = first_date.wday.to_i
@@ -65,7 +65,7 @@ end
 # 引数がない場合、でもカレンダーを表示
 if ARGV[1].nil?
   show_calender_upper_area(date)
-  show_calendar(first_date, last_date)
+  show_calendar_dates(first_date, last_date)
   exit
 end
 
@@ -76,4 +76,4 @@ end
 
 # 引数が適切な場合、カレンダーを表示
 show_calender_upper_area(date)
-show_calendar(first_date, last_date)
+show_calendar_dates(first_date, last_date)
