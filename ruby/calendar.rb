@@ -19,8 +19,8 @@ first_date = Date.new(date.year, month_to_display, 1)
 # 該当月の最終日を求める
 last_date = Date.new(date.year, month_to_display, -1).day.to_i
 
-# カレンダー表示のメソッド
-def show_calendar(date, first_date, last_date)
+# カレンダーの上部を表示する
+def show_calender_upper_area(date)
   # カレンダーの表紙
   calendar_cover_month = date.strftime('%m').to_i
   # 真ん中に年月をするための空欄
@@ -37,7 +37,10 @@ def show_calendar(date, first_date, last_date)
 
   # 改行
   print "\n"
+end
 
+# カレンダー表示のメソッド
+def show_calendar(first_date, last_date)
   # 該当月の初日の曜日を取得
   # 0:日曜日, 1:月曜日, 2:火曜日, 3:水曜日, 4:木曜日, 5:金曜日, 6:土曜日
   week_day_of_first_date = first_date.wday.to_i
@@ -61,7 +64,8 @@ end
 
 # 引数がない場合、でもカレンダーを表示
 if ARGV[1].nil?
-  show_calendar(date, first_date, last_date)
+  show_calender_upper_area(date)
+  show_calendar(first_date, last_date)
   exit
 end
 
@@ -71,4 +75,5 @@ if ARGV[1].to_i > 12 || ARGV[1].to_i < 1
 end
 
 # 引数が適切な場合、カレンダーを表示
-show_calendar(date, first_date, last_date)
+show_calender_upper_area(date)
+show_calendar(first_date, last_date)
