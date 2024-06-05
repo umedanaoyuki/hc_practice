@@ -35,7 +35,7 @@ def show_calender_upper_area(date)
   calendar_cover_space = '      '
   puts "#{calendar_cover_space}#{calendar_cover_month}月 #{date.year}"
 
-  week_day = %w(日 月 火 水 木 金 土)
+  week_day = %w(月 火 水 木 金 土 日)
   puts week_day.join(' ')
 end
 
@@ -47,13 +47,15 @@ def show_calendar_dates(first_date, last_date)
 
   # 月の最初の土曜日の日付を求める
   # 月の最初の土曜日の日付 = 7 - 該当月の初日の曜日の番号
-  first_saturday = 7 - week_day_of_first_date
+  first_sunday = 8 - week_day_of_first_date
+
+  # puts week_day_of_first_date
 
   # 初日の日にちを適切な曜日の下に表示するための空欄を作成
   initial_empty = '   ' * week_day_of_first_date
 
   # 1週目の日付を格納する配列を作成
-  first_week_days = (1..first_saturday).to_a
+  first_week_days = (1..first_sunday).to_a
   # 空白と1週目の日付を表示
   print initial_empty
   first_week_days.each do |day|
@@ -62,14 +64,14 @@ def show_calendar_dates(first_date, last_date)
   # 改行
   print "\n"
 
-  # 2回目の土曜日
-  saturdays = first_saturday + 7
+  # 2回目の日曜日
+  sundays = first_sunday + 7
   # 2回目の土曜日が存在する日曜日から月末までの日付を表示する
-  # 土曜日になったら改行して日付を表示
-  first_sunday = first_saturday + 1
-  (first_sunday..last_date).each do |num|
-    if num == saturdays
-      saturdays += 7
+  # 日曜日になったら改行して日付を表示
+  first_monday = first_sunday + 1
+  (first_monday..last_date).each do |num|
+    if num == sundays
+      sundays += 7
       puts num.to_s.rjust(2)
     else
       print "#{num.to_s.rjust(2)} "
