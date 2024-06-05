@@ -7,7 +7,7 @@ opt = OptionParser.new
 opt.on('-m') { |v| p v }
 
 # 引数が適切な場合、カレンダーを表示する処理に進む
-if ARGV[1].nil? || ARGV[1].to_i > 1 && ARGV[1].to_i < 12
+if ARGV[1].nil? || ARGV[1].to_i >= 1 && ARGV[1].to_i <= 12
   # 今年の年の取得
   current_year = Date.today.year.to_i
   # カレンダーの表示する月を決める（引数がない場合、現在の月を表示）
