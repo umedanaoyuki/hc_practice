@@ -45,14 +45,16 @@ def show_calendar_dates(first_date, last_date)
   # 0:日曜日, 1:月曜日, 2:火曜日, 3:水曜日, 4:木曜日, 5:金曜日, 6:土曜日
   week_day_of_first_date = first_date.wday.to_i
 
-  # 月の最初の土曜日の日付を求める
-  # 月の最初の土曜日の日付 = 7 - 該当月の初日の曜日の番号
-  first_sunday = 8 - week_day_of_first_date
-
-  # puts week_day_of_first_date
+  # 月の最初の日曜日の日付を求める
+  # 月の最初の日曜日の日付 = 8 - 該当月の初日の曜日の番号
+  # 月の最初の日曜日の初期値
+  first_sunday = 1
+  if week_day_of_first_date != 0
+    first_sunday = 8 - week_day_of_first_date
+  end
 
   # 初日の日にちを適切な曜日の下に表示するための空欄を作成
-  initial_empty = '   ' * week_day_of_first_date
+  initial_empty = '   ' * (7 - first_sunday)
 
   # 1週目の日付を格納する配列を作成
   first_week_days = (1..first_sunday).to_a
