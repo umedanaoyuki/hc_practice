@@ -2,8 +2,23 @@
 
 # 入力値X（= 18ホールの各ホールの規定打数）受けとる配列
 par_numbers = gets.split(',')
+
+par_numbers.each do |par_number|
+  if par_number.to_i < 3 || par_number.to_i > 5
+    puts '3以上5以下の整数を入力してください'
+    exit
+  end
+end
+
 # 入力値Y（= プレイヤーの打数）の入力を受け取る配列
 golf_scores = gets.split(',')
+
+golf_scores.each do |golf_score|
+  if golf_score.to_i < 1
+    puts '1以上の整数を入力してください'
+    exit
+  end
+end
 
 # 出力を格納する配列
 score_judge = []
