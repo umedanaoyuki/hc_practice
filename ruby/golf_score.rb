@@ -5,8 +5,7 @@ par_numbers = gets.split(',')
 
 par_numbers.each do |par_number|
   if par_number.to_i < 3 || par_number.to_i > 5
-    puts '3以上5以下の整数を入力してください'
-    exit
+    raise '3以上5以下の整数を入力してください'
   end
 end
 
@@ -15,8 +14,7 @@ golf_scores = gets.split(',')
 
 golf_scores.each do |golf_score|
   if golf_score.to_i < 1
-    puts '1以上の整数を入力してください'
-    exit
+    raise '1以上の整数を入力してください'
   end
 end
 
