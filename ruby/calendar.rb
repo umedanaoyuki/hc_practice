@@ -21,7 +21,7 @@ month_to_display = ARGV[1].present? ? ARGV[1].to_i : Date.today.month.to_i
 first_date = Date.new(current_year, month_to_display, 1)
 
 # 該当月の最終日を求める
-last_date = Date.new(first_date.year, month_to_display, -1).day.to_i
+last_date = Date.new(first_date.year, month_to_display, -1)
 
 # カレンダーの上部を表示するメソッド
 def show_calender_upper_area(date)
@@ -37,6 +37,11 @@ end
 
 # カレンダーの日付箇所の表示メソッド
 def show_calendar_dates(first_date, last_date)
+
+  # puts first_date
+  # puts last_date
+
+
   # 該当月の初日の曜日を取得
   # 0:日曜日, 1:月曜日, 2:火曜日, 3:水曜日, 4:木曜日, 5:金曜日, 6:土曜日
   week_day_of_first_date = first_date.wday.to_i
@@ -69,12 +74,18 @@ def show_calendar_dates(first_date, last_date)
   # 2回目の土曜日が存在する日曜日から月末までの日付を表示する
   # 日曜日になったら改行して日付を表示
   first_monday = first_sunday + 1
-  (first_monday..last_date).each do |num|
-    if num == sundays
+  # puts 'hello'
+  # puts first_date.wday
+  (first_date..last_date).each do |date|
+    # puts date
+    if date.wday.zero?
       sundays += 7
-      puts num.to_s.rjust(2)
+      # puts 'hello'
+      # puts date.to_s.rjust(2)
+      puts date.day.to_s.rjust(2)
     else
-      print "#{num.to_s.rjust(2)} "
+      # puts 'hellohello'
+      print "#{date.day.to_s.rjust(2)} "
     end
   end
 end
