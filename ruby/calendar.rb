@@ -76,12 +76,16 @@ def show_calendar_dates(first_date, last_date)
   first_monday = first_sunday + 1
   # puts 'hello'
   # puts first_date.wday
+  puts 'ここからスタート'
+  print initial_empty
   (first_date..last_date).each do |date|
     # puts date
+    # print initial_empty
     if date.wday.zero?
       sundays += 7
       # puts 'hello'
       # puts date.to_s.rjust(2)
+      # print initial_empty
       puts date.day.to_s.rjust(2)
     else
       # puts 'hellohello'
