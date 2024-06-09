@@ -16,7 +16,7 @@ end
 # 今年の年の取得
 current_year = Date.today.year.to_i
 # カレンダーの表示する月を決める（引数がない場合、現在の月を表示）
-month_to_display = ARGV[1] ? ARGV[1].to_i : Date.today.month.to_i
+month_to_display = ARGV[1].present? ? ARGV[1].to_i : Date.today.month.to_i
 # カレンダーに表示する年月日を作成
 date = Date.new(current_year, month_to_display, 1)
 
