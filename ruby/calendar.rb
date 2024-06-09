@@ -38,10 +38,6 @@ end
 # カレンダーの日付箇所の表示メソッド
 def show_calendar_dates(first_date, last_date)
 
-  # puts first_date
-  # puts last_date
-
-
   # 該当月の初日の曜日を取得
   # 0:日曜日, 1:月曜日, 2:火曜日, 3:水曜日, 4:木曜日, 5:金曜日, 6:土曜日
   week_day_of_first_date = first_date.wday.to_i
@@ -74,18 +70,10 @@ def show_calendar_dates(first_date, last_date)
   # 2回目の土曜日が存在する日曜日から月末までの日付を表示する
   # 日曜日になったら改行して日付を表示
   first_monday = first_sunday + 1
-  # puts 'hello'
-  # puts first_date.wday
-  puts 'ここからスタート'
   print initial_empty
   (first_date..last_date).each do |date|
-    # puts date
-    # print initial_empty
     if date.wday.zero?
       sundays += 7
-      # puts 'hello'
-      # puts date.to_s.rjust(2)
-      # print initial_empty
       puts date.day.to_s.rjust(2)
     else
       # puts 'hellohello'
