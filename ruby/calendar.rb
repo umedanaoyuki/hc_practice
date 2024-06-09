@@ -2,12 +2,13 @@
 
 require 'date'
 require 'optparse'
+require 'active_support/all'
 
 opt = OptionParser.new
 opt.on('-m') { |v| p v }
 
 # 引数が適切でない場合、エラーメッセージを表示
-if ARGV[1].present? && (1..12).cover?(ARGV[1].to_i)
+if ARGV[1].present? && !(1..12).cover?(ARGV[1].to_i)
   raise "#{ARGV[1]} is neither a month number (1..12) nor a name"
 end
 
