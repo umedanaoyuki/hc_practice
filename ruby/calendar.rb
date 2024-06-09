@@ -30,9 +30,8 @@ last_date = Date.new(date.year, month_to_display, -1).day.to_i
 def show_calender_upper_area(date)
   # カレンダーの表紙
   calendar_cover_month = date.strftime('%m').to_i
-  # 真ん中に年月をするための空欄
-  calendar_cover_space = '      '
-  puts "#{calendar_cover_space}#{calendar_cover_month}月 #{date.year}"
+  # カレンダーの表紙を中央の位置に表示
+  puts "#{calendar_cover_month}月 #{date.year}".center(20)
 
   # 月曜日始まり
   week_day = %w(月 火 水 木 金 土 日)
