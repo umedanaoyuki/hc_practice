@@ -6,25 +6,24 @@ require 'optparse'
 opt = OptionParser.new
 opt.on('-m') { |v| p v }
 
-# 引数が適切な場合、カレンダーを表示する処理に進む
-if ARGV[1].nil? || ARGV[1].to_i >= 1 && ARGV[1].to_i <= 12
-  # 今年の年の取得
-  current_year = Date.today.year.to_i
-  # カレンダーの表示する月を決める（引数がない場合、現在の月を表示）
-  month_to_display = ARGV[1] ? ARGV[1].to_i : Date.today.month.to_i
-  # カレンダーに表示する年月日を作成
-  date = Date.new(current_year, month_to_display, 1)
-
-  # 該当月の初日
-  first_date = Date.new(date.year, month_to_display, 1)
-
-  # 該当月の最終日を求める
-  last_date = Date.new(date.year, month_to_display, -1).day.to_i
-
-else
-  # 引数が適切でない場合、エラーメッセージを表示
+# 引数が適切でない場合、エラーメッセージを表示
+if ARGV[1].present? && (1..12).cover?(ARGV[1].to_i)
   raise "#{ARGV[1]} is neither a month number (1..12) nor a name"
 end
+
+# 引数が適切な場合、カレンダーを表示する処理に進む
+# 今年の年の取得
+current_year = Date.today.year.to_i
+# カレンダーの表示する月を決める（引数がない場合、現在の月を表示）
+month_to_display = ARGV[1] ? ARGV[1].to_i : Date.today.month.to_i
+# カレンダーに表示する年月日を作成
+date = Date.new(current_year, month_to_display, 1)
+
+# 該当月の初日
+first_date = Date.new(date.year, month_to_display, 1)
+
+# 該当月の最終日を求める
+last_date = Date.new(date.year, month_to_display, -1).day.to_i
 
 # カレンダーの上部を表示するメソッド
 def show_calender_upper_area(date)
