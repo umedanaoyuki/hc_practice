@@ -54,14 +54,8 @@ def show_calendar_dates(first_date, last_date)
   # 初日の日にちを適切な曜日の下に表示するための空欄を作成
   initial_empty = '   ' * (7 - first_sunday)
 
-  # 1週目の日付を格納する配列を作成
-  first_week_days = (1..first_sunday).to_a
-
-  # 2回目の日曜日
   sundays = first_sunday + 7
-  # 2回目の土曜日が存在する日曜日から月末までの日付を表示する
   # 日曜日になったら改行して日付を表示
-  first_monday = first_sunday + 1
   print initial_empty
   (first_date..last_date).each do |date|
     if date.wday.zero?
