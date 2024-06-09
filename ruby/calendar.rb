@@ -23,8 +23,7 @@ if ARGV[1].nil? || ARGV[1].to_i >= 1 && ARGV[1].to_i <= 12
 
 else
   # 引数が適切でない場合、エラーメッセージを表示
-  puts "#{ARGV[1]} is neither a month number (1..12) nor a name"
-  exit
+  raise "#{ARGV[1]} is neither a month number (1..12) nor a name"
 end
 
 # カレンダーの上部を表示するメソッド
