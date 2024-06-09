@@ -18,13 +18,10 @@ current_year = Date.today.year.to_i
 # カレンダーの表示する月を決める（引数がない場合、現在の月を表示）
 month_to_display = ARGV[1].present? ? ARGV[1].to_i : Date.today.month.to_i
 # カレンダーに表示する年月日を作成
-date = Date.new(current_year, month_to_display, 1)
-
-# 該当月の初日
-first_date = Date.new(date.year, month_to_display, 1)
+first_date = Date.new(current_year, month_to_display, 1)
 
 # 該当月の最終日を求める
-last_date = Date.new(date.year, month_to_display, -1).day.to_i
+last_date = Date.new(first_date.year, month_to_display, -1).day.to_i
 
 # カレンダーの上部を表示するメソッド
 def show_calender_upper_area(date)
@@ -83,5 +80,5 @@ def show_calendar_dates(first_date, last_date)
 end
 
 # 引数が適切な場合、カレンダーを表示
-show_calender_upper_area(date)
+show_calender_upper_area(first_date)
 show_calendar_dates(first_date, last_date)
