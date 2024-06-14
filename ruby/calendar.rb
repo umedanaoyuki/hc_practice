@@ -52,12 +52,10 @@ def show_calendar_dates(first_date, last_date)
   # 初日の日にちを適切な曜日の下に表示するための空欄を作成
   initial_empty = '   ' * (7 - first_sunday)
 
-  sundays = first_sunday + 7
   # 日曜日になったら改行して日付を表示
   print initial_empty
   (first_date..last_date).each do |date|
     if date.wday.zero?
-      sundays += 7
       puts date.day.to_s.rjust(2)
     else
       print "#{date.day.to_s.rjust(2)} "
