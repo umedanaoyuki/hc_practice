@@ -24,6 +24,18 @@ score_judge = []
 # 配列を回すための変数
 number = 0
 
+SCORE_MAPPING = {
+    "4" => "コンドル",
+    "3" => "アルバトロス",
+    "2" => "イーグル",
+    "1" => "バーディ",
+    "0" => "パー",
+    "-1" => "ボギー"
+}
+
+puts 'print'
+puts SCORE_MAPPING['4']
+
 golf_scores.each do |golf_score|
   # ゴルフの判定を行うための変数
   cal_score = par_numbers[number].to_i - golf_score.to_i
