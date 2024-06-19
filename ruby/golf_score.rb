@@ -43,13 +43,11 @@ golf_scores.each do |golf_score|
     next
   end
 
-
   if par_numbers[number].to_i == 5 && golf_score.to_i == 1
     score_judge.push('コンドル')
     number += 1
     next
   end
-
 
   if golf_score.to_i == 1
     score_judge.push('ホールインワン')
