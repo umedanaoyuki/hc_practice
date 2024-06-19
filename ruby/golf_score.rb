@@ -40,9 +40,25 @@ golf_scores.each do |golf_score|
   # ゴルフの判定を行うための変数
   cal_score = par_numbers[number].to_i - golf_score.to_i
 
-  # if golf_score.to_i == 1
-  #   score_judge.push('ホールインワン')
-  # end
+  if golf_score.to_i - par_numbers[number].to_i > 1
+    score_judge.push("#{golf_score.to_i - par_numbers[number].to_i}ボギー")
+    number += 1
+    next
+  end
+
+
+  if par_numbers[number].to_i == 5 && golf_score.to_i == 1
+    score_judge.push('コンドル')
+    number += 1
+    next
+  end
+
+
+  if golf_score.to_i == 1
+    score_judge.push('ホールインワン')
+    number += 1
+    next
+  end
 
   score_judge.push(SCORE_MAPPING[cal_score.to_s])
   number += 1
