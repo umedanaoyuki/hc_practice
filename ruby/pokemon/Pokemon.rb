@@ -1,4 +1,4 @@
-# 抽象クラス
+# インターフェース
 class Pokemon
   # ゲッター・セッター
   attr_accessor :name, :type1, :type2, :hp
