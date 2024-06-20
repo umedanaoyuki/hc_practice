@@ -25,19 +25,22 @@ end
 
 class Main
   pokemon = Pokemon.new("リザードン", "ほのお", "ひこう", 100)
-  pikachu = Pikachu.new("ピカチュウ", "でんき", "", 100)
+  pikachu = Pikachu.new("ピカチュウ", "でんき", "なし", 100)
 
   # ポケモンクラスの内容
-  pokemon.attack
+  puts "#ポケモンクラスの内容"
   puts pokemon.name
   puts pokemon.type1
   puts pokemon.type2
   puts pokemon.hp
+  pokemon.attack
 
+  puts ''
   # ピカチュウクラスの内容
-  pikachu.attack
+  puts "#ピカチュウクラスの内容"
   puts pikachu.name
   puts pikachu.type1
   puts pikachu.type2
   puts pikachu.hp
+  pikachu.attack
 end
