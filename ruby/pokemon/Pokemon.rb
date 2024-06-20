@@ -16,19 +16,28 @@ class Pokemon
   end
 end
 
-
-
-
-
+# ポケモンクラスを継承したピカチュウクラス
+class Pikachu < Pokemon
+  def attack
+    puts "#{name}の10万ボルト"
+  end
+end
 
 class Main
   pokemon = Pokemon.new("リザードン", "ほのお", "ひこう", 100)
+  pikachu = Pikachu.new("ピカチュウ", "でんき", "", 100)
 
+  # ポケモンクラスの内容
   pokemon.attack
-
   puts pokemon.name
   puts pokemon.type1
   puts pokemon.type2
   puts pokemon.hp
 
+  # ピカチュウクラスの内容
+  pikachu.attack
+  puts pikachu.name
+  puts pikachu.type1
+  puts pikachu.type2
+  puts pikachu.hp
 end
