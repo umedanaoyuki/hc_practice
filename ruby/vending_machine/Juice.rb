@@ -3,14 +3,13 @@
 # 初期状態で、ペプシ(150円)を5本格納している。
 # 自動販売機は在庫を取得できる
 
-# 自動販売機
 class Machine
-  attr_reader :juice, :stock
-  attr_writer :juice, :stock
+  attr_reader :juice, :inventory
+  attr_writer :juice, :inventory
 
-  def initialize(juice = { name: 'ペプシ', price: 150 }, stock = 5)
+  def initialize(juice = { name: 'ペプシ', price: 150 }, inventory = 5)
     @juice = juice
-    @stock = stock
+    @inventory = inventory
   end
 end
 
@@ -18,4 +17,4 @@ machine = Machine.new
 
 puts machine.juice
 # 在庫確認
-puts machine.stock
+puts machine.inventory
