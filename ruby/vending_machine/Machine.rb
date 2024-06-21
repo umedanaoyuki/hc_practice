@@ -1,20 +1,17 @@
-# 自動販売機はジュースを１種類格納できる
-# ジュースは名前と値段の情報をもつ
-# 初期状態で、ペプシ(150円)を5本格納している。
-# 自動販売機は在庫を取得できる
+require './Suica'
 
 class Machine
-  attr_reader :juice, :inventory
-  attr_writer :juice, :inventory
+  attr_reader :inventory
 
-  def initialize(juice = { name: 'ペプシ', price: 150 }, inventory = 5)
-    @juice = juice
+  def initialize(inventory = 5)
     @inventory = inventory
   end
+
+  suica = Suica.new
+  suica.show_balance(200)
 end
 
-machine = Machine.new
+# machine = Machine.new
 
-puts machine.juice
-puts '在庫確認'
-puts machine.inventory
+# puts '在庫確認'
+# puts machine.inventory
