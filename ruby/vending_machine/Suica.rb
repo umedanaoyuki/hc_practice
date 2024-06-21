@@ -12,8 +12,12 @@ class Suica
   end
 
   def show_balance(charge)
+    if charge < 100
+      raise "100円未満はチャージできません"
+    end
+
     balance = deposit + charge
-    puts balance
+    puts "Suica残高は#{balance}円です"
   end
 end
 
