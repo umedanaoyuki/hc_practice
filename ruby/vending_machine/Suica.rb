@@ -16,5 +16,5 @@ suica = Suica.new
 
 suica.show_balance(100)
 puts 'depositの表示'
-## うまくdepostが表示されない
+## うまくdepositが表示されない
 suica.deposit
