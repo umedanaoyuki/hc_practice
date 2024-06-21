@@ -20,19 +20,25 @@ class Suica
     if charge < 100
       raise "100円未満はチャージできません"
     end
-
-    @balance = balance + charge
+    @balance += charge
   end
 
   def show_balance
     puts "Suica残高は#{balance}円です"
   end
+
+  def change_balance(amount)
+    @balance -= amount
+    puts "Suica残高は#{balance}円です"
+  end
+
+
 end
 
-suica = Suica.new
+# suica = Suica.new
 
-suica.charge(500)
-puts '残高表示'
-suica.show_balance
+# suica.charge(500)
+# puts '残高表示'
+# suica.show_balance
 # puts 'depositの表示'
 # suica.show_deposit
