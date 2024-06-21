@@ -1,6 +1,6 @@
-# スイカ
+# Suica
 class Suica
-  attr_accessor :deposit
+  attr_reader :deposit
 
   def initialize(deposit = 500)
     @deposit = deposit
@@ -15,3 +15,6 @@ end
 suica = Suica.new
 
 suica.show_balance(100)
+puts 'depositの表示'
+## うまくdepostが表示されない
+suica.deposit
