@@ -16,5 +16,5 @@ end
 machine = Machine.new
 
 puts machine.juice
-# 在庫確認
+puts '在庫確認'
 puts machine.inventory

@@ -23,7 +23,7 @@ end
 
 suica = Suica.new
 
-suica.show_balance(100)
+suica.show_balance(105)
 puts 'depositの表示'
 ## うまくdepositが表示されない
 suica.deposit
