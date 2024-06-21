@@ -11,6 +11,10 @@ class Suica
     @deposit = deposit
   end
 
+  # def show_deposit
+  #   puts "デポジットは#{@deposit}円です"
+  # end
+
   def show_balance(charge)
     if charge < 100
       raise "100円未満はチャージできません"
@@ -23,7 +27,7 @@ end
 
 suica = Suica.new
 
+puts '残高表示'
 suica.show_balance(105)
-puts 'depositの表示'
-## うまくdepositが表示されない
-suica.deposit
+# puts 'depositの表示'
+# suica.show_deposit
