@@ -1,4 +1,3 @@
-
 require './Suica'
 require './Juice'
 require './Machine'
@@ -26,7 +25,7 @@ puts "現在の販売機の売上金額合計は#{machine.sales}円です"
 
 # 200円のチャージ
 suica.charge(200)
-suica.show_balance
+puts "Suica残高は#{suica.show_balance}円です"
 
 # 在庫補填をする
 pepsi.add_inventory(5)
