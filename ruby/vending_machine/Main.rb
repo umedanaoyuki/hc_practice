@@ -28,6 +28,9 @@ puts "現在の販売機の売上金額合計は#{machine.sales}円です"
 suica.charge(200)
 suica.show_balance
 
+# 在庫補填をする
+pepsi.add_inventory(5)
+
 puts '在庫確認'
 puts "#{pepsi.name}の在庫は#{pepsi.inventory}本です"
 puts "#{monster.name}の在庫は#{monster.inventory}本です"

@@ -12,4 +12,8 @@ class Juice
     raise "#{name}の在庫がありません"
   end
 
+  def add_inventory(number)
+    @inventory += number
+    puts "#{name}の在庫は#{inventory}本です"
+  end
 end
