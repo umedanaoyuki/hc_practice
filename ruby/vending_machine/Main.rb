@@ -11,9 +11,11 @@ require './Juice'
 require './Machine'
 
 suica = Suica.new
-juice = Juice.new
+pepsi = Juice.new('ペプシ', 150, 5)
+monster = Juice.new('モンスター', 230, 5)
+irohas = Juice.new('いろはす', 120, 5)
 machine = Machine.new
-machine.purchase(suica, juice)
+machine.purchase(suica, pepsi)
 
 # 現在の売上金額合計
 puts "現在の売上金額合計は#{machine.sales}円です"

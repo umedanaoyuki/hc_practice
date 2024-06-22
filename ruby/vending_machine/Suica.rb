@@ -32,11 +32,3 @@ class Suica
     puts "Suica残高は#{balance}円です"
   end
 end
-
-# suica = Suica.new
-
-# suica.charge(500)
-# puts '残高表示'
-# suica.show_balance
-# puts 'depositの表示'
-# suica.show_deposit

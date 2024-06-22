@@ -1,23 +1,18 @@
 # 販売機クラス
 class Machine
-  attr_reader :inventory, :sales
+  attr_reader :sales
 
-  def initialize(inventory = 5, sales = 0)
-    @inventory = inventory
+  def initialize(sales = 0)
     @sales = sales
   end
 
-# 自動販売機はジュースの在庫を減らす
-# 売り上げ金額を増やす
-# Suicaのチャージ残高を減らす
 def purchase(suica, juice)
-  if @inventory == 0
-    raise "#{juice}の在庫がありません"
-  end
-
   if suica.balance >= juice.price
-    @inventory -= 1
+    # ジュースの在庫を減らす
+    juice.inventory -= 1
+    # 売り上げ金額を増やす
     @sales += juice.price
+    # Suicaのチャージ残高を減らす
     suica.change_balance(juice.price)
     puts "#{juice.name}の購入完了"
   else
