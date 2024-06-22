@@ -31,8 +31,6 @@ class Suica
     @balance -= amount
     puts "Suica残高は#{balance}円です"
   end
-
-
 end
 
 # suica = Suica.new

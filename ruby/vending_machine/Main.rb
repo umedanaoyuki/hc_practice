@@ -6,3 +6,17 @@
 # チャージ残高が足りない場合もしくは在庫がない場合、購入操作を行った場合は例外を発生させる
 # 自動販売機は現在の売上金額を取得できる
 
+require './Suica'
+require './Juice'
+require './Machine'
+
+suica = Suica.new
+juice = Juice.new
+machine = Machine.new
+machine.purchase(suica, juice)
+
+# 現在の売上金額合計
+puts "現在の売上金額合計は#{machine.sales}円です"
+
+# puts '在庫確認'
+# puts machine.inventory
