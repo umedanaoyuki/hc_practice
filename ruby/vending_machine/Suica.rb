@@ -21,6 +21,8 @@ class Suica
       raise "100円未満はチャージできません"
     end
     @balance += charge
+    puts "#{charge}円のチャージ完了しました"
+    # puts "現在のSuica残高は#{balance}円です"
   end
 
   def show_balance
@@ -29,6 +31,6 @@ class Suica
 
   def change_balance(amount)
     @balance -= amount
-    puts "Suica残高は#{balance}円です"
+    # puts "Suica残高は#{balance}円です"
   end
 end

@@ -24,6 +24,10 @@ machine.purchase(suica, irohas)
 # 現在の売上金額合計
 puts "現在の販売機の売上金額合計は#{machine.sales}円です"
 
+# 200円のチャージ
+suica.charge(200)
+suica.show_balance
+
 puts '在庫確認'
 puts "#{pepsi.name}の在庫は#{pepsi.inventory}本です"
 puts "#{monster.name}の在庫は#{monster.inventory}本です"
