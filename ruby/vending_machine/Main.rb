@@ -8,12 +8,12 @@ pepsi = Juice.new('ペプシ', 150)
 monster = Juice.new('モンスター', 230)
 irohas = Juice.new('いろはす', 120)
 
-puts pepsi.name
-puts pepsi.price
-puts monster.name
-puts monster.price
-puts irohas.name
-puts irohas.price
+# puts pepsi.name
+# puts pepsi.price
+# puts monster.name
+# puts monster.price
+# puts irohas.name
+# puts irohas.price
 
 # # ペプシ1本購入
 # machine.purchase(suica, pepsi)
@@ -39,7 +39,7 @@ machine.add_juice(irohas, 6)
 # # モンスター1本購入
 machine.purchase(suica, monster)
 # # 現在の売上金額合計
-# puts "現在の販売機の売上金額合計は#{machine.sales}円です"
+puts "現在の販売機の売上金額合計は#{machine.sales}円です"
 
 # # いろはす1本購入
 # machine.purchase(suica, irohas)
