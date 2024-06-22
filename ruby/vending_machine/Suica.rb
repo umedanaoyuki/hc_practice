@@ -1,4 +1,4 @@
-# Suica
+# Suicaクラス
 class Suica
   attr_reader :balance
 

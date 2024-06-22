@@ -1,3 +1,4 @@
+# Juiceクラス
 class Juice
   attr_reader :name, :price, :inventory
   attr_writer :inventory

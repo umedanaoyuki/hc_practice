@@ -1,4 +1,4 @@
-# 販売機クラス
+# 自動販売機クラス
 class Machine
   attr_reader :sales
 
