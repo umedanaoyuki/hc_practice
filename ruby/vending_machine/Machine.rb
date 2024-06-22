@@ -1,6 +1,3 @@
-require './Suica'
-require './Juice'
-
 # 販売機クラス
 class Machine
   attr_reader :inventory, :sales
@@ -28,14 +25,3 @@ def purchase(suica, juice)
   end
 end
 end
-
-# suica = Suica.new
-# juice = Juice.new
-# machine = Machine.new
-# machine.purchase(suica, juice)
-
-# # 現在の売上金額合計
-# puts "現在の売上金額合計は#{machine.sales}円です"
-
-# puts '在庫確認'
-# puts machine.inventory
