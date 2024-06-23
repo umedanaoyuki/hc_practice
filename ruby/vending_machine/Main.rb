@@ -37,7 +37,7 @@ puts "現在の販売機の売上金額合計は#{machine.sales}円です"
 suica.charge(300)
 puts "Suica残高は#{suica.balance}円です"
 
-#'在庫確認'
+# 在庫確認
 puts "#{pepsi.name}の在庫は#{machine.inventory[pepsi][:stock]}本です"
 puts "#{monster.name}の在庫は#{machine.inventory[monster][:stock]}本です"
 puts "#{irohas.name}の在庫は#{machine.inventory[irohas][:stock]}本です"
