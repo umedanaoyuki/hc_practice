@@ -4,9 +4,6 @@ require './Juice'
 class Machine
   attr_accessor :sales, :inventory
 
-  # inventoryはマシーンクラスの中で持つ
-  # juice = Juice.new
-
   def initialize(sales = 0, inventory = {})
     @sales = sales
     @inventory = inventory
@@ -31,4 +28,11 @@ def purchase(suica, juice)
     raise "Suicaの残高が足りません"
   end
 end
+
+  def show_available_drinks
+    puts '購入可能な飲み物は以下になります。'
+    @inventory.each_value do |details|
+      puts "#{details[:juice].name}: 在庫 #{details[:stock]}個"
+    end
+  end
 end

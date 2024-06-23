@@ -36,6 +36,9 @@ machine.add_juice(irohas, 5)
 # puts machine.inventory[irohas][:stock]
 # puts "終了"
 
+# 購入可能なジュース一覧
+machine.show_available_drinks
+
 # ペプシ1本購入
 machine.purchase(suica, pepsi)
 
