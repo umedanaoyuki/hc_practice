@@ -1,5 +1,7 @@
 # 自動販売機クラス
 class Machine
+  # 自動販売機の売上合計
+  # ジュースの在庫
   attr_reader :sales, :inventory
 
   def initialize(sales = 0, inventory = {})
