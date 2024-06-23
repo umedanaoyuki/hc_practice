@@ -8,7 +8,7 @@ class Machine
   end
 
   # ジュースの種類ごとの在庫を追加するメソッド
-  def add_juice(juice, stock)
+  def add_juice(juice, stock = 5)
     @inventory[juice] = { juice: juice, stock: stock }
   end
 
