@@ -16,11 +16,6 @@ class Suica
     puts "#{charge}円のチャージ完了しました"
   end
 
-  # 現在のSuica残高を取得するメソッド
-  def show_balance
-    balance
-  end
-
   # 飲み物購入時にSuica残高を減らすメソッド
   def change_balance(amount)
     @balance -= amount
