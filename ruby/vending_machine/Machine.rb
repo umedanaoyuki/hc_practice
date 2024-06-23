@@ -1,20 +1,22 @@
-require './Juice'
-
 # 自動販売機クラス
 class Machine
-  attr_accessor :sales, :inventory
+  attr_reader :sales, :inventory
 
   def initialize(sales = 0, inventory = {})
     @sales = sales
     @inventory = inventory
   end
 
+  # ジュースの種類ごとの在庫を追加するメソッド
   def add_juice(juice, stock)
     @inventory[juice] = { juice: juice, stock: stock }
   end
 
-def purchase(suica, juice)
-  if suica.balance >= juice.price && @inventory[juice][:stock] > 0
+  # ジュース購入のメソッド
+  def purchase(suica, juice)
+    raise 'Suicaの残高が足りません' if suica.balance < juice.price
+    raise "#{juice.name}の在庫はありません" if @inventory[juice][:stock].zero?
+
     # ジュースの在庫を減らす
     inventory[juice][:stock] -= 1
     # 売り上げ金額を増やす
@@ -22,11 +24,9 @@ def purchase(suica, juice)
     # Suicaのチャージ残高を減らす
     suica.change_balance(juice.price)
     puts "#{juice.name}の購入完了"
-  else
-    raise 'Suicaの残高が足りません'
   end
-end
 
+  # 自動販売機で購入できるジュース一覧を表示するメソッド
   def show_available_drinks
     puts '購入可能な飲み物は以下になります。'
     @inventory.each_value do |details|

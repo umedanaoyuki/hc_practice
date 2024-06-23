@@ -21,11 +21,11 @@ irohas = Juice.new('いろはす', 120)
 # puts "現在の販売機の売上金額合計は#{machine.sales}円です"
 
 # 在庫を追加
-puts '在庫を追加'
+# puts '在庫を追加'
 machine.add_juice(pepsi, 5)
 # puts machine.inventory[pepsi][:stock]
 machine.add_juice(monster, 5)
-machine.add_juice(irohas, 5)
+machine.add_juice(irohas, 1)
 
 # puts "検証スタート"
 # puts machine.inventory[pepsi][:juice].name
@@ -49,6 +49,10 @@ puts "現在の販売機の売上金額合計は#{machine.sales}円です"
 
 # # いろはす1本購入
 machine.purchase(suica, irohas)
+# Suicaに200円チャージ
+suica.charge(200)
+machine.purchase(suica, irohas)
+
 # # 現在の売上金額合計
 puts "現在の販売機の売上金額合計は#{machine.sales}円です"
 
