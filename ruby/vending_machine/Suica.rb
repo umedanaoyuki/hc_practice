@@ -8,9 +8,8 @@ class Suica
   end
 
   def charge(charge)
-    if charge < 100
-      raise "100円未満はチャージできません"
-    end
+    raise '100円未満はチャージできません。' if charge < 100
+
     @balance += charge
     puts "#{charge}円のチャージ完了しました"
   end
