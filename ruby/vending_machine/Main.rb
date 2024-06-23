@@ -2,6 +2,7 @@ require './juice'
 require './machine'
 require './suica'
 
+# このファイルで、３つのクラスを使用してSuicaを使用して自動販売機でジュースを購入する処理を実施する
 suica = Suica.new
 machine = Machine.new
 pepsi = Juice.new('ペプシ', 150)
