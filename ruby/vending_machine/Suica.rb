@@ -1,5 +1,6 @@
 # Suicaクラス
 class Suica
+  # Suica残高
   attr_reader :balance
 
   def initialize(balance = 0)
