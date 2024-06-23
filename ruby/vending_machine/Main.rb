@@ -16,6 +16,9 @@ machine.add_juice(irohas)
 # 購入可能なジュース一覧の表示
 machine.show_available_drinks
 
+# 改行
+puts ''
+
 # ペプシ1本購入
 machine.purchase(suica, pepsi)
 
@@ -25,17 +28,22 @@ machine.purchase(suica, monster)
 # いろはす1本購入
 machine.purchase(suica, irohas)
 
+puts ''
+
 # Suicaに200円チャージ
 suica.charge(200)
 # いろはす追加1本購入
 machine.purchase(suica, irohas)
 
+puts ''
+
 # 現在の売上金額合計
 puts "現在の販売機の売上金額合計は#{machine.sales}円です"
-
 # Suicaに200円チャージ
 suica.charge(300)
 puts "Suica残高は#{suica.balance}円です"
+
+puts ''
 
 # 在庫確認
 puts "#{pepsi.name}の在庫は#{machine.inventory[pepsi][:stock]}本です"
