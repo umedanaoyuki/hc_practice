@@ -10,9 +10,7 @@ class Machine
   end
 
  def add_juice(juice, stock)
-    @inventory[juice] = { juice: juice, stock: stock }
-    # puts @inventory[juice][:stock]
-    # puts '印刷'
+  @inventory[juice] = { juice: juice, stock: stock }
  end
 
 def purchase(suica, juice)
