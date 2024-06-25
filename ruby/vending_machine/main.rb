@@ -5,20 +5,19 @@ require './suica'
 # このファイルで、３つのクラスを使用してSuicaを使用して自動販売機でジュースを購入する処理を実施する
 suica = Suica.new
 machine = Machine.new
-# pepsi = Juice.new('ペプシ', 150)
-# monster = Juice.new('モンスター', 230)
-# irohas = Juice.new('いろはす', 120)
 
-# 在庫を追加
-machine.add_juice(pepsi)
-machine.add_juice(monster)
-machine.add_juice(irohas)
+# 在庫を追加（各種5本ずつ在庫に追加）
+machine.add_juice_stocks(5)
 
 # 購入可能なジュース一覧の表示
-machine.show_available_drinks
+machine.count_juice_stock
 
 # 改行
 puts ''
+
+pepsi = Juice.new('ペプシ', 150)
+monster = Juice.new('モンスター', 230)
+irohas = Juice.new('いろはす', 120)
 
 # ペプシ1本購入
 machine.purchase(suica, pepsi)
@@ -46,7 +45,5 @@ puts "Suica残高は#{suica.balance}円です"
 
 puts ''
 
-# 在庫確認
-puts "#{pepsi.name}の在庫は#{machine.inventory[pepsi][:stock]}本です"
-puts "#{monster.name}の在庫は#{machine.inventory[monster][:stock]}本です"
-puts "#{irohas.name}の在庫は#{machine.inventory[irohas][:stock]}本です"
+# 在庫確認（購入可能なジュース一覧の表示）
+machine.count_juice_stock

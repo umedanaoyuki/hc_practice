@@ -11,7 +11,7 @@ class Machine
     @inventory = inventory
   end
 
-  # 各ドリンクの在庫を表示する
+  # 各ドリンク別の在庫を表示する
   def count_juice_stock
     pepsi = inventory.select { |element| element.name == 'ペプシ' }
     monster = inventory.select { |element| element.name == 'モンスター' }
@@ -27,34 +27,26 @@ class Machine
   def add_juice_stocks(number)
     number.times do
       @inventory << Juice.new('ペプシ', 150)
-      # puts inventory.name
       @inventory << Juice.new('モンスター', 230)
-      # puts inventory.name
       @inventory << Juice.new('いろはす', 120)
-      # puts inventory.name
     end
-    puts 'ジュースの補充が完了しました。'
   end
 
   # ジュース購入のメソッド
-  # def purchase(suica, juice)
-  #   raise 'Suicaの残高が足りません' if suica.balance < juice.price
-  #   raise "#{juice.name}の在庫はありません" if @inventory[juice][:stock].zero?
+  def purchase(suica, juice)
+    raise 'Suicaの残高が足りません' if suica.balance < juice.price
 
-  #   # ジュースの在庫を減らす
-  #   inventory[juice][:stock] -= 1
-  #   # 売り上げ金額を増やす
-  #   @sales += juice.price
-  #   # Suicaのチャージ残高を減らす
-  #   suica.change_balance(juice.price)
-  #   puts "#{juice.name}の購入完了"
-  # end
+    # 引数のジュースの名前と同じ名前のジュースが在庫に少なうとも1つは存在するかどうか確認
+    stock_juice = @inventory.find { |item| item.name == juice.name }
+    # 引数のジュースの名前が一つも存在しない場合
+    raise "#{juice.name}の在庫はありません" if stock_juice.nil?
 
+    # ジュースの在庫を減らす
+    @inventory.delete(stock_juice)
+    # 売り上げ金額を増やす
+    @sales += juice.price
+    # Suicaのチャージ残高を減らす
+    suica.change_balance(juice.price)
+    puts "#{juice.name}の購入完了"
+  end
 end
-
-test = Machine.new
-
-# test.count_juice_stock
-test.add_juice_stocks(5)
-test.count_juice_stock
-# test.show_available_drinks
