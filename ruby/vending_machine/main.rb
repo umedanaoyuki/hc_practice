@@ -5,9 +5,9 @@ require './suica'
 # このファイルで、３つのクラスを使用してSuicaを使用して自動販売機でジュースを購入する処理を実施する
 suica = Suica.new
 machine = Machine.new
-pepsi = Juice.new('ペプシ', 150)
-monster = Juice.new('モンスター', 230)
-irohas = Juice.new('いろはす', 120)
+# pepsi = Juice.new('ペプシ', 150)
+# monster = Juice.new('モンスター', 230)
+# irohas = Juice.new('いろはす', 120)
 
 # 在庫を追加
 machine.add_juice(pepsi)
