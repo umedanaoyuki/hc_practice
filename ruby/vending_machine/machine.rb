@@ -23,7 +23,6 @@ class Machine
     puts "いろはす: #{irohas.count}本"
   end
 
-  # [Juice.new('ペプシ', 150), Juice.new('モンスター', 230), Juice.new('いろはす', 120)]
   # ジュースの在庫を追加するメソッド
   def add_juice_stocks(number)
     number.times do
@@ -51,14 +50,6 @@ class Machine
   #   puts "#{juice.name}の購入完了"
   # end
 
-  # 自動販売機で購入できるジュース一覧を表示するメソッド
-  # def show_available_drinks
-  #   puts '購入可能な飲み物は以下になります。'
-  #   # @inventory.each { |item| puts item.name }
-  #   pepsi
-
-
-  # end
 end
 
 test = Machine.new
