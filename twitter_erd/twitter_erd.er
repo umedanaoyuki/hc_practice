@@ -1,14 +1,18 @@
 [follows]
-  *user_id
+  *id
   follower_id
-  followee_id 
+  followee_id
+  created_at
+  updated_at
 
 [users]
-  *user_id
+  *id
   user_name
+  created_at
+  updated_at
 
 [user_details]
-  *user_id
+  *id
   tel_number
   name
   email
@@ -18,55 +22,58 @@
   birthday
   profile_image
   avator_image
+  created_at
+  updated_at
 
 [direct_messages]
-  *message_id
+  *id
+  message_body
   user_id_to
   user_id
-
-[direct_message_details]
-  *message_id
-  message_body
-
-[timelines]
-  *user_id
-  post_id
+  created_at
+  updated_at
 
 [bookmarks]
-  *bookmark_id
+  *id
   user_id
   post_id
+  created_at
+  updated_at
 
 [posts]
-  *post_id
+  *id
   user_id
-  created_at
   post_body
+  created_at
+  updated_at
 
 [retweets]
-  *retweet_id
+  *id
   user_id
   post_id
+  created_at
+  updated_at
 
 [likes]
-  *likes_id
+  *id
   user_id
   post_id
+  created_at
+  updated_at
 
 # Cardinality    Syntax
 # 0 or 1         ?
 # exactly 1      1
 # 0 or more      *
 # 1 or more      +
-follows *--1 user_details
-users *--1 user_details
-timelines *--1 user_details
-direct_messages *--1 user_details
-direct_messages 1--1 direct_message_details
-bookmarks *--1 posts
-timelines 1--* posts
-posts 1--* likes
+users 1--1 user_details
+direct_messages *--1 users
+users 1--* follows
+users 1--* posts
+posts 1--* bookmarks
 posts 1--* retweets
-users 1--1 timelines
+posts 1--* likes
+
+
 
 
