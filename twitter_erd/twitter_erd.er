@@ -14,16 +14,17 @@
 [user_details]
   *id {label:"bigint, not null"}
   user_id {label:"bigint, not null, FK(users)"}
-  tel_number {label: "varchar, null, uniq"}
-  user_name {label: "varchar, not null, uniq"}
-  display_name {label: "varchar, not null"}
   email {label: "varchar, not null, uniq"}
-  self_introduction {label: "text, null"}
+  user_name {label: "varchar, not null, uniq"}
+  tel_number {label: "varchar, not null, uniq"}
+  display_name {label: "varchar, not null"}
+  self_introduction {label: "varchar, null"}
   place {label: "varchar, null"}
   website {label: "varchar, null"}
   birthday {label: "date, null"}
   profile_image {label: "varchar, null"}
   avator_image {label: "varchar, null"}
+  notification_id {label: "varchar, null"}
   created_at { label: "datetime, not null"}
   updated_at { label: "datetime, not null"}
 
@@ -38,7 +39,7 @@
 [posts]
   *id {label:"bigint, not null"}
   user_id {label:"bigint, not null, FK(users)"}
-  post_body {label: "varchar, not null"}
+  post_body {label: "varchar(140), not null"}
   created_at { label: "datetime, not null"}
   updated_at { label: "datetime, not null"}
 
