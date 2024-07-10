@@ -1,0 +1,72 @@
+[follows]
+  *user_id
+  follower_id
+  followee_id 
+
+[users]
+  *user_id
+  user_name
+
+[user_details]
+  *user_id
+  tel_number
+  name
+  email
+  self_introduction
+  place
+  website
+  birthday
+  profile_image
+  avator_image
+
+[direct_messages]
+  *message_id
+  user_id_to
+  user_id
+
+[direct_message_details]
+  *message_id
+  message_body
+
+[timelines]
+  *user_id
+  post_id
+
+[bookmarks]
+  *bookmark_id
+  user_id
+  post_id
+
+[posts]
+  *post_id
+  user_id
+  created_at
+  post_body
+
+[retweets]
+  *retweet_id
+  user_id
+  post_id
+
+[likes]
+  *likes_id
+  user_id
+  post_id
+
+# Cardinality    Syntax
+# 0 or 1         ?
+# exactly 1      1
+# 0 or more      *
+# 1 or more      +
+follows *--1 user_details
+users *--1 user_details
+timelines *--1 user_details
+direct_messages *--1 user_details
+direct_messages 1--1 direct_message_details
+bookmarks *--1 posts
+timelines 1--* posts
+posts 1--* likes
+posts 1--* retweets
+users 1--1 timelines
+
+
