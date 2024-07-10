@@ -73,7 +73,3 @@ users 1--* posts
 posts 1--* bookmarks
 posts 1--* retweets
 posts 1--* likes
-
-
-
-
