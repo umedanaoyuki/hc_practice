@@ -1,65 +1,64 @@
 [follows]
-  *id
-  follower_id
-  followee_id
-  created_at
-  updated_at
+  *id {label:"bigint, not null"}
+  user_id {label:"bigint, not null, FK(users)"}
+  follower_id {label:"bigint, not null"}
+  followee_id {label:"bigint, not null"}
+  created_at { label: "datetime, not null"}
+  updated_at { label: "datetime, not null"}
 
 [users]
-  *id
-  user_name
-  created_at
-  updated_at
+  *id {label:"bigint, not null"}
+  created_at { label: "datetime, not null"}
+  updated_at { label: "datetime, not null"}
 
 [user_details]
-  *id
-  tel_number
-  name
-  email
-  self_introduction
-  place
-  website
-  birthday
-  profile_image
-  avator_image
-  created_at
-  updated_at
+  *id {label:"bigint, not null"}
+  user_id {label:"bigint, not null, FK(users)"}
+  tel_number {label: "varchar, null, uniq"}
+  user_name {label: "varchar, not null, uniq"}
+  display_name {label: "varchar, not null"}
+  email {label: "varchar, not null, uniq"}
+  self_introduction {label: "text, null"}
+  place {label: "varchar, null"}
+  website {label: "varchar, null"}
+  birthday {label: "date, null"}
+  profile_image {label: "varchar, null"}
+  avator_image {label: "varchar, null"}
+  created_at { label: "datetime, not null"}
+  updated_at { label: "datetime, not null"}
 
 [direct_messages]
-  *id
-  message_body
-  user_id_to
-  user_id
-  created_at
-  updated_at
-
-[bookmarks]
-  *id
-  user_id
-  post_id
-  created_at
-  updated_at
+  *id {label:"bigint, not null"}
+  user_id {label:"bigint, not null, FK(users)"}
+  user_id_to {label:"bigint, not null"}
+  message_body {label: "text, not null"}
+  created_at { label: "datetime, not null"}
+  updated_at { label: "datetime, not null"}
 
 [posts]
-  *id
-  user_id
-  post_body
-  created_at
-  updated_at
+  *id {label:"bigint, not null"}
+  user_id {label:"bigint, not null, FK(users)"}
+  post_body {label: "varchar, not null"}
+  created_at { label: "datetime, not null"}
+  updated_at { label: "datetime, not null"}
+
+[bookmarks]
+  *id {label:"bigint, not null"}
+  post_id {label:"bigint, not null, FK(posts)"}
+  created_at { label: "datetime, not null"}
+  updated_at { label: "datetime, not null"}
 
 [retweets]
-  *id
-  user_id
-  post_id
-  created_at
-  updated_at
+  *id {label:"bigint, not null"}
+  post_id {label:"bigint, not null, FK(posts)"}
+  created_at { label: "datetime, not null"}
+  updated_at { label: "datetime, not null"}
 
 [likes]
-  *id
-  user_id
-  post_id
-  created_at
-  updated_at
+  *id {label:"bigint, not null"}
+  post_id {label:"bigint, not null, FK(posts)"}
+  created_at { label: "datetime, not null"}
+  updated_at { label: "datetime, not null"}
 
 # Cardinality    Syntax
 # 0 or 1         ?
