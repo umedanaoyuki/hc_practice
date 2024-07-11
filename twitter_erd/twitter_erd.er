@@ -45,18 +45,21 @@
 [bookmarks]
   *id {label:"bigint, not null"}
   post_id {label:"bigint, not null, FK(posts)"}
+  user_id {label:"bigint, not null"}
   created_at { label: "datetime, not null"}
   updated_at { label: "datetime, not null"}
 
 [retweets]
   *id {label:"bigint, not null"}
   post_id {label:"bigint, not null, FK(posts)"}
+  user_id {label:"bigint, not null"}
   created_at { label: "datetime, not null"}
   updated_at { label: "datetime, not null"}
 
 [likes]
   *id {label:"bigint, not null"}
   post_id {label:"bigint, not null, FK(posts)"}
+  user_id {label:"bigint, not null"}
   created_at { label: "datetime, not null"}
   updated_at { label: "datetime, not null"}
 
