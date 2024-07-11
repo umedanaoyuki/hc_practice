@@ -1,6 +1,6 @@
 [follows]
   *id {label:"bigint, not null"}
-  follower_id {label:"bigint, not null"}
+  follower_id {label:"bigint, not null, FK(users)"}
   followee_id {label:"bigint, not null"}
   created_at { label: "datetime, not null"}
   updated_at { label: "datetime, not null"}
