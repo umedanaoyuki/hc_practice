@@ -1,6 +1,5 @@
 [follows]
   *id {label:"bigint, not null"}
-  user_id {label:"bigint, not null, FK(users)"}
   follower_id {label:"bigint, not null"}
   followee_id {label:"bigint, not null"}
   created_at { label: "datetime, not null"}
@@ -30,16 +29,16 @@
 
 [direct_messages]
   *id {label:"bigint, not null"}
-  user_id {label:"bigint, not null, FK(users)"}
-  user_id_to {label:"bigint, not null"}
-  message_body {label: "text, not null"}
+  sender_id {label:"bigint, not null, FK(users)"}
+  recipient_id {label:"bigint, not null"}
+  body {label: "text, not null"}
   created_at { label: "datetime, not null"}
   updated_at { label: "datetime, not null"}
 
 [posts]
   *id {label:"bigint, not null"}
   user_id {label:"bigint, not null, FK(users)"}
-  post_body {label: "varchar(140), not null"}
+  body {label: "varchar(140), not null"}
   created_at { label: "datetime, not null"}
   updated_at { label: "datetime, not null"}
 
