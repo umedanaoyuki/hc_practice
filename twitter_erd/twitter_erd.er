@@ -1,7 +1,7 @@
 [follows]
   *id {label:"bigint, not null"}
   follower_id {label:"bigint, not null, FK(users)"}
-  followee_id {label:"bigint, not null"}
+  followee_id {label:"bigint, not null, FK(users)"}
   created_at { label: "datetime, not null"}
   updated_at { label: "datetime, not null"}
 
@@ -30,7 +30,7 @@
 [direct_messages]
   *id {label:"bigint, not null"}
   sender_id {label:"bigint, not null, FK(users)"}
-  recipient_id {label:"bigint, not null"}
+  recipient_id {label:"bigint, not null, FK(users)"}
   body {label: "text, not null"}
   created_at { label: "datetime, not null"}
   updated_at { label: "datetime, not null"}
