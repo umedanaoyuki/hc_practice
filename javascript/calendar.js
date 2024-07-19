@@ -1,6 +1,18 @@
 // 配列の3番目（[2]）以降で引数を受け取れ
 const inputNumber = process.argv[2];
-// console.log(inputNumber);
+console.log(inputNumber);
+
+/**
+ * 1-12月の月の数字しか受け付けないため配列を用意して、それ以外の文字や数字がインプットされた場合はエラーで処理を終了する
+ */
+const monthNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+console.log(monthNumbers.includes(inputNumber));
+
+if (monthNumbers.includes(inputNumber) === false) {
+  console.log("不正な値です。1-12の数字をインプットしてください。");
+  process.exit(1);
+}
 
 // 今年の年の取得
 const date = new Date();
@@ -14,9 +26,9 @@ const firstDate = new Date();
 firstDate.setFullYear(year, 0);
 firstDate.setMonth(monthToDisplay, 0);
 firstDate.setDate(1);
-console.log(firstDate);
-console.log("曜日");
-console.log(firstDate.getDay());
+// console.log(firstDate);
+// console.log("曜日");
+// console.log(firstDate.getDay());
 
 // カレンダーに表示する月の最終日を求める
 const lastDate = new Date();
@@ -44,16 +56,16 @@ const showDateArea = (firstDate, lastDate) => {
     // console.log("firstSunday" + firstSunday);
 
     // 初日の日にちを適切な曜日の下に表示するための空欄を作成
-    // const separator = " t";
-    // const initialEmpty = separator * (7 - firstSunday);
-    // console.log(separator);
+    const separator = " t";
+    const initialEmpty = separator * (7 - firstSunday);
+    console.log(separator);
     // console.log(initialEmpty);
     // console.log("終了");
 
     // 日曜日になったら改行して日付を表示
     for (let i = 1; i <= lastDate.getDate(); i++) {
-      console.log("曜日です");
-      console.log(firstDate.getDay());
+      // console.log("曜日です");
+      // console.log(firstDate.getDay());
 
       if (firstDate.getDay() === 0) {
         console.log(i.toString());
