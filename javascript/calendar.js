@@ -40,7 +40,7 @@ const showDateArea = (firstDate, lastDate) => {
   if (weekDay !== 0) {
     // 月の最初の日曜日の日付 = 8 - 該当月の初日の曜日の番号
     const firstSunday = 8 - weekDay;
-    console.log("firstSunday" + firstSunday);
+    // console.log("firstSunday" + firstSunday);
 
     // 初日の日にちを適切な曜日の下に表示するための空欄を作成
     // const separator = " t";
@@ -49,15 +49,28 @@ const showDateArea = (firstDate, lastDate) => {
     // console.log(initialEmpty);
     // console.log("終了");
 
-    console.log(lastDate.getDate())
+    // console.log(lastDate.getDate());
     // 日曜日になったら改行して日付を表示
-    for (let i = 1; i <= lastDate.getDate();  i++) {
-      console.log(`テスト ${i}`)
+    for (let i = firstDate.getDay(); i <= lastDate.getDate(); i++) {
+      // console.log(`テスト ${i}`)
+      // 改行する場合
+      // process.stdout.write("HelloWorld\n");
+      // 改行しない場合
+      // process.stdout.write(i.toString());
+      // console.log(i.toString());
+
+      console.log("FIRST DATE " + firstDate);
+
+      // if (firstDate.getDate() === 0) {
+      //   console.log("改行");
+      //   console.log(i.toString());
+      // } else {
+      //   process.stdout.write(i.toString());
+      // }
+
+      firstDate.setDate(firstDate.getDay() + 1);
     }
-
   }
-
-
 };
 
 showUpperArea(monthToDisplay, year);
