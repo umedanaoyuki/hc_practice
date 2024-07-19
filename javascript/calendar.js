@@ -1,9 +1,7 @@
 // 配列の3番目（[2]）以降で引数を受け取れ
 const inputNumber = process.argv[2];
 
-/**
- * 1-12月の月の数字しか受け付けないため配列を用意して、それ以外の文字や数字がインプットされた場合はエラーで処理を終了する
- */
+// 1-12月の月の数字の配列
 const monthNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 const date = new Date();
@@ -16,7 +14,7 @@ const monthToDisplay = inputNumber
 
 // エラーハンドリング
 if (!monthNumbers.includes(monthToDisplay)) {
-  console.log("不正な値です。1-12の数字をインプットしてください。");
+  console.log("不正な値です。数字の1から12のどれかをインプットしてください。");
   process.exit(1);
 }
 
