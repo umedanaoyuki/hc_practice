@@ -46,13 +46,21 @@ const showUpperArea = (monthToDisplay, year) => {
   console.log("月 火 水 木 金 土 日");
 };
 
+const separatorMap = {
+  2: 3,
+  3: 6,
+  4: 9,
+  5: 12,
+  6: 15,
+};
+
 // カレンダーの日付箇所の表示メソッド
 const showDateArea = (firstDate, lastDate) => {
   // 該当月の初日の曜日を取得
   // 0:日曜日, 1:月曜日, 2:火曜日, 3:水曜日, 4:木曜日, 5:金曜日, 6:土曜日
   const weekDay = parseInt(firstDate.getDay());
 
-  console.log("weekdayは" + weekDay);
+  // console.log("weekdayは" + weekDay);
 
   // 該当月の最初の日曜日の日付を求める
   if (weekDay !== 0) {
@@ -61,7 +69,8 @@ const showDateArea = (firstDate, lastDate) => {
     // console.log("firstSunday" + firstSunday);
 
     if (weekDay !== 1) {
-      const separator = " ".toString().padStart(12, " ");
+      // オブジェクトを作って参照しにいく感じ？
+      const separator = " ".toString().padStart(separatorMap[weekDay], " ");
       process.stdout.write(separator);
     }
     // console.log("テスト")
