@@ -51,14 +51,11 @@ const showDateArea = (firstDate, lastDate) => {
     // console.log("終了");
 
     // 日曜日になったら改行して日付を表示
-    // lastDate.getDate()
-    // const testDate = firstDate.getDay();
     for (let i = 1; i <= lastDate.getDate(); i++) {
       console.log("曜日です");
       console.log(firstDate.getDay());
 
       if (firstDate.getDay() === 0) {
-        // console.log("TEST");
         console.log(i.toString());
       } else {
         process.stdout.write(i.toString());
@@ -67,11 +64,7 @@ const showDateArea = (firstDate, lastDate) => {
     }
   } else {
     for (let i = 1; i <= lastDate.getDate(); i++) {
-      // console.log("曜日です");
-      // console.log(firstDate.getDay());
-
       if (firstDate.getDay() === 0) {
-        // console.log("TEST");
         console.log(i.toString());
       } else {
         process.stdout.write(i.toString());
