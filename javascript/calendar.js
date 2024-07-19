@@ -50,25 +50,28 @@ const showUpperArea = (monthToDisplay, year) => {
 const showDateArea = (firstDate, lastDate) => {
   // 該当月の初日の曜日を取得
   // 0:日曜日, 1:月曜日, 2:火曜日, 3:水曜日, 4:木曜日, 5:金曜日, 6:土曜日
-  const weekDay = firstDate.getDay();
+  const weekDay = parseInt(firstDate.getDay());
 
   console.log("weekdayは" + weekDay);
 
   // 該当月の最初の日曜日の日付を求める
   if (weekDay !== 0) {
     // 月の最初の日曜日の日付 = 8 - 該当月の初日の曜日の番号
-    const firstSunday = 8 - weekDay;
+    // const firstSunday = 8 - weekDay;
     // console.log("firstSunday" + firstSunday);
 
+    if (weekDay !== 1) {
+      const separator = " ".toString().padStart(12, " ");
+      process.stdout.write(separator);
+    }
     // console.log("テスト")
     // 初日の日にちを適切な曜日の下に表示するための空欄を作成
-    const separator = " ".toString().padStart(9, " ");
+
     // const initialEmpty = separator * (7 - firstSunday);
     // process.stdout.write(initialEmpty);
     // console.log(separator);
     // console.log(initialEmpty);
     // console.log("終了");
-    process.stdout.write(separator);
 
     // 日曜日になったら改行して日付を表示
     for (let i = 1; i <= lastDate.getDate(); i++) {
@@ -85,11 +88,14 @@ const showDateArea = (firstDate, lastDate) => {
       firstDate.setDate(firstDate.getDate() + 1);
     }
   } else {
+    const separator = " ".toString().padStart(18, " ");
+    process.stdout.write(separator);
     for (let i = 1; i <= lastDate.getDate(); i++) {
       if (firstDate.getDay() === 0) {
-        console.log(i.toString());
+        console.log(i.toString().padStart(2, " "));
       } else {
-        process.stdout.write(i.toString());
+        process.stdout.write(i.toString().padStart(2, " "));
+        process.stdout.write(" ");
       }
       firstDate.setDate(firstDate.getDate() + 1);
     }
@@ -98,63 +104,3 @@ const showDateArea = (firstDate, lastDate) => {
 
 showUpperArea(monthToDisplay, year);
 showDateArea(firstDate, lastDate);
-
-/**
- * 
-
-opt.on('-m') { |v| p v }
-
-# 引数が適切でない場合、エラーメッセージを表示
-if ARGV[1].present? && !(1..12).cover?(ARGV[1].to_i)
-  raise "#{ARGV[1]} is neither a month number (1..12) nor a name"
-end
-
-
-
-# カレンダーの上部を表示するメソッド
-def show_calender_upper_area(date)
-  # カレンダーの表紙
-  calendar_cover_month = date.strftime('%m').to_i
-  # カレンダーの表紙を中央の位置に表示
-  puts "#{calendar_cover_month}月 #{date.year}".center(20)
-
-  # 月曜日始まり
-  week_day = %w(月 火 水 木 金 土 日)
-  puts week_day.join(' ')
-end
-
-# カレンダーの日付箇所の表示メソッド
-def show_calendar_dates(first_date, last_date)
-  # 該当月の初日の曜日を取得
-  # 0:日曜日, 1:月曜日, 2:火曜日, 3:水曜日, 4:木曜日, 5:金曜日, 6:土曜日
-  week_day_of_first_date = first_date.wday.to_i
-
-  # 月の最初の日曜日の日付の初期値
-  first_sunday = 1
-
-  # 該当月の最初の日曜日の日付を求める
-  # 月初が日曜日でない場合の処理（月初が日曜日の場合は、first_sundayは1のまま）
-  if week_day_of_first_date != 0
-    # 月の最初の日曜日の日付 = 8 - 該当月の初日の曜日の番号
-    first_sunday = 8 - week_day_of_first_date
-  end
-
-  # 初日の日にちを適切な曜日の下に表示するための空欄を作成
-  initial_empty = '   ' * (7 - first_sunday)
-
-  # 日曜日になったら改行して日付を表示
-  print initial_empty
-  (first_date..last_date).each do |date|
-    if date.wday.zero?
-      puts date.day.to_s.rjust(2)
-    else
-      print "#{date.day.to_s.rjust(2)} "
-    end
-  end
-end
-
-# 引数が適切な場合、カレンダーを表示
-show_calender_upper_area(first_date)
-show_calendar_dates(first_date, last_date)
-
- */
