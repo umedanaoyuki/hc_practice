@@ -23,6 +23,18 @@ lastDate.setFullYear(year, 0);
 lastDate.setMonth(monthToDisplay, 0);
 console.log(lastDate);
 
+// カレンダーの上部を表示するメソッド
+const showUpperArea = () => {
+  // カレンダー表紙（空欄は後で調整）
+  console.log(`      ${monthToDisplay}月 ${year}`);
+  console.log("月 火 水 木 金 土 日");
+};
+
+showUpperArea();
+
+// カレンダーの日付箇所の表示メソッド
+const showDateArea = () => {};
+
 /**
  * 
 
@@ -33,14 +45,7 @@ if ARGV[1].present? && !(1..12).cover?(ARGV[1].to_i)
   raise "#{ARGV[1]} is neither a month number (1..12) nor a name"
 end
 
-# 今年の年の取得
-current_year = Date.today.year.to_i
-# カレンダーの表示する月を決める（引数がない場合、現在の月を表示）
-month_to_display = ARGV[1].present? ? ARGV[1].to_i : Date.today.month.to_i
-# カレンダーに表示する月の初日を求める
-first_date = Date.new(current_year, month_to_display, 1)
-# 該当月の最終日を求める
-last_date = Date.new(first_date.year, month_to_display, -1)
+
 
 # カレンダーの上部を表示するメソッド
 def show_calender_upper_area(date)
@@ -88,9 +93,4 @@ end
 show_calender_upper_area(first_date)
 show_calendar_dates(first_date, last_date)
 
- * 
- * 
- * 
- * 
- * 
  */
