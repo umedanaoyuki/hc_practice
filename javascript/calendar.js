@@ -59,14 +59,16 @@ const showDateArea = (firstDate, lastDate) => {
       // process.stdout.write(i.toString());
       // console.log(i.toString());
 
-      console.log("FIRST DATE " + firstDate);
+      // console.log("FIRST DATE " + firstDate);
 
-      // if (firstDate.getDate() === 0) {
-      //   console.log("改行");
-      //   console.log(i.toString());
-      // } else {
-      //   process.stdout.write(i.toString());
-      // }
+      // console.log(firstDate.getDate());
+
+      if (firstDate.getDate() === 7) {
+        // console.log("改行");
+        console.log(i.toString());
+      } else {
+        process.stdout.write(i.toString());
+      }
 
       firstDate.setDate(firstDate.getDay() + 1);
     }
