@@ -1,25 +1,28 @@
 // 配列の3番目（[2]）以降で引数を受け取れ
 const inputNumber = process.argv[2];
-console.log(inputNumber);
+// console.log(inputNumber);
 
 /**
  * 1-12月の月の数字しか受け付けないため配列を用意して、それ以外の文字や数字がインプットされた場合はエラーで処理を終了する
  */
 const monthNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-console.log(monthNumbers.includes(inputNumber));
-
-if (monthNumbers.includes(inputNumber) === false) {
-  console.log("不正な値です。1-12の数字をインプットしてください。");
-  process.exit(1);
-}
-
 // 今年の年の取得
 const date = new Date();
 const year = date.getFullYear();
 // カレンダーの表示する月を決める（引数がない場合、現在の月を表示）
-const monthToDisplay = inputNumber ? inputNumber : date.getMonth() + 1;
-// console.log(monthToDisplay);
+const monthToDisplay = inputNumber
+  ? parseInt(inputNumber)
+  : parseInt(date.getMonth() + 1);
+
+// console.log(monthToDisplay.toString());
+// console.log(monthNumbers.includes(monthToDisplay));
+
+// エラーハンドリング
+if (!monthNumbers.includes(monthToDisplay)) {
+  console.log("不正な値です。1-12の数字をインプットしてください。");
+  process.exit(1);
+}
 
 // カレンダーに表示する月の最初の日（月初）を求める
 const firstDate = new Date();
@@ -56,7 +59,7 @@ const showDateArea = (firstDate, lastDate) => {
     // console.log("firstSunday" + firstSunday);
 
     // 初日の日にちを適切な曜日の下に表示するための空欄を作成
-    const separator = " t";
+    const separator = " ";
     const initialEmpty = separator * (7 - firstSunday);
     console.log(separator);
     // console.log(initialEmpty);
