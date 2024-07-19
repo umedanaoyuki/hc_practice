@@ -54,10 +54,24 @@ const showDateArea = (firstDate, lastDate) => {
     // lastDate.getDate()
     // const testDate = firstDate.getDay();
     for (let i = 1; i <= lastDate.getDate(); i++) {
+      console.log("曜日です");
+      console.log(firstDate.getDay());
+
+      if (firstDate.getDay() === 0) {
+        // console.log("TEST");
+        console.log(i.toString());
+      } else {
+        process.stdout.write(i.toString());
+      }
+      firstDate.setDate(firstDate.getDate() + 1);
+    }
+  } else {
+    for (let i = 1; i <= lastDate.getDate(); i++) {
+      // console.log("曜日です");
       // console.log(firstDate.getDay());
 
       if (firstDate.getDay() === 0) {
-        // console.log("改行");
+        // console.log("TEST");
         console.log(i.toString());
       } else {
         process.stdout.write(i.toString());
