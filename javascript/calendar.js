@@ -15,7 +15,7 @@ const firstDate = new Date();
 firstDate.setFullYear(year, 0);
 firstDate.setMonth(monthToDisplay, 0);
 firstDate.setDate(1);
-console.log(firstDate);
+console.log("月初:" + firstDate.getDay());
 
 // カレンダーに表示する月の最終日を求める
 const lastDate = new Date();
@@ -24,16 +24,44 @@ lastDate.setMonth(monthToDisplay, 0);
 console.log(lastDate);
 
 // カレンダーの上部を表示するメソッド
-const showUpperArea = () => {
+const showUpperArea = (monthToDisplay, year) => {
   // カレンダー表紙（空欄は後で調整）
   console.log(`      ${monthToDisplay}月 ${year}`);
   console.log("月 火 水 木 金 土 日");
 };
 
-showUpperArea();
-
 // カレンダーの日付箇所の表示メソッド
-const showDateArea = () => {};
+const showDateArea = (firstDate, lastDate) => {
+  // 該当月の初日の曜日を取得
+  // 0:日曜日, 1:月曜日, 2:火曜日, 3:水曜日, 4:木曜日, 5:金曜日, 6:土曜日
+  const weekDay = firstDate.getDate();
+
+  // 該当月の最初の日曜日の日付を求める
+  if (weekDay !== 0) {
+    // 月の最初の日曜日の日付 = 8 - 該当月の初日の曜日の番号
+    const firstSunday = 8 - weekDay;
+    console.log("firstSunday" + firstSunday);
+
+    // 初日の日にちを適切な曜日の下に表示するための空欄を作成
+    // const separator = " t";
+    // const initialEmpty = separator * (7 - firstSunday);
+    // console.log(separator);
+    // console.log(initialEmpty);
+    // console.log("終了");
+
+    console.log(lastDate.getDate())
+    // 日曜日になったら改行して日付を表示
+    for (let i = 1; i <= lastDate.getDate();  i++) {
+      console.log(`テスト ${i}`)
+    }
+
+  }
+
+
+};
+
+showUpperArea(monthToDisplay, year);
+showDateArea(firstDate, lastDate);
 
 /**
  * 
