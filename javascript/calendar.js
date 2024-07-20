@@ -1,7 +1,7 @@
-// 配列の3番目（[2]）以降で「-m」を受け取る
+// 第1引数：配列の3番目（[2]）以降で「-m」を受け取る
 const monthArgument = process.argv[2];
 
-// 配列の4番目（[3]）以降で「月」を受け取る
+// 第2引数：配列の4番目（[3]）以降で「月」を受け取る
 const inputNumber = process.argv[3];
 
 // 1-12月の月の数字の配列
@@ -11,26 +11,27 @@ const date = new Date();
 // 今年の年の取得
 const year = date.getFullYear();
 
-// monthArgumentで許容する引数
-const argumentValidationArray = [undefined, "-m"];
+// 第1引数が undefined or -mをチェック
+switch (monthArgument) {
+  case undefined:
+    break;
 
-// 2つの引数のバリデーション
-// monthArgumentの値が「-m」かどうかの確認
-if (!argumentValidationArray.includes(monthArgument)) {
-  console.log(
-    `不正な引数:${monthArgument}が入力されています。「-m」を入力してください。`
-  );
-  process.exit(1);
-} else {
-  // inputNumberの値が1-12か or「空欄」かどうかの確認
-  if (inputNumber !== undefined) {
+  case "-m":
+    // 第2引数が1-12の数字かどうかのチェック
     if (!monthNumbers.includes(parseInt(inputNumber))) {
       console.log(
-        "不正な値です。数字の1から12のどれかをインプットしてください。"
+        "「-m」の後に、数字の1から12のどれかをインプットしてください。"
       );
       process.exit(1);
     }
-  }
+    break;
+
+  default:
+    console.log(
+      `不正な引数:${monthArgument}が入力されています。「-m」を入力してください。`
+    );
+    process.exit(1);
+    break;
 }
 
 // カレンダーの表示する月を決める（引数がない場合、現在の月を表示）
