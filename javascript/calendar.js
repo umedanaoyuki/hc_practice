@@ -30,11 +30,6 @@ if (!argumentValidationArray.includes(monthArgument)) {
       );
       process.exit(1);
     }
-  } else {
-    console.log(
-      "引数がインプットされていません。数字の1から12のどれかをインプットしてください。"
-    );
-    process.exit(1);
   }
 }
 
