@@ -1,5 +1,8 @@
-// 配列の3番目（[2]）以降で引数を受け取れ
-const inputNumber = process.argv[2];
+// 配列の3番目（[2]）以降で「-m」を受け取る
+const monthArgument = process.argv[2];
+
+// 配列の4番目（[3]）以降で「月」を受け取る
+const inputNumber = process.argv[3];
 
 // 1-12月の月の数字の配列
 const monthNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -7,16 +10,38 @@ const monthNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const date = new Date();
 // 今年の年の取得
 const year = date.getFullYear();
+
+// monthArgumentで許容する引数
+const argumentValidationArray = [undefined, "-m"];
+
+// 2つの引数のバリデーション
+// monthArgumentの値が「-m」かどうかの確認
+if (!argumentValidationArray.includes(monthArgument)) {
+  console.log(
+    `不正な引数:${monthArgument}が入力されています。「-m」を入力してください。`
+  );
+  process.exit(1);
+} else {
+  // inputNumberの値が1-12か or「空欄」かどうかの確認
+  if (inputNumber !== undefined) {
+    if (!monthNumbers.includes(parseInt(inputNumber))) {
+      console.log(
+        "不正な値です。数字の1から12のどれかをインプットしてください。"
+      );
+      process.exit(1);
+    }
+  } else {
+    console.log(
+      "引数がインプットされていません。数字の1から12のどれかをインプットしてください。"
+    );
+    process.exit(1);
+  }
+}
+
 // カレンダーの表示する月を決める（引数がない場合、現在の月を表示）
 const monthToDisplay = inputNumber
   ? parseInt(inputNumber)
   : parseInt(date.getMonth() + 1);
-
-// エラーハンドリング
-if (!monthNumbers.includes(monthToDisplay)) {
-  console.log("不正な値です。数字の1から12のどれかをインプットしてください。");
-  process.exit(1);
-}
 
 // カレンダーに表示する月の最初の日（月初）を求める
 const firstDate = new Date();
