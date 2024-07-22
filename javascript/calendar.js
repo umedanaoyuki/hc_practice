@@ -42,8 +42,7 @@ const monthToDisplay = inputNumber
 // カレンダーに表示する月の最初の日（月初）を求める
 const firstDate = new Date();
 firstDate.setFullYear(year, 0);
-firstDate.setMonth(monthToDisplay, 0);
-firstDate.setDate(1);
+firstDate.setMonth(monthToDisplay, 1);
 
 // カレンダーに表示する月の最終日を求める
 const lastDate = new Date();
