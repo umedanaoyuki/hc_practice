@@ -47,13 +47,13 @@ firstDate.setFullYear(year, 0);
 firstDate.setMonth(monthToDisplay, 0);
 firstDate.setDate(1);
 
-console.log(`firstDate:${firstDate}`);
+// console.log(`firstDate:${firstDate}`);
 
 // カレンダーに表示する月の最終日を求める
 const lastDate = new Date();
 lastDate.setFullYear(year, 0);
 lastDate.setMonth(monthToDisplay, 0);
-console.log(`lastDate:${lastDate}`);
+// console.log(`lastDate:${lastDate}`);
 
 /**
  * カレンダーの上部（タイトルと曜日）を表示するメソッド
@@ -74,13 +74,13 @@ const showDateArea = (firstDate, lastDate) => {
   // 該当月の初日の曜日を取得
   // 0:日曜日, 1:月曜日, 2:火曜日, 3:水曜日, 4:木曜日, 5:金曜日, 6:土曜日
   const weekDay = parseInt(firstDate.getDay());
-  console.log(weekDay);
+  // console.log(weekDay);
 
   const spaceCount = weekDay === 0 ? 18 : weekDay * 3;
-  console.log(`spaceCountは:${spaceCount}`);
+  // console.log(`spaceCountは:${spaceCount}`);
 
   const separator = weekDay === 0 ? 18 : spaceCount - 3;
-  console.log(`separatorは${separator}`);
+  // console.log(`separatorは${separator}`);
   process.stdout.write(" ".repeat(separator));
   // console.log("テスト");
 
