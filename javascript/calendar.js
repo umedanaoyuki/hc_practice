@@ -90,9 +90,13 @@ const showDateArea = (firstDate, lastDate) => {
       firstDate.setDate(firstDate.getDate() + 1);
     }
   } else {
+    // console.log("こっち");
     // 該当月が日曜日から始まる場合
-    const separator = " ".toString().padStart(18, " ");
-    process.stdout.write(separator);
+
+    const spaceCount = (weekDay === 0 ? 6 : weekDay) * 3;
+    // const separator = " ".toString().padStart(spaceCount, " ");
+    process.stdout.write(" ".repeat(spaceCount));
+
     for (let i = 1; i <= lastDate.getDate(); i++) {
       if (firstDate.getDay() === 0) {
         console.log(i.toString().padStart(2, " "));
