@@ -11,7 +11,7 @@ let tasksCompleted = 0;
 
 // 未完了のタスクの数
 // let tasksNotCompleted = totalCount - tasksCompleted;
-let tasksNotCompleted = totalCount - tasksCompleted;
+let tasksNotCompleted = 0;
 
 function addTodoItem() {
   console.log("ボタン押下");
@@ -34,20 +34,28 @@ function addTodoItem() {
       itemText.style.textDecoration = "line-through";
       listItem.classList.add("checked");
 
-      // console.log("listItem" + listItem.classList);
-      // tasksCompleted += 1;
-      // console.log(tasksCompleted);
-
+      // 完了済みタスク
       const completedTasks = document.getElementById("completed-tasks");
-      completedTasks.textContent = tasksCompleted;
+      tasksCompleted += 1;
+      console.log("taskCompleted" + tasksCompleted);
 
+      // 未完了のタスク
       const notCompletedTasks = document.getElementById("not-completed-tasks");
+      tasksNotCompleted -= 1;
+      console.log("tasksNotCompleted" + tasksNotCompleted);
+
+      completedTasks.textContent = tasksCompleted;
       notCompletedTasks.textContent = tasksNotCompleted;
+
+      console.log("checkbox-checked true");
+      // const notCompletedTasks = document.getElementById("not-completed-tasks");
+      // notCompletedTasks.textContent = tasksNotCompleted;
     } else {
       itemText.style.textDecoration = "none";
       listItem.classList.remove("checked");
       tasksCompleted -= 1;
-      // console.log("テスト" + tasksCompleted);
+
+      console.log("checkbox-checked else");
     }
   };
 
@@ -98,6 +106,7 @@ function addTodoItem() {
 
   const notCompletedTasks = document.getElementById("not-completed-tasks");
   // console.log("asksNotCompleted" + tasksNotCompleted);
+  // console.log("テスト");
   tasksNotCompleted += 1;
   notCompletedTasks.textContent = tasksNotCompleted;
 
