@@ -76,3 +76,11 @@ button {
 .fa-plus {
   color: white;
 }
+
+.trash-button {
+  background-color: green;
+}
+
+.edit-button {
+  background-color: lightcoral;
+}

@@ -33,7 +33,7 @@ function addTodoItem() {
   listItem.appendChild(buttonsDiv);
 
   let editButton = document.createElement("button");
-  editButton.innerHTML = '<i class="fas fa-edit">編集</i>';
+  editButton.innerHTML = '<i class="edit-button">編集</i>';
   editButton.onclick = function () {
     itemText.contentEditable = true;
     itemText.focus();
@@ -46,7 +46,7 @@ function addTodoItem() {
   };
 
   let deleteButton = document.createElement("button");
-  deleteButton.innerHTML = '<i class="fas fa-trash">削除</i>';
+  deleteButton.innerHTML = '<i class="trash-button">削除</i>';
   deleteButton.onclick = function () {
     list.removeChild(listItem);
     todoList.splice(todoList.indexOf(item), 1);
