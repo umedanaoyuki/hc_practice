@@ -48,8 +48,12 @@ function addTodoItem() {
   let deleteButton = document.createElement("button");
   deleteButton.innerHTML = '<i class="trash-button">削除</i>';
   deleteButton.onclick = function () {
-    list.removeChild(listItem);
-    todoList.splice(todoList.indexOf(item), 1);
+    const result = window.confirm("本当に削除しますか？");
+
+    if (result) {
+      list.removeChild(listItem);
+      todoList.splice(todoList.indexOf(item), 1);
+    }
   };
   buttonsDiv.appendChild(deleteButton);
   list.appendChild(listItem);
