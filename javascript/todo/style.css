@@ -88,3 +88,7 @@ button {
 .update-button {
   background-color: #84dccf;
 }
+
+.task-related-number {
+  display: inline;
+}
