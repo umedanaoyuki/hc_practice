@@ -48,12 +48,22 @@ function addTodoItem() {
       notCompletedTasks.textContent = tasksNotCompleted;
 
       console.log("checkbox-checked true");
-      // const notCompletedTasks = document.getElementById("not-completed-tasks");
-      // notCompletedTasks.textContent = tasksNotCompleted;
     } else {
       itemText.style.textDecoration = "none";
       listItem.classList.remove("checked");
+
+      // 完了済みタスク
+      const completedTasks = document.getElementById("completed-tasks");
       tasksCompleted -= 1;
+      console.log("taskCompleted" + tasksCompleted);
+
+      // 未完了のタスク
+      const notCompletedTasks = document.getElementById("not-completed-tasks");
+      tasksNotCompleted += 1;
+      console.log("tasksNotCompleted" + tasksNotCompleted);
+
+      completedTasks.textContent = tasksCompleted;
+      notCompletedTasks.textContent = tasksNotCompleted;
 
       console.log("checkbox-checked else");
     }
