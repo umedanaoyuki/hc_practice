@@ -79,6 +79,7 @@ function addTodoItem() {
 
   // 保存ボタンの表示をさせるための状態管理用の変数
   let showUpdateButton = 0;
+  let updateButton = document.createElement("button");
 
   // 編集
   let editButton = document.createElement("button");
@@ -88,8 +89,6 @@ function addTodoItem() {
     itemText.focus();
 
     if (showUpdateButton === 0) {
-      // 何度も保存ボタンが表示されるようになってしまう
-      let updateButton = document.createElement("button");
       updateButton.innerHTML = '<i class="update-button">保存</i>';
       console.log("保存");
       buttonsDiv.prepend(updateButton);
