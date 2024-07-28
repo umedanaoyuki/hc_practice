@@ -35,7 +35,7 @@ function addTodoItem() {
       listItem.classList.add("checked");
 
       // console.log("listItem" + listItem.classList);
-      tasksCompleted += 1;
+      // tasksCompleted += 1;
       // console.log(tasksCompleted);
 
       const completedTasks = document.getElementById("completed-tasks");
@@ -98,8 +98,8 @@ function addTodoItem() {
 
   const notCompletedTasks = document.getElementById("not-completed-tasks");
   // console.log("asksNotCompleted" + tasksNotCompleted);
-  tasksCompleted += 1;
-  notCompletedTasks.textContent = tasksCompleted;
+  tasksNotCompleted += 1;
+  notCompletedTasks.textContent = tasksNotCompleted;
 
   // console.log(todoList.length);
 }
