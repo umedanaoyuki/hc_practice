@@ -77,17 +77,24 @@ function addTodoItem() {
   let buttonsDiv = document.createElement("div");
   listItem.appendChild(buttonsDiv);
 
+  // 保存ボタンの表示をさせるための状態管理用の変数
+  let showUpdateButton = 0;
+
+  // 編集
   let editButton = document.createElement("button");
   editButton.innerHTML = '<i class="edit-button">編集</i>';
   editButton.onclick = function () {
     itemText.contentEditable = true;
     itemText.focus();
 
-    // 何度も保存ボタンが表示されるようになってしまう
-    let updateButton = document.createElement("button");
-    updateButton.innerHTML = '<i class="update-button">保存</i>';
-    console.log("保存");
-    buttonsDiv.prepend(updateButton);
+    if (showUpdateButton === 0) {
+      // 何度も保存ボタンが表示されるようになってしまう
+      let updateButton = document.createElement("button");
+      updateButton.innerHTML = '<i class="update-button">保存</i>';
+      console.log("保存");
+      buttonsDiv.prepend(updateButton);
+      temp += 1;
+    }
   };
   buttonsDiv.appendChild(editButton);
 
@@ -96,6 +103,7 @@ function addTodoItem() {
     todoList[todoList.indexOf(item)] = itemText.textContent;
   };
 
+  // 削除
   let deleteButton = document.createElement("button");
   deleteButton.innerHTML = '<i class="trash-button">削除</i>';
   deleteButton.onclick = function () {
