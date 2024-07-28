@@ -32,11 +32,23 @@ function addTodoItem() {
   let buttonsDiv = document.createElement("div");
   listItem.appendChild(buttonsDiv);
 
+  // let updateButton = document.createElement("button");
+  // updateButton.innerHTML = '<i class="update-button">保存</i>';
+  // updateButton.onclick = function () {
+  //   itemText.contentEditable = false;
+  //   todoList[todoList.indexOf(item)] = itemText.textContent;
+  // };
+
   let editButton = document.createElement("button");
   editButton.innerHTML = '<i class="edit-button">編集</i>';
   editButton.onclick = function () {
     itemText.contentEditable = true;
     itemText.focus();
+
+    let updateButton = document.createElement("button");
+    updateButton.innerHTML = '<i class="update-button">保存</i>';
+    console.log("保存");
+    buttonsDiv.prepend(updateButton);
   };
   buttonsDiv.appendChild(editButton);
 

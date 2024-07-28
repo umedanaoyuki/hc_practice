@@ -46,7 +46,7 @@ h1 {
   align-items: center;
   border: 1px solid lightgray;
   padding: 10px;
-  width: 50vw;
+  width: 65vw;
   border-radius: 5px;
   background-color: whitesmoke;
 }
@@ -83,4 +83,8 @@ button {
 
 .edit-button {
   background-color: lightcoral;
+}
+
+.update-button {
+  background-color: #84dccf;
 }
