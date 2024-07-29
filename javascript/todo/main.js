@@ -23,13 +23,15 @@ function addTodoItem() {
   let checkbox = document.createElement("input");
   checkbox.type = "checkbox";
 
+  // 完了済みタスク
+  const completedTasks = document.getElementById("completed-tasks");
+
   checkbox.onclick = function () {
     if (checkbox.checked) {
       itemText.style.textDecoration = "line-through";
       listItem.classList.add("checked");
 
       // 完了済みタスク
-      const completedTasks = document.getElementById("completed-tasks");
       tasksCompleted += 1;
       console.log("taskCompleted" + tasksCompleted);
 
@@ -104,16 +106,30 @@ function addTodoItem() {
   let deleteButton = document.createElement("button");
   deleteButton.innerHTML = '<i class="trash-button">削除</i>';
   deleteButton.onclick = function () {
+    console.log(todoList.length);
     const result = window.confirm("本当に削除しますか？");
 
     if (result) {
       list.removeChild(listItem);
       todoList.splice(todoList.indexOf(item), 1);
 
+      console.log(todoList.length);
+
       if (checkbox.checked) {
         console.log("チェックされている");
+        tasksCompleted -= 1;
+        completedTasks.textContent = tasksCompleted;
+
+        const allTaskNumber = document.getElementById("all-task-number");
+        console.log(allTaskNumber);
+        allTaskNumber.textContent = todoList.length;
       } else {
         console.log("チェックされていない");
+        tasksNotCompleted -= 1;
+        notCompletedTasks.textContent = tasksNotCompleted;
+
+        const allTaskNumber = document.getElementById("all-task-number");
+        allTaskNumber.textContent = todoList.length;
       }
     }
   };
