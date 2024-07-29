@@ -10,7 +10,6 @@ let totalCount = todoList.length;
 let tasksCompleted = 0;
 
 // 未完了のタスクの数
-// let tasksNotCompleted = totalCount - tasksCompleted;
 let tasksNotCompleted = 0;
 
 function addTodoItem() {
@@ -18,16 +17,12 @@ function addTodoItem() {
   let item = document.getElementById("todoInput").value;
   todoList.push(item);
 
-  // console.log(todoList);
-
   let list = document.getElementById("todoList");
   let listItem = document.createElement("div");
   listItem.className = "todoItem";
 
   let checkbox = document.createElement("input");
   checkbox.type = "checkbox";
-
-  // console.log(listItem);
 
   checkbox.onclick = function () {
     if (checkbox.checked) {
@@ -90,7 +85,6 @@ function addTodoItem() {
 
     if (showUpdateButton === 0) {
       updateButton.innerHTML = '<i class="update-button">保存</i>';
-      console.log("保存");
       buttonsDiv.prepend(updateButton);
       temp += 1;
     }
@@ -103,10 +97,8 @@ function addTodoItem() {
   };
 
   updateButton.onclick = function () {
-    // const result = window.confirm("保存しますか？");
     const updateButtonElement = document.querySelector(".update-button");
     updateButtonElement.remove();
-    // console.log(updateButtonElement);
   };
 
   // 削除
@@ -129,10 +121,6 @@ function addTodoItem() {
   allTaskNumber.textContent = todoList.length;
 
   const notCompletedTasks = document.getElementById("not-completed-tasks");
-  // console.log("asksNotCompleted" + tasksNotCompleted);
-  // console.log("テスト");
   tasksNotCompleted += 1;
   notCompletedTasks.textContent = tasksNotCompleted;
-
-  // console.log(todoList.length);
 }
