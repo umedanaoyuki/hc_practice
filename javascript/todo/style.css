@@ -5,14 +5,18 @@ body {
   flex-direction: column;
 }
 
-.container {
+/* .container {
   border: 10px solid #bba0ca;
   border-radius: 10px;
-}
+} */
 
 h1 {
   text-align: center;
   color: darkcyan;
+}
+
+.tasks-status-container {
+  text-align: center;
 }
 
 .inputContainer {
