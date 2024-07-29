@@ -102,6 +102,13 @@ function addTodoItem() {
     todoList[todoList.indexOf(item)] = itemText.textContent;
   };
 
+  updateButton.onclick = function () {
+    // const result = window.confirm("保存しますか？");
+    const updateButtonElement = document.querySelector(".update-button");
+    updateButtonElement.remove();
+    // console.log(updateButtonElement);
+  };
+
   // 削除
   let deleteButton = document.createElement("button");
   deleteButton.innerHTML = '<i class="trash-button">削除</i>';
