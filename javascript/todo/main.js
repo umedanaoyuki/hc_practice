@@ -13,7 +13,6 @@ let tasksCompleted = 0;
 let tasksNotCompleted = 0;
 
 function addTodoItem() {
-  console.log("ボタン押下");
   let item = document.getElementById("todoInput").value;
   todoList.push(item);
 
@@ -110,6 +109,12 @@ function addTodoItem() {
     if (result) {
       list.removeChild(listItem);
       todoList.splice(todoList.indexOf(item), 1);
+
+      if (checkbox.checked) {
+        console.log("チェックされている");
+      } else {
+        console.log("チェックされていない");
+      }
     }
   };
   buttonsDiv.appendChild(deleteButton);
