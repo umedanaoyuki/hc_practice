@@ -5,11 +5,6 @@ body {
   flex-direction: column;
 }
 
-/* .container {
-  border: 10px solid #bba0ca;
-  border-radius: 10px;
-} */
-
 h1 {
   text-align: center;
   color: darkcyan;
@@ -58,7 +53,7 @@ h1 {
 .todoItem span {
   text-align: center;
   margin-right: 10px;
-  width: 70%;
+  width: 60%;
   overflow: hidden;
 }
 
@@ -81,18 +76,42 @@ button {
   color: white;
 }
 
-.trash-button {
-  background-color: green;
+.update-button {
+  border: 1px solid grey;
+  background-color: greenyellow;
+  padding: 1px 6px;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .edit-button {
-  background-color: lightcoral;
+  border: 1px solid grey;
+  background-color: orange;
+  padding: 1px 6px;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
-.update-button {
-  background-color: #84dccf;
+.trash-button {
+  border: 1px solid grey;
+  background-color: lightblue;
+  padding: 1px 6px;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .task-related-number {
   display: inline;
+}
+
+.buttons {
+  margin: 0;
+  padding: 0;
+  /* background-color: blue; */
 }

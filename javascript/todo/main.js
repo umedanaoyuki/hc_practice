@@ -71,6 +71,7 @@ function addTodoItem() {
   listItem.appendChild(itemText);
 
   let buttonsDiv = document.createElement("div");
+  buttonsDiv.classList.add("buttons");
   listItem.appendChild(buttonsDiv);
 
   // 保存ボタンの表示をさせるための状態管理用の変数
