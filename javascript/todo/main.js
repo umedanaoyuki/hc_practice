@@ -14,6 +14,19 @@ let tasksNotCompleted = 0;
 
 function addTodoItem() {
   let item = document.getElementById("todoInput").value;
+
+  console.log(`itemは${item.length}`);
+
+  if (item.length === 0) {
+    window.alert("1文字以上の入力が必要です。");
+    return false;
+  }
+
+  if (item.length > 20) {
+    window.alert("20文字以下で入力してください。");
+    return false;
+  }
+
   todoList.push(item);
 
   let list = document.getElementById("todoList");
@@ -95,11 +108,26 @@ function addTodoItem() {
 
   itemText.onblur = function () {
     itemText.contentEditable = false;
+
+    console.log("itemText " + itemText.textContent);
+
     todoList[todoList.indexOf(item)] = itemText.textContent;
   };
 
   updateButton.onclick = function () {
     const updateButtonElement = document.querySelector(".update-button");
+    console.log(`保存ボタン押下${itemText.textContent}`);
+
+    if (itemText.textContent.length === 0) {
+      window.alert("1文字以上の入力が必要です。");
+      return false;
+    }
+
+    if (itemText.textContent.length > 20) {
+      window.alert("20文字以下で入力してください。");
+      return false;
+    }
+
     updateButtonElement.remove();
   };
 
