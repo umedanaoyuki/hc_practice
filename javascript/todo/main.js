@@ -34,29 +34,44 @@ function addTodoItem() {
   listItem.className = "todoItem";
 
   let checkbox = document.createElement("input");
+
+  // 保存ボタンの表示をさせるための状態管理用の変数
+  let showUpdateButton = 0;
+  let updateButton = document.createElement("button");
+
+  // ここにバリデーションを追加したい
   checkbox.type = "checkbox";
+  // console.log("checkboxは" + checkbox);
 
   // 完了済みタスク
   const completedTasks = document.getElementById("completed-tasks");
 
   checkbox.onclick = function () {
+    console.log("onclick");
+
+    // 保存ボタンがあるかどうかチェック
+    if (showUpdateButton != 0) {
+      console.log("保存ボタン存在する");
+      window.alert("保存ボタンを押してください");
+      return false;
+    }
+
     if (checkbox.checked) {
       itemText.style.textDecoration = "line-through";
       listItem.classList.add("checked");
 
       // 完了済みタスク
       tasksCompleted += 1;
-      console.log("taskCompleted" + tasksCompleted);
 
       // 未完了のタスク
       const notCompletedTasks = document.getElementById("not-completed-tasks");
       tasksNotCompleted -= 1;
-      console.log("tasksNotCompleted" + tasksNotCompleted);
+      // console.log("tasksNotCompleted" + tasksNotCompleted);
 
       completedTasks.textContent = tasksCompleted;
       notCompletedTasks.textContent = tasksNotCompleted;
 
-      console.log("checkbox-checked true");
+      // console.log("checkbox-checked true");
     } else {
       itemText.style.textDecoration = "none";
       listItem.classList.remove("checked");
@@ -64,17 +79,17 @@ function addTodoItem() {
       // 完了済みタスク
       const completedTasks = document.getElementById("completed-tasks");
       tasksCompleted -= 1;
-      console.log("taskCompleted" + tasksCompleted);
+      // console.log("taskCompleted" + tasksCompleted);
 
       // 未完了のタスク
       const notCompletedTasks = document.getElementById("not-completed-tasks");
       tasksNotCompleted += 1;
-      console.log("tasksNotCompleted" + tasksNotCompleted);
+      // console.log("tasksNotCompleted" + tasksNotCompleted);
 
       completedTasks.textContent = tasksCompleted;
       notCompletedTasks.textContent = tasksNotCompleted;
 
-      console.log("checkbox-checked else");
+      // console.log("checkbox-checked else");
     }
   };
 
@@ -87,10 +102,6 @@ function addTodoItem() {
   buttonsDiv.classList.add("buttons");
   listItem.appendChild(buttonsDiv);
 
-  // 保存ボタンの表示をさせるための状態管理用の変数
-  let showUpdateButton = 0;
-  let updateButton = document.createElement("button");
-
   // 編集
   let editButton = document.createElement("button");
   editButton.innerHTML = '<i class="edit-button">編集</i>';
@@ -98,10 +109,11 @@ function addTodoItem() {
     itemText.contentEditable = true;
     itemText.focus();
 
+    // 保存ボタン表示
     if (showUpdateButton === 0) {
       updateButton.innerHTML = '<i class="update-button">保存</i>';
       buttonsDiv.prepend(updateButton);
-      temp += 1;
+      showUpdateButton += 1;
     }
   };
   buttonsDiv.appendChild(editButton);
@@ -129,6 +141,7 @@ function addTodoItem() {
     }
 
     updateButtonElement.remove();
+    showUpdateButton -= 1;
   };
 
   // 削除
