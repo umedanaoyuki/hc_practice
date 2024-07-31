@@ -15,8 +15,6 @@ let tasksNotCompleted = 0;
 function addTodoItem() {
   let item = document.getElementById("todoInput").value;
 
-  console.log(`itemは${item.length}`);
-
   if (item.length === 0) {
     window.alert("1文字以上の入力が必要です。");
     return false;
@@ -41,17 +39,13 @@ function addTodoItem() {
 
   // ここにバリデーションを追加したい
   checkbox.type = "checkbox";
-  // console.log("checkboxは" + checkbox);
 
   // 完了済みタスク
   const completedTasks = document.getElementById("completed-tasks");
 
   checkbox.onclick = function () {
-    console.log("onclick");
-
     // 保存ボタンがあるかどうかチェック
     if (showUpdateButton != 0) {
-      console.log("保存ボタン存在する");
       window.alert("保存ボタンを押してください");
       return false;
     }
@@ -66,12 +60,9 @@ function addTodoItem() {
       // 未完了のタスク
       const notCompletedTasks = document.getElementById("not-completed-tasks");
       tasksNotCompleted -= 1;
-      // console.log("tasksNotCompleted" + tasksNotCompleted);
 
       completedTasks.textContent = tasksCompleted;
       notCompletedTasks.textContent = tasksNotCompleted;
-
-      // console.log("checkbox-checked true");
     } else {
       itemText.style.textDecoration = "none";
       listItem.classList.remove("checked");
@@ -79,17 +70,13 @@ function addTodoItem() {
       // 完了済みタスク
       const completedTasks = document.getElementById("completed-tasks");
       tasksCompleted -= 1;
-      // console.log("taskCompleted" + tasksCompleted);
 
       // 未完了のタスク
       const notCompletedTasks = document.getElementById("not-completed-tasks");
       tasksNotCompleted += 1;
-      // console.log("tasksNotCompleted" + tasksNotCompleted);
 
       completedTasks.textContent = tasksCompleted;
       notCompletedTasks.textContent = tasksNotCompleted;
-
-      // console.log("checkbox-checked else");
     }
   };
 
@@ -120,15 +107,11 @@ function addTodoItem() {
 
   itemText.onblur = function () {
     itemText.contentEditable = false;
-
-    console.log("itemText " + itemText.textContent);
-
     todoList[todoList.indexOf(item)] = itemText.textContent;
   };
 
   updateButton.onclick = function () {
     const updateButtonElement = document.querySelector(".update-button");
-    console.log(`保存ボタン押下${itemText.textContent}`);
 
     if (itemText.textContent.length === 0) {
       window.alert("1文字以上の入力が必要です。");
@@ -148,25 +131,19 @@ function addTodoItem() {
   let deleteButton = document.createElement("button");
   deleteButton.innerHTML = '<i class="trash-button">削除</i>';
   deleteButton.onclick = function () {
-    console.log(todoList.length);
     const result = window.confirm("本当に削除しますか？");
 
     if (result) {
       list.removeChild(listItem);
       todoList.splice(todoList.indexOf(item), 1);
 
-      console.log(todoList.length);
-
       if (checkbox.checked) {
-        console.log("チェックされている");
         tasksCompleted -= 1;
         completedTasks.textContent = tasksCompleted;
 
         const allTaskNumber = document.getElementById("all-task-number");
-        console.log(allTaskNumber);
         allTaskNumber.textContent = todoList.length;
       } else {
-        console.log("チェックされていない");
         tasksNotCompleted -= 1;
         notCompletedTasks.textContent = tasksNotCompleted;
 
@@ -179,7 +156,6 @@ function addTodoItem() {
   list.appendChild(listItem);
   document.getElementById("todoInput").value = "";
 
-  console.log("allTaskNumber");
   const allTaskNumber = document.getElementById("all-task-number");
   allTaskNumber.textContent = todoList.length;
 
