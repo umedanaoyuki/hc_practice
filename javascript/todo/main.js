@@ -50,6 +50,9 @@ function addTodoItem() {
   // 保存ボタン（更新するためのボタン）
   let updateButton = document.createElement("button");
 
+  // すべてのTODOの数を管理する数字
+  const allTaskNumber = document.getElementById("all-task-number");
+
   // 完了済みタスク数を管理する数字
   const completedTasks = document.getElementById("completed-tasks");
 
@@ -141,7 +144,9 @@ function addTodoItem() {
   // 削除ボタン
   let deleteButton = document.createElement("button");
   deleteButton.innerHTML = '<i class="trash-button">削除</i>';
+
   deleteButton.onclick = function () {
+    // confirmの結果
     const result = window.confirm("本当に削除しますか？");
 
     if (result) {
@@ -151,14 +156,10 @@ function addTodoItem() {
       if (checkbox.checked) {
         tasksCompleted -= 1;
         completedTasks.textContent = tasksCompleted;
-
-        const allTaskNumber = document.getElementById("all-task-number");
         allTaskNumber.textContent = todoList.length;
       } else {
         tasksNotCompleted -= 1;
         notCompletedTasks.textContent = tasksNotCompleted;
-
-        const allTaskNumber = document.getElementById("all-task-number");
         allTaskNumber.textContent = todoList.length;
       }
     }
@@ -167,7 +168,7 @@ function addTodoItem() {
   list.appendChild(listItem);
   document.getElementById("todoInput").value = "";
 
-  const allTaskNumber = document.getElementById("all-task-number");
+  // const allTaskNumber = document.getElementById("all-task-number");
   allTaskNumber.textContent = todoList.length;
   tasksNotCompleted += 1;
   notCompletedTasks.textContent = tasksNotCompleted;
