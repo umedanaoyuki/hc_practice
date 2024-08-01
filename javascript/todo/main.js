@@ -1,9 +1,11 @@
 // TODOリストを格納する配列
 let todoList = [];
+
 const addTask = document.getElementById("addTask");
+// 入力したタスクを追加
 addTask.addEventListener("click", addTodoItem);
 
-// すべてのタスクの数
+// すべてのTODOリストの数
 let totalCount = todoList.length;
 
 // 完了済タスクの数
@@ -12,14 +14,20 @@ let tasksCompleted = 0;
 // 未完了のタスクの数
 let tasksNotCompleted = 0;
 
+/**
+ * TODOリスト追加・編集・削除・更新の処理
+ */
 function addTodoItem() {
+  // 入力されたTODOリスト
   let item = document.getElementById("todoInput").value;
 
+  // 空の入力を制限
   if (item.length === 0) {
     window.alert("1文字以上の入力が必要です。");
     return false;
   }
 
+  // 入力できる文字数を制限
   if (item.length > 20) {
     window.alert("20文字以下で入力してください。");
     return false;
@@ -27,24 +35,26 @@ function addTodoItem() {
 
   todoList.push(item);
 
+  // 入力したTODOを表示させるためのタグのidを取得
   let list = document.getElementById("todoList");
   let listItem = document.createElement("div");
   listItem.className = "todoItem";
 
+  // TODOリストの未完了・完了を切り替えるためのチェックボックスの作成
   let checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
 
   // 保存ボタンの表示をさせるための状態管理用の変数
   let showUpdateButton = 0;
+
+  // 保存ボタン（更新するためのボタン）
   let updateButton = document.createElement("button");
 
-  // ここにバリデーションを追加したい
-  checkbox.type = "checkbox";
-
-  // 完了済みタスク
+  // 完了済みタスク数を管理する数字
   const completedTasks = document.getElementById("completed-tasks");
 
   checkbox.onclick = function () {
-    // 保存ボタンがあるかどうかチェック
+    // 保存ボタンが表示されている状態（TODOの編集中）の時には、チェックボックスにチェックができないようにする
     if (showUpdateButton != 0) {
       window.alert("保存ボタンを押してください");
       return false;
@@ -53,11 +63,9 @@ function addTodoItem() {
     if (checkbox.checked) {
       itemText.style.textDecoration = "line-through";
       listItem.classList.add("checked");
-
-      // 完了済みタスク
       tasksCompleted += 1;
 
-      // 未完了のタスク
+      // 未完了のタスク数を管理する数字
       const notCompletedTasks = document.getElementById("not-completed-tasks");
       tasksNotCompleted -= 1;
 
