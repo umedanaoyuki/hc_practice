@@ -164,11 +164,11 @@ function addTodoItem() {
       }
     }
   };
+
   buttonsDiv.appendChild(deleteButton);
   list.appendChild(listItem);
   document.getElementById("todoInput").value = "";
 
-  // const allTaskNumber = document.getElementById("all-task-number");
   allTaskNumber.textContent = todoList.length;
   tasksNotCompleted += 1;
   notCompletedTasks.textContent = tasksNotCompleted;
