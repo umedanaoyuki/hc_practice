@@ -44,7 +44,7 @@ function addTodoItem() {
   let checkbox = document.createElement("input");
   checkbox.type = "checkbox";
 
-  // 保存ボタンの表示をさせるための状態管理用の変数
+  // 保存ボタンの表示をさせるための状態管理用の変数（この変数が0のときに保存ボタンが表示できる）
   let showUpdateButton = 0;
 
   // 保存ボタン（更新するためのボタン）
@@ -52,6 +52,9 @@ function addTodoItem() {
 
   // 完了済みタスク数を管理する数字
   const completedTasks = document.getElementById("completed-tasks");
+
+  // 未完了のタスク数を管理する数字
+  const notCompletedTasks = document.getElementById("not-completed-tasks");
 
   checkbox.onclick = function () {
     // 保存ボタンが表示されている状態（TODOの編集中）の時には、チェックボックスにチェックができないようにする
@@ -63,10 +66,8 @@ function addTodoItem() {
     if (checkbox.checked) {
       itemText.style.textDecoration = "line-through";
       listItem.classList.add("checked");
-      tasksCompleted += 1;
 
-      // 未完了のタスク数を管理する数字
-      const notCompletedTasks = document.getElementById("not-completed-tasks");
+      tasksCompleted += 1;
       tasksNotCompleted -= 1;
 
       completedTasks.textContent = tasksCompleted;
@@ -75,12 +76,7 @@ function addTodoItem() {
       itemText.style.textDecoration = "none";
       listItem.classList.remove("checked");
 
-      // 完了済みタスク
-      const completedTasks = document.getElementById("completed-tasks");
       tasksCompleted -= 1;
-
-      // 未完了のタスク
-      const notCompletedTasks = document.getElementById("not-completed-tasks");
       tasksNotCompleted += 1;
 
       completedTasks.textContent = tasksCompleted;
@@ -89,15 +85,17 @@ function addTodoItem() {
   };
 
   listItem.appendChild(checkbox);
+  // 入力したTODOの「文字」を格納するタグ
   let itemText = document.createElement("span");
   itemText.textContent = item;
   listItem.appendChild(itemText);
 
+  // ３つのボタン要素を入れるタグ
   let buttonsDiv = document.createElement("div");
   buttonsDiv.classList.add("buttons");
   listItem.appendChild(buttonsDiv);
 
-  // 編集
+  // 編集ボタン
   let editButton = document.createElement("button");
   editButton.innerHTML = '<i class="edit-button">編集</i>';
   editButton.onclick = function () {
@@ -108,6 +106,7 @@ function addTodoItem() {
     if (showUpdateButton === 0) {
       updateButton.innerHTML = '<i class="update-button">保存</i>';
       buttonsDiv.prepend(updateButton);
+      // 保存ボタンを管理する状態管理の変数に1を追加
       showUpdateButton += 1;
     }
   };
@@ -119,23 +118,27 @@ function addTodoItem() {
   };
 
   updateButton.onclick = function () {
+    // 保存ボタンのボタン要素
     const updateButtonElement = document.querySelector(".update-button");
 
+    // 保存（更新）をしようとした際にTODOが空の場合にエラー
     if (itemText.textContent.length === 0) {
       window.alert("1文字以上の入力が必要です。");
       return false;
     }
 
+    // 保存（更新）をしようとした際に文字数が多すぎる場合にエラー
     if (itemText.textContent.length > 20) {
       window.alert("20文字以下で入力してください。");
       return false;
     }
 
     updateButtonElement.remove();
+    // 保存ボタンの状態管理の変数の値を0に戻す
     showUpdateButton -= 1;
   };
 
-  // 削除
+  // 削除ボタン
   let deleteButton = document.createElement("button");
   deleteButton.innerHTML = '<i class="trash-button">削除</i>';
   deleteButton.onclick = function () {
@@ -166,8 +169,6 @@ function addTodoItem() {
 
   const allTaskNumber = document.getElementById("all-task-number");
   allTaskNumber.textContent = todoList.length;
-
-  const notCompletedTasks = document.getElementById("not-completed-tasks");
   tasksNotCompleted += 1;
   notCompletedTasks.textContent = tasksNotCompleted;
 }
