@@ -1,0 +1,117 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+  color: darkcyan;
+}
+
+.tasks-status-container {
+  text-align: center;
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+#todoInput {
+  height: 24px;
+  width: 45vw;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+}
+
+#addTask {
+  background-color: #662c91;
+  width: 30px;
+  height: 25px;
+}
+
+#todoList {
+  margin: 15px;
+}
+
+.todoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid lightgray;
+  padding: 10px;
+  width: 65vw;
+  border-radius: 5px;
+  background-color: whitesmoke;
+}
+
+.todoItem span {
+  text-align: center;
+  margin-right: 10px;
+  width: 60%;
+  overflow: hidden;
+}
+
+.todoItem.checked {
+  background-color: #84dccf;
+}
+input[type="checkbox"] {
+  accent-color: #6e3c6a;
+}
+button {
+  margin: 5px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.fas {
+  color: #2f2f2f;
+}
+.fa-plus {
+  color: white;
+}
+
+.update-button {
+  border: 1px solid grey;
+  background-color: greenyellow;
+  padding: 1px 6px;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.edit-button {
+  border: 1px solid grey;
+  background-color: orange;
+  padding: 1px 6px;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.trash-button {
+  border: 1px solid grey;
+  background-color: lightblue;
+  padding: 1px 6px;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.task-related-number {
+  display: inline;
+}
+
+.buttons {
+  margin: 0;
+  padding: 0;
+  /* background-color: blue; */
+}

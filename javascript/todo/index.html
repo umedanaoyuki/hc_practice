@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <title>TODOリスト</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>TODO リスト</h1>
+      <div class="tasks-status-container">
+        <div class="">
+          すべてのタスク:
+          <div class="task-related-number" id="all-task-number">0</div>
+        </div>
+        <div class="">
+          完了済のタスク:
+          <div class="task-related-number" id="completed-tasks">0</div>
+        </div>
+        <div class="">
+          未完了のタスク:
+          <div class="task-related-number" id="not-completed-tasks">0</div>
+        </div>
+      </div>
+      <div class="inputContainer">
+        <input type="text" id="todoInput" placeholder="タスクを追加" />
+        <button id="addTask"><i class="fas fa-plus">+</i></button>
+      </div>
+      <div id="todoList"></div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
