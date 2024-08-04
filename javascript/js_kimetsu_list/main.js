@@ -42,13 +42,13 @@ if (document.readyState === "loading") {
   fetchKimetsuApi();
 }
 
-document.querySelectorAll("input[type=radio]").forEach(function (element) {
-  console.log(element);
+document.querySelectorAll("input[type=radio]").forEach((element) => {
+  // console.log(element);
 
   //チェックを変更すると発生するイベントを設置
-  element.addEventListener("change", function (click_element) {
-    console.log(click_element);
-    console.log(element.checked);
+  element.addEventListener("change", () => {
+    // console.log(click_element);
+    // console.log(element.checked);
 
     //ここにイベントの内容を記述
     console.log("chekbox切り替え完了");
