@@ -13,4 +13,8 @@ fetch("https://ihatov08.github.io/kimetsu_api/api/all.json")
     const p = document.createElement("p");
     p.textContent = res[0].category;
     document.getElementsByClassName("animal")[0].appendChild(p);
+
+    const img = document.createElement("img");
+    img.src = `https://ihatov08.github.io${res[0].image}`;
+    document.getElementsByClassName("animal")[0].appendChild(img);
   });
