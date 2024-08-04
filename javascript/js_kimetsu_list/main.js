@@ -33,15 +33,23 @@ const fetchKimetsuApi = () => {
 };
 
 if (document.readyState === "loading") {
-  console.log("ローディング中");
+  console.log("ローディング");
+  console.log(document.readyState);
   const div = document.createElement("div");
   div.textContent = "ローディング中";
   document.body.appendChild(div);
 
-  console.log("ローディング終了");
+  // console.log("ローディング終了");
 
   // Loading hasn't finished yet
-  document.addEventListener("DOMContentLoaded", fetchKimetsuApi);
+  // document.addEventListener(
+  //   "DOMContentLoaded",
+  //   setTimeout(fetchKimetsuApi, 1000)
+  // );
+
+  setTimeout(fetchKimetsuApi, 1000);
+
+  console.log(document.readyState);
 } else {
   // `DOMContentLoaded` has already fired
   fetchKimetsuApi();
