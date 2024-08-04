@@ -5,16 +5,21 @@ fetch("https://ihatov08.github.io/kimetsu_api/api/all.json")
     return res.json();
   })
   .then((res) => {
-    console.log(res);
-    const h1 = document.createElement("h1");
-    h1.textContent = res[0].name;
-    document.getElementsByClassName("animal")[0].appendChild(h1);
+    console.log(res.length);
 
-    const p = document.createElement("p");
-    p.textContent = res[0].category;
-    document.getElementsByClassName("animal")[0].appendChild(p);
+    for (let i = 0; i < res.length; i++) {
+      console.log(res[i]);
 
-    const img = document.createElement("img");
-    img.src = `https://ihatov08.github.io${res[0].image}`;
-    document.getElementsByClassName("animal")[0].appendChild(img);
+      const h1 = document.createElement("h1");
+      h1.textContent = res[i].name;
+      document.getElementsByClassName("animal")[0].appendChild(h1);
+
+      const p = document.createElement("p");
+      p.textContent = res[i].category;
+      document.getElementsByClassName("animal")[0].appendChild(p);
+
+      const img = document.createElement("img");
+      img.src = `https://ihatov08.github.io${res[i].image}`;
+      document.getElementsByClassName("animal")[0].appendChild(img);
+    }
   });
