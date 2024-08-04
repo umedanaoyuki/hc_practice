@@ -34,6 +34,12 @@ const fetchKimetsuApi = () => {
 
 if (document.readyState === "loading") {
   console.log("ローディング中");
+  const div = document.createElement("div");
+  div.textContent = "ローディング中";
+  document.body.appendChild(div);
+
+  console.log("ローディング終了");
+
   // Loading hasn't finished yet
   document.addEventListener("DOMContentLoaded", fetchKimetsuApi);
 } else {
