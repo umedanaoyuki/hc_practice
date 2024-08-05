@@ -1,17 +1,34 @@
-console.log("jsスタート");
+// console.log("jsスタート");
 
-const fetchKimetsuApi = () => {
-  console.log("APIを叩く");
+const charactorMap = {
+  "all-charactor": "all.json",
+};
 
-  fetch("https://ihatov08.github.io/kimetsu_api/api/all.json")
+let user = {
+  // ALL API
+  "all-character": "all.json",
+  // 鬼殺隊API
+  "kisatsutai-members": "kisatsutai.json",
+  // 柱API
+  "hashira-members": "hashira.json",
+  // 鬼API
+  "oni-members": "oni.json",
+};
+
+const fetchKimetsuApi = (jsonType) => {
+  // console.log("APIを叩く");
+
+  // all.json
+  // /hashira.json
+  fetch(`https://ihatov08.github.io/kimetsu_api/api/${jsonType}`)
     .then((res) => {
       return res.json();
     })
     .then((res) => {
-      console.log(res.length);
+      // console.log(res.length);
 
       for (let i = 0; i < res.length; i++) {
-        console.log(res[i]);
+        // console.log(res[i]);
 
         const div = document.createElement("div");
         div.className = "animal";
@@ -33,23 +50,37 @@ const fetchKimetsuApi = () => {
 };
 
 if (document.readyState === "loading") {
-  const div = document.createElement("div");
-  div.textContent = "ローディング中";
+  const p = document.createElement("p");
+  p.textContent = "ローディング中";
 
-  document.body.appendChild(div);
-  setTimeout(fetchKimetsuApi, 1000);
+  document.body.appendChild(p);
+
+  // console.log(div.innerText);
+
+  // console.log("ラジオボタン");
+
+  const tempText = document.getElementsByName("radios")[0].innerText;
+  // .getElementsByName("selectCharactersButtons")
+  // console.log(tempText);
+
+  // 空欄で区切る
+  const lines = tempText.split(" ");
+
+  console.log(lines);
+
+  // const temp = document.radios.selectCharactersButtons[0].checked;
+  // if (temp) {
+  //   console.log("ボタン true");
+  // }
+
+  setTimeout(() => fetchKimetsuApi("all.json"), 1000);
 } else {
-  fetchKimetsuApi();
+  fetchKimetsuApi("all.json");
 }
 
 document.querySelectorAll("input[type=radio]").forEach((element) => {
-  // console.log(element);
-
   //チェックを変更すると発生するイベントを設置
   element.addEventListener("change", () => {
-    // console.log(click_element);
-    // console.log(element.checked);
-
     //ここにイベントの内容を記述
     console.log("chekbox切り替え完了");
   });
