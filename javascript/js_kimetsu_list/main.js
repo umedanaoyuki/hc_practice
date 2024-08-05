@@ -16,8 +16,6 @@ let user = {
 };
 
 const fetchKimetsuApi = (jsonType) => {
-  // console.log("APIを叩く");
-
   // all.json
   // /hashira.json
   fetch(`https://ihatov08.github.io/kimetsu_api/api/${jsonType}`)
@@ -54,25 +52,11 @@ if (document.readyState === "loading") {
   p.textContent = "ローディング中";
 
   document.body.appendChild(p);
-
-  // console.log(div.innerText);
-
-  // console.log("ラジオボタン");
-
   const tempText = document.getElementsByName("radios")[0].innerText;
-  // .getElementsByName("selectCharactersButtons")
-  // console.log(tempText);
 
   // 空欄で区切る
   const lines = tempText.split(" ");
-
   console.log(lines);
-
-  // const temp = document.radios.selectCharactersButtons[0].checked;
-  // if (temp) {
-  //   console.log("ボタン true");
-  // }
-
   setTimeout(() => fetchKimetsuApi("all.json"), 1000);
 } else {
   fetchKimetsuApi("all.json");
