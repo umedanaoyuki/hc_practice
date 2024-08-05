@@ -52,11 +52,10 @@ if (document.readyState === "loading") {
   p.textContent = "ローディング中";
 
   document.body.appendChild(p);
-  const tempText = document.getElementsByName("radios")[0].innerText;
 
   // 空欄で区切る
-  const lines = tempText.split(" ");
-  console.log(lines);
+  // const lines = tempText.split(" ");
+  // console.log(lines);
   setTimeout(() => fetchKimetsuApi("all.json"), 1000);
 } else {
   fetchKimetsuApi("all.json");
@@ -67,5 +66,22 @@ document.querySelectorAll("input[type=radio]").forEach((element) => {
   element.addEventListener("change", () => {
     //ここにイベントの内容を記述
     console.log("chekbox切り替え完了");
+
+    // 全キャラクター
+    const allCharacter = document.getElementById("all-character");
+
+    //  鬼殺隊
+    const kisatsutaiMembers = document.getElementById("kisatsutai-members");
+
+    // 柱
+    const hashiraMembers = document.getElementById("hashira-members");
+
+    // 鬼
+    const oniMembers = document.getElementById("oni-members");
+
+    console.log(allCharacter.checked);
+    console.log(kisatsutaiMembers.checked);
+    console.log(hashiraMembers.checked);
+    console.log(oniMembers.checked);
   });
 });
