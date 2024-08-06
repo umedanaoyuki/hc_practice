@@ -56,42 +56,20 @@ if (document.readyState === "loading") {
 document.querySelectorAll("input[type=radio]").forEach((element) => {
   //チェックを変更すると発生するイベントを設置
   element.addEventListener("change", () => {
-    //ここにイベントの内容を記述
     // console.log("checkbox切り替え完了");
-
     const animals = document.getElementsByClassName("animal");
-    // temp.removeChild();
-    // console.log(temp.length);
-
-    // console.log(temp);
-
-    // temp[0].remove();
-    // temp[1].remove();
-    // temp[2].remove();
-    // temp[3].remove();
-    // temp[4].remove();
 
     for (let i = 0; i < animals.length; i++) {
       animals[i].remove();
     }
 
-    // 叩くAPIの種類の配列
-    // all.json
-    // kisatsutai.json
-    // hashira.json
-    // oni.json
     const apiArray = ["all", "kisatsutai", "hashira", "oni"];
 
     for (let i = 0; i < apiArray.length; i++) {
       const checkboxStatus = document.getElementById(apiArray[i]).checked;
-      // console.log(checkboxStatus);
       if (checkboxStatus === true) {
-        // console.log("入室");
-        // document.readyState = "loading";
         console.log(apiArray[i]);
         setTimeout(() => fetchKimetsuApi(`${apiArray[i]}.json`), 1000);
-        // fetchKimetsuApi("all.json");
-        // console.log("break");
         break;
       }
     }
