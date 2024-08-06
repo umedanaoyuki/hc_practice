@@ -13,7 +13,8 @@ const showLoadingIcon = () => {
  */
 const deleteLoadingIcon = () => {
   const p = document.getElementsByClassName("loadingText");
-  p[0].innerText = "";
+  p[0].remove();
+  // p[0].innerText = "";
 };
 
 const fetchKimetsuApi = (jsonType) => {
