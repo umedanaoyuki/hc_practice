@@ -3,8 +3,15 @@ const fetchKimetsuApi = (jsonType) => {
 
   fetch(`https://ihatov08.github.io/kimetsu_api/api/${jsonType}`)
     .then((res) => {
-      const p = document.getElementsByTagName("p");
-      p.innerHTML = "";
+      const p = document.getElementsByClassName("loadingText");
+      p[0].innerText = "";
+
+      // const p = document.createElement("p");
+      // p.className = "loadingText";
+      // p.textContent = "ローディング中";
+      // document.body.appendChild(p);
+      // const temp = document.getElementsByClassName("loadingText");
+      // temp[0].innerText = "";
       return res.json();
     })
     .then((res) => {
@@ -30,10 +37,11 @@ const fetchKimetsuApi = (jsonType) => {
 
 if (document.readyState === "loading") {
   const p = document.createElement("p");
-  p.className = "test-tag";
+  p.className = "loadingText";
   p.textContent = "ローディング中";
   document.body.appendChild(p);
-  p.innerHTML = "";
+  // const temp = document.getElementsByClassName("loadingText");
+  // temp[0].innerText = "";
 
   setTimeout(() => fetchKimetsuApi("all.json"), 1000);
 } else {
