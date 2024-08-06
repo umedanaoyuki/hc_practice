@@ -17,20 +17,11 @@ const deleteLoadingIcon = () => {
 };
 
 const fetchKimetsuApi = (jsonType) => {
-  console.log("fetch");
+  // console.log("fetch関数");
 
   fetch(`https://ihatov08.github.io/kimetsu_api/api/${jsonType}`)
     .then((res) => {
       deleteLoadingIcon();
-      // const p = document.getElementsByClassName("loadingText");
-      // p[0].innerText = "";
-
-      // const p = document.createElement("p");
-      // p.className = "loadingText";
-      // p.textContent = "ローディング中";
-      // document.body.appendChild(p);
-      // const temp = document.getElementsByClassName("loadingText");
-      // temp[0].innerText = "";
       return res.json();
     })
     .then((res) => {
@@ -56,12 +47,6 @@ const fetchKimetsuApi = (jsonType) => {
 
 if (document.readyState === "loading") {
   showLoadingIcon();
-  // const p = document.createElement("p");
-  // p.className = "loadingText";
-  // p.textContent = "ローディング中";
-  // document.body.appendChild(p);
-  // const temp = document.getElementsByClassName("loadingText");
-  // temp[0].innerText = "";
 
   setTimeout(() => fetchKimetsuApi("all.json"), 1000);
 } else {
@@ -71,41 +56,42 @@ if (document.readyState === "loading") {
 document.querySelectorAll("input[type=radio]").forEach((element) => {
   //チェックを変更すると発生するイベントを設置
   element.addEventListener("change", () => {
-    // const p = document.getElementsByTagName("p");
-    // p.innerHTML = "";
-
     //ここにイベントの内容を記述
-    console.log("checkbox切り替え完了");
+    // console.log("checkbox切り替え完了");
 
-    // const p = document.createElement("p");
-    // p.textContent = "ローディング中";
-    // document.body.appendChild(p);
-
-    const temp = document.getElementById("mainDiv");
+    const animals = document.getElementsByClassName("animal");
     // temp.removeChild();
-    console.log(temp);
+    // console.log(temp.length);
+
+    // console.log(temp);
+
+    // temp[0].remove();
+    // temp[1].remove();
+    // temp[2].remove();
+    // temp[3].remove();
+    // temp[4].remove();
+
+    for (let i = 0; i < animals.length; i++) {
+      animals[i].remove();
+    }
 
     // 叩くAPIの種類の配列
     // all.json
     // kisatsutai.json
     // hashira.json
     // oni.json
-    const apiArray = [
-      "all-character",
-      "kisatsutai-members",
-      "hashira-members",
-      "oni-members",
-    ];
+    const apiArray = ["all", "kisatsutai", "hashira", "oni"];
 
     for (let i = 0; i < apiArray.length; i++) {
       const checkboxStatus = document.getElementById(apiArray[i]).checked;
       // console.log(checkboxStatus);
       if (checkboxStatus === true) {
-        console.log("入室");
+        // console.log("入室");
         // document.readyState = "loading";
-        setTimeout(() => fetchKimetsuApi("hashira.json"), 1000);
+        console.log(apiArray[i]);
+        setTimeout(() => fetchKimetsuApi(`${apiArray[i]}.json`), 1000);
         // fetchKimetsuApi("all.json");
-        console.log("break");
+        // console.log("break");
         break;
       }
     }
