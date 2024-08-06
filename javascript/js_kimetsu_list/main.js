@@ -1,10 +1,29 @@
+/**
+ * ローディングの画面表示
+ */
+const showLoadingIcon = () => {
+  const p = document.createElement("p");
+  p.className = "loadingText";
+  p.textContent = "ローディング中";
+  document.body.appendChild(p);
+};
+
+/**
+ * ローディングの画面の削除
+ */
+const deleteLoadingIcon = () => {
+  const p = document.getElementsByClassName("loadingText");
+  p[0].innerText = "";
+};
+
 const fetchKimetsuApi = (jsonType) => {
   console.log("fetch");
 
   fetch(`https://ihatov08.github.io/kimetsu_api/api/${jsonType}`)
     .then((res) => {
-      const p = document.getElementsByClassName("loadingText");
-      p[0].innerText = "";
+      deleteLoadingIcon();
+      // const p = document.getElementsByClassName("loadingText");
+      // p[0].innerText = "";
 
       // const p = document.createElement("p");
       // p.className = "loadingText";
@@ -36,10 +55,11 @@ const fetchKimetsuApi = (jsonType) => {
 };
 
 if (document.readyState === "loading") {
-  const p = document.createElement("p");
-  p.className = "loadingText";
-  p.textContent = "ローディング中";
-  document.body.appendChild(p);
+  showLoadingIcon();
+  // const p = document.createElement("p");
+  // p.className = "loadingText";
+  // p.textContent = "ローディング中";
+  // document.body.appendChild(p);
   // const temp = document.getElementsByClassName("loadingText");
   // temp[0].innerText = "";
 
