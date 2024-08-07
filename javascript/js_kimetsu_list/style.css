@@ -37,4 +37,11 @@ h2 {
 .loadingText {
   color: red;
   text-align: center;
+  /* display: block; */
+}
+
+.loadingIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
