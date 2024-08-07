@@ -10,5 +10,13 @@ main div.animal {
 }
 
 body {
-  background-color: green;
+  background-color: rgb(237, 237, 211);
+}
+
+h1 {
+  text-align: center;
+}
+
+.radios-container {
+  text-align: center;
 }

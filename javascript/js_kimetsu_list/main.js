@@ -33,9 +33,9 @@ const fetchKimetsuApi = (jsonType) => {
         div.className = "animal";
         document.getElementsByClassName("mainDiv")[0].appendChild(div);
 
-        const h1 = document.createElement("h1");
-        h1.textContent = res[i].name;
-        document.getElementsByClassName("animal")[i].appendChild(h1);
+        const h2 = document.createElement("h2");
+        h2.textContent = res[i].name;
+        document.getElementsByClassName("animal")[i].appendChild(h2);
 
         const p = document.createElement("p");
         p.textContent = res[i].category;
