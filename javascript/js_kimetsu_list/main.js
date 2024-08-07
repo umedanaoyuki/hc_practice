@@ -8,16 +8,11 @@ const showLoadingIcon = () => {
   img.src = "./img/loadingImage.gif";
   const loadingIconElement = document.getElementsByClassName("loadingIcon");
   loadingIconElement[0].appendChild(img);
-  // document.body.appendChild(img);
-  console.log("ローディング画面");
 
   const p = document.createElement("p");
   p.className = "loadingText";
   p.textContent = "ローディング中";
-  // const loadingIconElement = document.getElementsByClassName("loadingIcon");
   document.body.appendChild(p);
-  // loadingIconElement[0].appendChild(p);
-  // console.log("ローディング画面");
 };
 
 /**
@@ -34,8 +29,6 @@ const deleteLoadingIcon = () => {
  * 鬼滅の刃APIを叩くメソッド
  */
 const fetchKimetsuApi = (jsonType) => {
-  // showLoadingIcon();
-
   fetch(`https://ihatov08.github.io/kimetsu_api/api/${jsonType}.json`)
     .then((res) => {
       deleteLoadingIcon();
