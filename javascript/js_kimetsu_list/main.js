@@ -20,7 +20,7 @@ const deleteLoadingIcon = () => {
  * 鬼滅の刃APIを叩くメソッド
  */
 const fetchKimetsuApi = (jsonType) => {
-  showLoadingIcon();
+  // showLoadingIcon();
 
   fetch(`https://ihatov08.github.io/kimetsu_api/api/${jsonType}.json`)
     .then((res) => {
