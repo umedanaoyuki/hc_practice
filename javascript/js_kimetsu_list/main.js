@@ -19,11 +19,12 @@ const deleteLoadingIcon = () => {
 
 const fetchKimetsuApi = (jsonType) => {
   // console.log("fetch関数");
-  // showLoadingIcon();
+  showLoadingIcon();
 
+  console.log("jsonType");
   console.log(jsonType);
 
-  fetch(`https://ihatov08.github.io/kimetsu_api/api/${jsonType}`)
+  fetch(`https://ihatov08.github.io/kimetsu_api/api/${jsonType}.json`)
     .then((res) => {
       deleteLoadingIcon();
       return res.json();
@@ -50,13 +51,22 @@ const fetchKimetsuApi = (jsonType) => {
     });
 };
 
-if (document.readyState === "loading") {
-  showLoadingIcon();
+const renderScreen = (jsonType = "all") => {
+  console.log("実行");
+  if (document.readyState === "loading") {
+    showLoadingIcon();
 
-  setTimeout(() => fetchKimetsuApi("all.json"), 1000);
-} else {
-  fetchKimetsuApi("all.json");
-}
+    console.log("ローディングアイコン表示");
+    // console.log('loading')
+
+    setTimeout(() => fetchKimetsuApi(`${jsonType}`), 1000);
+  } else {
+    console.log("else");
+    fetchKimetsuApi("all");
+  }
+};
+
+window.onload = renderScreen();
 
 document.querySelectorAll("input[type=radio]").forEach((element) => {
   //チェックを変更すると発生するイベントを設置
@@ -80,13 +90,13 @@ document.querySelectorAll("input[type=radio]").forEach((element) => {
 
     const apiArray = ["all", "kisatsutai", "hashira", "oni"];
 
-    // for (let i = 0; i < apiArray.length; i++) {
-    //   const checkboxStatus = document.getElementById(apiArray[i]).checked;
-    //   if (checkboxStatus === true) {
-    //     // console.log(apiArray[i]);
-    //     setTimeout(() => fetchKimetsuApi(`${apiArray[i]}.json`), 1000);
-    //     break;
-    //   }
-    // }
+    for (let i = 0; i < apiArray.length; i++) {
+      const checkboxStatus = document.getElementById(apiArray[i]).checked;
+      if (checkboxStatus === true) {
+        console.log(apiArray[i]);
+        setTimeout(() => fetchKimetsuApi(`${apiArray[i]}`), 1000);
+        break;
+      }
+    }
   });
 });
