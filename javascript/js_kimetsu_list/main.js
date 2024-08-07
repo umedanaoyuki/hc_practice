@@ -2,12 +2,22 @@
  * ローディングの表示
  */
 const showLoadingIcon = () => {
+  const img = document.createElement("img");
+  img.className = "loadingGif";
+  img.alt = "画像";
+  img.src = "./img/loadingImage.gif";
+  const loadingIconElement = document.getElementsByClassName("loadingIcon");
+  loadingIconElement[0].appendChild(img);
+  // document.body.appendChild(img);
+  console.log("ローディング画面");
+
   const p = document.createElement("p");
   p.className = "loadingText";
   p.textContent = "ローディング中";
-  const loadingIconElement = document.getElementsByClassName("loadingIcon");
-  loadingIconElement[0].appendChild(p);
-  console.log("ローディング画面");
+  // const loadingIconElement = document.getElementsByClassName("loadingIcon");
+  document.body.appendChild(p);
+  // loadingIconElement[0].appendChild(p);
+  // console.log("ローディング画面");
 };
 
 /**
@@ -15,7 +25,9 @@ const showLoadingIcon = () => {
  */
 const deleteLoadingIcon = () => {
   const p = document.getElementsByClassName("loadingText");
+  const img = document.getElementsByClassName("loadingGif");
   p[0].remove();
+  img[0].remove();
 };
 
 /**

@@ -35,9 +35,14 @@ h2 {
 }
 
 .loadingText {
-  color: red;
+  color: black;
   text-align: center;
   /* display: block; */
+}
+
+.loadingGif {
+  margin-top: 200px;
+  text-align: center;
 }
 
 .loadingIcon {
