@@ -19,6 +19,9 @@ const deleteLoadingIcon = () => {
 
 const fetchKimetsuApi = (jsonType) => {
   // console.log("fetch関数");
+  // showLoadingIcon();
+
+  console.log(jsonType);
 
   fetch(`https://ihatov08.github.io/kimetsu_api/api/${jsonType}`)
     .then((res) => {
@@ -43,6 +46,7 @@ const fetchKimetsuApi = (jsonType) => {
         img.src = `https://ihatov08.github.io${res[i].image}`;
         document.getElementsByClassName("animal")[i].appendChild(img);
       }
+      deleteLoadingIcon();
     });
 };
 
@@ -60,19 +64,29 @@ document.querySelectorAll("input[type=radio]").forEach((element) => {
     // console.log("checkbox切り替え完了");
     const animals = document.getElementsByClassName("animal");
 
-    for (let i = 0; i < animals.length; i++) {
-      animals[i].remove();
+    console.log("5つの要素の取得");
+    console.log(animals);
+
+    while (animals.length > 0) {
+      animals[0].remove();
     }
+
+    // for (let i = 0; i < animals.length; i++) {
+    //   animals[i].remove();
+    //   console.log("削除完了");
+    // }
+
+    console.log(document.getElementsByClassName("animal"));
 
     const apiArray = ["all", "kisatsutai", "hashira", "oni"];
 
-    for (let i = 0; i < apiArray.length; i++) {
-      const checkboxStatus = document.getElementById(apiArray[i]).checked;
-      if (checkboxStatus === true) {
-        console.log(apiArray[i]);
-        setTimeout(() => fetchKimetsuApi(`${apiArray[i]}.json`), 1000);
-        break;
-      }
-    }
+    // for (let i = 0; i < apiArray.length; i++) {
+    //   const checkboxStatus = document.getElementById(apiArray[i]).checked;
+    //   if (checkboxStatus === true) {
+    //     // console.log(apiArray[i]);
+    //     setTimeout(() => fetchKimetsuApi(`${apiArray[i]}.json`), 1000);
+    //     break;
+    //   }
+    // }
   });
 });
