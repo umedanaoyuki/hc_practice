@@ -4,7 +4,7 @@
 const showLoadingIcon = () => {
   const img = document.createElement("img");
   img.className = "loadingGif";
-  img.alt = "画像";
+  img.alt = "ローディングのGif";
   img.src = "./img/loadingImage.gif";
   const loadingIconElement = document.getElementsByClassName("loadingIcon");
   loadingIconElement[0].appendChild(img);
