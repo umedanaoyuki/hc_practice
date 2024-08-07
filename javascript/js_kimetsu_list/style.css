@@ -1,10 +1,10 @@
-main {
+.mainDiv {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-main div.animal {
+.mainDiv div.animal {
   /*（全体の幅 - gapでつけた余白の合計）をカラム数で割る */
   width: calc((100% - 20px) / 3);
 }
@@ -32,4 +32,9 @@ h2 {
   border: 1px solid rgb(10, 2, 10);
   width: 50%;
   margin: 0 auto;
+}
+
+.loadingText {
+  color: red;
+  text-align: center;
 }
