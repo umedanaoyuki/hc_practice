@@ -18,5 +18,10 @@ h1 {
 }
 
 .radios-container {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  /* text-align: center; */
+  border: 1px solid rgb(255, 0, 255);
+  width: 50%;
+  margin: 0 auto;
 }
