@@ -1,5 +1,5 @@
 /**
- * ローディングの画面表示
+ * ローディングの表示
  */
 const showLoadingIcon = () => {
   const p = document.createElement("p");
@@ -9,7 +9,7 @@ const showLoadingIcon = () => {
 };
 
 /**
- * ローディングの画面の削除
+ * ローディングの削除
  */
 const deleteLoadingIcon = () => {
   const p = document.getElementsByClassName("loadingText");
@@ -17,6 +17,9 @@ const deleteLoadingIcon = () => {
   // p[0].innerText = "";
 };
 
+/**
+ * 鬼滅の刃APIを叩くメソッド
+ */
 const fetchKimetsuApi = (jsonType) => {
   // console.log("fetch関数");
   showLoadingIcon();
@@ -51,17 +54,19 @@ const fetchKimetsuApi = (jsonType) => {
     });
 };
 
+/**
+ * 画面描画のメソッド
+ */
 const renderScreen = (jsonType = "all") => {
-  console.log("実行");
+  // console.log("実行");
+  showLoadingIcon();
   if (document.readyState === "loading") {
-    showLoadingIcon();
-
-    console.log("ローディングアイコン表示");
+    // console.log("ローディングアイコン表示");
     // console.log('loading')
 
     setTimeout(() => fetchKimetsuApi(`${jsonType}`), 1000);
   } else {
-    console.log("else");
+    // console.log("else");
     fetchKimetsuApi("all");
   }
 };
@@ -71,23 +76,19 @@ window.onload = renderScreen();
 document.querySelectorAll("input[type=radio]").forEach((element) => {
   //チェックを変更すると発生するイベントを設置
   element.addEventListener("change", () => {
+    showLoadingIcon();
+
     // console.log("checkbox切り替え完了");
     const animals = document.getElementsByClassName("animal");
 
-    console.log("5つの要素の取得");
-    console.log(animals);
+    // console.log("5つの要素の取得");
+    // console.log(animals);
 
     while (animals.length > 0) {
       animals[0].remove();
     }
 
-    // for (let i = 0; i < animals.length; i++) {
-    //   animals[i].remove();
-    //   console.log("削除完了");
-    // }
-
-    console.log(document.getElementsByClassName("animal"));
-
+    // APIの種類をまとめた配列
     const apiArray = ["all", "kisatsutai", "hashira", "oni"];
 
     for (let i = 0; i < apiArray.length; i++) {
