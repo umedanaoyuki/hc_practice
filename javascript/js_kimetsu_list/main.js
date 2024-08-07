@@ -5,7 +5,9 @@ const showLoadingIcon = () => {
   const p = document.createElement("p");
   p.className = "loadingText";
   p.textContent = "ローディング中";
-  document.body.appendChild(p);
+  const loadingIconElement = document.getElementsByClassName("loadingIcon");
+  loadingIconElement[0].appendChild(p);
+  console.log("ローディング画面");
 };
 
 /**
