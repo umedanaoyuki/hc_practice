@@ -28,32 +28,34 @@ const deleteLoadingIcon = () => {
 /**
  * 鬼滅の刃APIを叩くメソッド
  */
-const fetchKimetsuApi = (jsonType) => {
-  fetch(`https://ihatov08.github.io/kimetsu_api/api/${jsonType}.json`)
-    .then((res) => {
-      deleteLoadingIcon();
-      return res.json();
-    })
-    .then((res) => {
-      for (let i = 0; i < res.length; i++) {
-        const div = document.createElement("div");
-        div.className = "animal";
-        document.getElementsByClassName("mainDiv")[0].appendChild(div);
+const fetchKimetsuApi = async (jsonType) => {
+  try {
+    const result = await fetch(
+      `https://ihatov08.github.io/kimetsu_api/api/${jsonType}.json`
+    );
+    const responseArray = await result.json();
 
-        const h2 = document.createElement("h2");
-        h2.textContent = res[i].name;
-        document.getElementsByClassName("animal")[i].appendChild(h2);
+    for (let i = 0; i < responseArray.length; i++) {
+      const div = document.createElement("div");
+      div.className = "animal";
+      document.getElementsByClassName("mainDiv")[0].appendChild(div);
 
-        const p = document.createElement("p");
-        p.textContent = res[i].category;
-        document.getElementsByClassName("animal")[i].appendChild(p);
+      const h2 = document.createElement("h2");
+      h2.textContent = responseArray[i].name;
+      document.getElementsByClassName("animal")[i].appendChild(h2);
 
-        const img = document.createElement("img");
-        img.src = `https://ihatov08.github.io${res[i].image}`;
-        document.getElementsByClassName("animal")[i].appendChild(img);
-      }
-      deleteLoadingIcon();
-    });
+      const p = document.createElement("p");
+      p.textContent = responseArray[i].category;
+      document.getElementsByClassName("animal")[i].appendChild(p);
+
+      const img = document.createElement("img");
+      img.src = `https://ihatov08.github.io${responseArray[i].image}`;
+      document.getElementsByClassName("animal")[i].appendChild(img);
+    }
+    deleteLoadingIcon();
+  } catch (error) {
+    console.log(`エラー${error}`);
+  }
 };
 
 /**
