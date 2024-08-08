@@ -89,7 +89,6 @@ document.querySelectorAll("input[type=radio]").forEach((element) => {
     for (let i = 0; i < apiArray.length; i++) {
       const checkboxStatus = document.getElementById(apiArray[i]).checked;
       if (checkboxStatus === true) {
-        console.log(apiArray[i]);
         setTimeout(() => fetchKimetsuApi(`${apiArray[i]}`), 1000);
         break;
       }
