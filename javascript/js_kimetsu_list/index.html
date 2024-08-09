@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>鬼滅の刃API</h1>
+
+    <div class="radios-container">
+      <div class="select-characters-buttons" name="radios">
+        <label>
+          <input
+            type="radio"
+            id="all"
+            name="selectCharactersButtons"
+            value="all"
+            checked
+          />全キャラクター
+        </label>
+        <label>
+          <input
+            type="radio"
+            id="kisatsutai"
+            name="selectCharactersButtons"
+            value="kisatsutai"
+          />鬼殺隊
+        </label>
+        <label>
+          <input
+            type="radio"
+            id="hashira"
+            name="selectCharactersButtons"
+            value="hashira"
+          />柱
+        </label>
+        <label>
+          <input
+            type="radio"
+            id="oni"
+            name="selectCharactersButtons"
+            value="oni"
+          />鬼
+        </label>
+      </div>
+    </div>
+
+    <!-- ローディングアイコンの表示 -->
+    <div class="loadingIcon"></div>
+
+    <!-- API結果の表示 -->
+    <div class="show-api-results">
+      <div class="mainDiv" id="mainDiv"></div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
