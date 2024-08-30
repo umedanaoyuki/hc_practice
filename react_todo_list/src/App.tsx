@@ -3,15 +3,9 @@ import "./styles.css";
 
 function App() {
   const [todoText, setTodoText] = useState<string>("");
-  const [incompleteTodos, setIncompleteTodos] = useState<string[]>([
-    "TODOです1",
-    "TODOです2",
-  ]);
+  const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
 
-  const [completeTodos, setCompleteTodos] = useState<string[]>([
-    "TODOでした1",
-    "TODOでした2",
-  ]);
+  const [completeTodos, setCompleteTodos] = useState<string[]>([]);
 
   const onChangeTodoText = (event: ChangeEvent<HTMLInputElement>) =>
     setTodoText(event.target.value);
