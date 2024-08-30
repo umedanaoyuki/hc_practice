@@ -30,6 +30,14 @@ function App() {
     setIncompleteTodos(newTodos);
   };
 
+  const onClickComplete = (index: number) => {
+    const newIncompleteTodos = [...incompleteTodos];
+    newIncompleteTodos.splice(index, 1);
+    setIncompleteTodos(newIncompleteTodos);
+    const newCompletedTodos = [...completeTodos, incompleteTodos[index]];
+    setCompleteTodos(newCompletedTodos);
+  };
+
   return (
     <>
       <div className="input-area">
@@ -47,7 +55,7 @@ function App() {
             <li key={todo}>
               <div className="list-row">
                 <p className="todo-item">{todo}</p>
-                <button>完了</button>
+                <button onClick={() => onClickComplete(index)}>完了</button>
                 <button onClick={() => onClickDelete(index)}>削除</button>
               </div>
             </li>
