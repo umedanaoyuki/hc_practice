@@ -38,6 +38,18 @@ function App() {
     setCompleteTodos(newCompletedTodos);
   };
 
+  // 戻る機能
+  const onClickBack = (index: number) => {
+    const newCompleteTodos = [...completeTodos];
+    newCompleteTodos.splice(index, 1);
+    // 完了のTODOの更新
+    setCompleteTodos(newCompleteTodos);
+
+    // 未完了のTODO
+    const newInCompletedTodos = [...incompleteTodos, completeTodos[index]];
+    setIncompleteTodos(newInCompletedTodos);
+  };
+
   return (
     <>
       <div className="input-area">
@@ -65,11 +77,11 @@ function App() {
       <div className="complete-area">
         <p className="title">完了のTODO</p>
         <ul>
-          {completeTodos.map((todo) => (
+          {completeTodos.map((todo, index) => (
             <li key={todo}>
               <div className="list-row">
                 <p className="todo-item">{todo}</p>
-                <button>戻す</button>
+                <button onClick={() => onClickBack(index)}>戻す</button>
               </div>
             </li>
           ))}
