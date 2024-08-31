@@ -52,6 +52,12 @@ function App() {
 
   return (
     <>
+      <p>TODOリスト</p>
+      <div>
+        <p>すべてのタスク:{completeTodos.length + incompleteTodos.length}</p>
+        <p>完了済のタスク:{completeTodos.length}</p>
+        <p>未完了のタスク:{incompleteTodos.length}</p>
+      </div>
       <InputTodo
         todoText={todoText}
         onChange={onChangeTodoText}
