@@ -2,20 +2,26 @@ import { ChangeEvent, useRef, useState } from "react";
 import "./styles.css";
 import { InputTodo } from "./components/InputTodo";
 import { DisplayTodoList } from "./components/DisplayTodoList";
-import { Todo } from "./type/TodoType";
+import { TodoType } from "./type/TodoType";
 
 function App() {
   // TODOの入力欄の状態
   const [todoText, setTodoText] = useState<string>("");
 
   // 全TODOリストの状態
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<TodoType[]>([]);
 
   const inputRefObject = useRef<(HTMLInputElement | null)[]>([]);
 
+  /**
+   * TODO入力欄の表示を切り替えるメソッド
+   */
   const onChangeTodoText = (event: ChangeEvent<HTMLInputElement>) =>
     setTodoText(event.target.value);
 
+  /**
+   * TODOの内容を書き換えるメソッド
+   */
   const onChangeText = (event: ChangeEvent<HTMLInputElement>, id: number) => {
     setTodos(
       todos.map((todo) => {
@@ -112,19 +118,19 @@ function App() {
 
   return (
     <>
-      <h1>TODOリスト</h1>
-      <div>
-        <p>すべてのタスク:{todos.length}</p>
-        <p>
-          完了済のタスク:
+      <h1>TODO リスト</h1>
+      <div className="task-info">
+        <p className="indivisual-task">すべてのタスク:&nbsp;{todos.length}</p>
+        <p className="indivisual-task">
+          完了済のタスク:&nbsp;
           {
             todos.filter((todo) => {
               return todo.completed == true;
             }).length
           }
         </p>
-        <p>
-          未完了のタスク:
+        <p className="indivisual-task">
+          未完了のタスク:&nbsp;
           {
             todos.filter((todo) => {
               return todo.completed == false;

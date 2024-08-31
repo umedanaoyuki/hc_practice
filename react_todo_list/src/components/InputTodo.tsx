@@ -1,25 +1,15 @@
-import { ChangeEvent } from "react";
+import { InputTodoType } from "../type/InputTodoType";
+import "./InputTodoStyle.css";
 
-type InputTodoProps = {
-  todoText: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  onClick: () => void;
-};
-
-// const style = {
-//   backgroundColor: "#c6e5d9",
-//   width: "400px",
-//   height: "30px",
-//   padding: "8px",
-//   margin: "8px",
-//   borderRadius: "8px",
-// };
-
-export const InputTodo = ({ todoText, onChange, onClick }: InputTodoProps) => {
+export const InputTodo = ({ todoText, onChange, onClick }: InputTodoType) => {
   return (
-    // <div style={style}>
-    <div>
-      <input placeholder="TODOを入力" value={todoText} onChange={onChange} />
+    <div className="task-input-area">
+      <input
+        className="input-area"
+        placeholder="タスクを追加"
+        value={todoText}
+        onChange={onChange}
+      />
       <button onClick={onClick}>追加</button>
     </div>
   );

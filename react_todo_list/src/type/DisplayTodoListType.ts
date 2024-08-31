@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { Todo } from "./TodoType";
+import { TodoType } from "./TodoType";
 
 export type DisplayTodoListType = {
   onClickDelete: (index: number) => void;
@@ -7,5 +7,5 @@ export type DisplayTodoListType = {
   onClickSave: (index: number) => void;
   handleCompleted: (index: number) => void;
   onChangeText: (event: ChangeEvent<HTMLInputElement>, id: number) => void;
-  todos: Todo[];
+  todos: TodoType[];
 };

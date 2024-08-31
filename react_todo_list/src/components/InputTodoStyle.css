@@ -1,0 +1,10 @@
+.task-input-area {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 16px;
+}
+
+.input-area {
+  width: 20em;
+}

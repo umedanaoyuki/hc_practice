@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { DisplayTodoListType } from "../type/DisplayTodoListType";
+import "./DisplayTodoListStyle.css";
 
 /**
  * TODOの一覧を表示させるコンポーネント

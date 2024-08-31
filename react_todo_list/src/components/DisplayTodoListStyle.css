@@ -1,0 +1,13 @@
+.list-row {
+  display: flex;
+  align-items: center;
+}
+
+.todo-item {
+  margin: 6px;
+}
+
+/* 取り消し線 */
+.completed {
+  text-decoration: line-through;
+}
