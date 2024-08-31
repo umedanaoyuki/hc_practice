@@ -47,8 +47,20 @@ function App() {
     setTodos(newTodos);
   };
 
-  const onClickEdit = (index: number) => {
+  const onClickEdit = (id: number) => {
     // console.log(todos[index]);
+    console.log("編集ボタン押下");
+    setTodos(
+      todos.map((todo) => {
+        if (id === todo.id) {
+          return {
+            ...todo,
+            active: !todo.active,
+          };
+        }
+        return todo;
+      })
+    );
   };
 
   // タスクの上限
