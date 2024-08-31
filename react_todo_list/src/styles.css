@@ -64,3 +64,8 @@ button:hover {
 .todo-item {
   margin: 6px;
 }
+
+/* 取り消し線 */
+.completed {
+  text-decoration: line-through;
+}

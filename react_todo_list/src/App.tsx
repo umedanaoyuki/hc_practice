@@ -1,12 +1,16 @@
 import { ChangeEvent, useState } from "react";
 import "./styles.css";
 import { InputTodo } from "./components/InputTodo";
-import { IncompleteTodos } from "./components/IncompleteTodos";
-import { CompleteTodos } from "./components/completeTodos";
+
+type Todo = {
+  id: number;
+  text: string;
+  completed: boolean;
+};
 
 function App() {
   const [todoText, setTodoText] = useState<string>("");
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
   const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
 
   const [completeTodos, setCompleteTodos] = useState<string[]>([]);
@@ -17,8 +21,16 @@ function App() {
   const onClickAdd = () => {
     // 入力が空の場合 何も動作しない
     if (todoText === "") return;
-    const newTodos = [...todos, todoText];
+    const newTodos = [
+      ...todos,
+      {
+        id: todos.length,
+        text: todoText,
+        completed: true,
+      },
+    ];
     setTodos(newTodos);
+    console.log(newTodos);
     setTodoText("");
     // console.log(todos);
   };
@@ -52,6 +64,13 @@ function App() {
   // タスクの上限
   const isMaxLimitIncompleteTodos = incompleteTodos.length >= 5;
 
+  /**
+   * 取り消し線の追加
+   */
+  const handleCompleted = () => {
+    console.log("チェックボックス押下");
+  };
+
   return (
     <>
       <p>TODOリスト</p>
@@ -71,10 +90,14 @@ function App() {
         <ul>
           {todos.map((todo, index) => {
             return (
-              <li key={todo}>
+              <li key={todo.id}>
                 <div className="list-row">
-                  <input type="checkbox" />
-                  <p className="todo-item">{todo}</p>
+                  <input type="checkbox" onClick={() => handleCompleted} />
+                  <p
+                    className={`todo-item ${todo.completed ? "completed" : ""}`}
+                  >
+                    {todo.text}
+                  </p>
                   <button>編集</button>
                   <button onClick={() => onClickDelete(index)}>削除</button>
                 </div>
@@ -83,15 +106,6 @@ function App() {
           })}
         </ul>
       </div>
-      {/* {isMaxLimitIncompleteTodos && (
-        <p style={{ color: "red" }}>登録できるTODOは5個までです。</p>
-      )} */}
-      {/* <IncompleteTodos
-        todos={incompleteTodos}
-        onClickDelete={onClickDelete}
-        onClickComplete={onClickComplete}
-      /> */}
-      {/* <CompleteTodos todos={completeTodos} onClick={onClickBack} /> */}
     </>
   );
 }
