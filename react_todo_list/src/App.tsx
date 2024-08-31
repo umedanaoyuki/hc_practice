@@ -1,16 +1,8 @@
 import { ChangeEvent, useRef, useState } from "react";
 import "./styles.css";
 import { InputTodo } from "./components/InputTodo";
-
-type Todo = {
-  id: number;
-  // TODOの内容
-  text: string;
-  // TODOの完了ステータス
-  completed: boolean;
-  // 編集モードかどうか
-  active: boolean;
-};
+import { DisplayTodoList } from "./components/DisplayTodoList";
+import { Todo } from "./type/TodoType";
 
 function App() {
   // TODOの入力欄の状態
@@ -25,7 +17,6 @@ function App() {
     setTodoText(event.target.value);
 
   const onChangeText = (event: ChangeEvent<HTMLInputElement>, id: number) => {
-    // console.log("onChangeText実行中");
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
@@ -52,10 +43,7 @@ function App() {
       },
     ];
     setTodos(newTodos);
-    console.log("onClick");
-    // console.log(newTodos);
     setTodoText("");
-    console.log(todoText);
   };
 
   /**
@@ -108,7 +96,6 @@ function App() {
    * 取り消し線の追加
    */
   const handleCompleted = (id: number) => {
-    console.log("チェックボックス押下");
     setTodos(
       todos.map((todo) => {
         if (id === todo.id) {
@@ -125,7 +112,7 @@ function App() {
 
   return (
     <>
-      <p>TODOリスト</p>
+      <h1>TODOリスト</h1>
       <div>
         <p>すべてのタスク:{todos.length}</p>
         <p>
@@ -150,38 +137,14 @@ function App() {
         onChange={onChangeTodoText}
         onClick={onClickAdd}
       />
-      <div>
-        <ul>
-          {todos.map((todo, index) => {
-            return (
-              <li key={todo.id}>
-                <div className="list-row">
-                  <input
-                    type="checkbox"
-                    checked={todo.completed}
-                    onClick={() => handleCompleted(todo.id)}
-                    onChange={() => {}}
-                  />
-                  <input
-                    ref={(el) => (inputRefObject.current[index] = el)}
-                    disabled={todo.active}
-                    type="text"
-                    className={`todo-item ${todo.completed ? "completed" : ""}`}
-                    value={todo.text}
-                    onChange={(e) => onChangeText(e, todo.id)}
-                  />
-                  {todo.active ? (
-                    <button onClick={() => onClickEdit(index)}>編集</button>
-                  ) : (
-                    <button onClick={() => onClickSave(index)}>保存</button>
-                  )}
-                  <button onClick={() => onClickDelete(index)}>削除</button>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <DisplayTodoList
+        onClickDelete={onClickDelete}
+        onClickEdit={onClickEdit}
+        onClickSave={onClickSave}
+        handleCompleted={handleCompleted}
+        onChangeText={onChangeText}
+        todos={todos}
+      />
     </>
   );
 }
