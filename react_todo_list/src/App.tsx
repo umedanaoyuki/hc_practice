@@ -26,7 +26,7 @@ function App() {
       {
         id: todos.length,
         text: todoText,
-        completed: true,
+        completed: false,
       },
     ];
     setTodos(newTodos);
@@ -67,8 +67,20 @@ function App() {
   /**
    * 取り消し線の追加
    */
-  const handleCompleted = () => {
+  const handleCompleted = (id: number) => {
     console.log("チェックボックス押下");
+    setTodos(
+      todos.map((todo) => {
+        if (id === todo.id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        }
+        // idが一致しない場合はもとの配列を返す
+        return todo;
+      })
+    );
   };
 
   return (
@@ -92,12 +104,16 @@ function App() {
             return (
               <li key={todo.id}>
                 <div className="list-row">
-                  <input type="checkbox" onClick={() => handleCompleted} />
+                  <input
+                    type="checkbox"
+                    onClick={() => handleCompleted(todo.id)}
+                  />
                   <p
                     className={`todo-item ${todo.completed ? "completed" : ""}`}
                   >
                     {todo.text}
                   </p>
+                  <button>保存</button>
                   <button>編集</button>
                   <button onClick={() => onClickDelete(index)}>削除</button>
                 </div>
