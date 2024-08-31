@@ -6,6 +6,7 @@ import { CompleteTodos } from "./components/completeTodos";
 
 function App() {
   const [todoText, setTodoText] = useState<string>("");
+  const [todos, setTodos] = useState<string[]>([]);
   const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
 
   const [completeTodos, setCompleteTodos] = useState<string[]>([]);
@@ -16,15 +17,16 @@ function App() {
   const onClickAdd = () => {
     // 入力が空の場合 何も動作しない
     if (todoText === "") return;
-    const newTodos = [...incompleteTodos, todoText];
-    setIncompleteTodos(newTodos);
+    const newTodos = [...todos, todoText];
+    setTodos(newTodos);
     setTodoText("");
+    // console.log(todos);
   };
 
   const onClickDelete = (index: number) => {
-    const newTodos = [...incompleteTodos];
+    const newTodos = [...todos];
     newTodos.splice(index, 1);
-    setIncompleteTodos(newTodos);
+    setTodos(newTodos);
   };
 
   const onClickComplete = (index: number) => {
@@ -64,15 +66,32 @@ function App() {
         onClick={onClickAdd}
         disabled={isMaxLimitIncompleteTodos}
       />
-      {isMaxLimitIncompleteTodos && (
+      <div>TODO表示</div>
+      <div>
+        <ul>
+          {todos.map((todo, index) => {
+            return (
+              <li key={todo}>
+                <div className="list-row">
+                  <input type="checkbox" />
+                  <p className="todo-item">{todo}</p>
+                  <button>編集</button>
+                  <button onClick={() => onClickDelete(index)}>削除</button>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+      {/* {isMaxLimitIncompleteTodos && (
         <p style={{ color: "red" }}>登録できるTODOは5個までです。</p>
-      )}
-      <IncompleteTodos
+      )} */}
+      {/* <IncompleteTodos
         todos={incompleteTodos}
         onClickDelete={onClickDelete}
         onClickComplete={onClickComplete}
-      />
-      <CompleteTodos todos={completeTodos} onClick={onClickBack} />
+      /> */}
+      {/* <CompleteTodos todos={completeTodos} onClick={onClickBack} /> */}
     </>
   );
 }
