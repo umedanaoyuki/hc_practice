@@ -5,7 +5,9 @@ import { InputTodo } from "./components/InputTodo";
 type Todo = {
   id: number;
   text: string;
+  // 完了したかどうか
   completed: boolean;
+  // 編集モードかどうか
   active: boolean;
 };
 
@@ -13,10 +15,7 @@ function App() {
   const [todoText, setTodoText] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
-  const [completeTodos, setCompleteTodos] = useState<string[]>([]);
-
-  const inputRefObject = useRef<HTMLInputElement>(null);
+  const inputRefObject = useRef<(HTMLInputElement | null)[]>([]);
 
   const onChangeTodoText = (event: ChangeEvent<HTMLInputElement>) =>
     setTodoText(event.target.value);
@@ -38,9 +37,10 @@ function App() {
       },
     ];
     setTodos(newTodos);
-    console.log(newTodos);
+    console.log("onClick");
+    // console.log(newTodos);
     setTodoText("");
-    // console.log(todos);
+    console.log(todoText);
   };
 
   const onClickDelete = (index: number) => {
@@ -49,18 +49,35 @@ function App() {
     setTodos(newTodos);
   };
 
-  const onClickEdit = (id: number) => {
+  const onClickEdit = (id: number, value: string) => {
     // console.log(todos[index]);
     console.log("編集ボタン押下");
     console.log(inputRefObject.current);
-    inputRefObject.current?.focus();
+    inputRefObject.current[id]?.focus();
+
+    setTodos(
+      todos.map((todo) => {
+        if (id === todo.id) {
+          todo.text = value;
+          return {
+            ...todo,
+            active: false,
+          };
+        }
+        return todo;
+      })
+    );
+  };
+
+  const onClickSave = (id: number) => {
+    console.log("保存ボタンの押下");
 
     setTodos(
       todos.map((todo) => {
         if (id === todo.id) {
           return {
             ...todo,
-            active: !todo.active,
+            active: true,
           };
         }
         return todo;
@@ -69,7 +86,7 @@ function App() {
   };
 
   // タスクの上限
-  const isMaxLimitIncompleteTodos = incompleteTodos.length >= 5;
+  // const isMaxLimitIncompleteTodos = incompleteTodos.length >= 5;
 
   /**
    * 取り消し線の追加
@@ -94,17 +111,30 @@ function App() {
     <>
       <p>TODOリスト</p>
       <div>
-        <p>すべてのタスク:{completeTodos.length + incompleteTodos.length}</p>
-        <p>完了済のタスク:{completeTodos.length}</p>
-        <p>未完了のタスク:{incompleteTodos.length}</p>
+        <p>すべてのタスク:{todos.length}</p>
+        <p>
+          完了済のタスク:
+          {
+            todos.filter((todo) => {
+              return todo.completed == true;
+            }).length
+          }
+        </p>
+        <p>
+          未完了のタスク:
+          {
+            todos.filter((todo) => {
+              return todo.completed == false;
+            }).length
+          }
+        </p>
       </div>
       <InputTodo
         todoText={todoText}
         onChange={onChangeTodoText}
         onClick={onClickAdd}
-        disabled={isMaxLimitIncompleteTodos}
+        // disabled={isMaxLimitIncompleteTodos}
       />
-      <div>TODO表示</div>
       <div>
         <ul>
           {todos.map((todo, index) => {
@@ -113,18 +143,24 @@ function App() {
                 <div className="list-row">
                   <input
                     type="checkbox"
+                    checked={todo.completed}
                     onClick={() => handleCompleted(todo.id)}
                   />
                   <input
-                    ref={inputRefObject}
+                    ref={(el) => (inputRefObject.current[index] = el)}
                     disabled={todo.active}
                     type="text"
                     className={`todo-item ${todo.completed ? "completed" : ""}`}
                     value={todo.text}
                     onChange={onChangeText}
                   />
-                  <button>保存</button>
-                  <button onClick={() => onClickEdit(index)}>編集</button>
+                  {todo.active ? (
+                    <button onClick={() => onClickEdit(index, todo.text)}>
+                      編集
+                    </button>
+                  ) : (
+                    <button onClick={() => onClickSave(index)}>保存</button>
+                  )}
                   <button onClick={() => onClickDelete(index)}>削除</button>
                 </div>
               </li>

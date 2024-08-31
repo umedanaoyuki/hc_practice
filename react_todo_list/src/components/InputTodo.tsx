@@ -4,7 +4,7 @@ type InputTodoProps = {
   todoText: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onClick: () => void;
-  disabled: boolean;
+  disabled?: boolean;
 };
 
 const style = {
@@ -22,6 +22,8 @@ export const InputTodo = ({
   onClick,
   disabled,
 }: InputTodoProps) => {
+  console.log("コンポーネントの中");
+
   return (
     <div style={style}>
       <input
