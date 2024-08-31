@@ -1,6 +1,7 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import "./styles.css";
 import { InputTodo } from "./components/InputTodo";
+import { builtInPlugins } from "textlint/lib/src/loader/TextlintrcLoader";
 
 type Todo = {
   id: number;
@@ -15,6 +16,8 @@ function App() {
 
   const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
   const [completeTodos, setCompleteTodos] = useState<string[]>([]);
+
+  const inputRefObject = useRef<HTMLInputElement>(null);
 
   const onChangeTodoText = (event: ChangeEvent<HTMLInputElement>) =>
     setTodoText(event.target.value);
@@ -50,6 +53,9 @@ function App() {
   const onClickEdit = (id: number) => {
     // console.log(todos[index]);
     console.log("編集ボタン押下");
+    console.log(inputRefObject.current);
+    inputRefObject.current?.focus();
+
     setTodos(
       todos.map((todo) => {
         if (id === todo.id) {
@@ -111,6 +117,7 @@ function App() {
                     onClick={() => handleCompleted(todo.id)}
                   />
                   <input
+                    ref={inputRefObject}
                     disabled={todo.active}
                     type="text"
                     className={`todo-item ${todo.completed ? "completed" : ""}`}
