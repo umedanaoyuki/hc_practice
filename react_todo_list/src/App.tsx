@@ -1,7 +1,6 @@
 import { ChangeEvent, useRef, useState } from "react";
 import "./styles.css";
 import { InputTodo } from "./components/InputTodo";
-import { builtInPlugins } from "textlint/lib/src/loader/TextlintrcLoader";
 
 type Todo = {
   id: number;
