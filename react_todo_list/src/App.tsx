@@ -18,6 +18,10 @@ function App() {
   const onChangeTodoText = (event: ChangeEvent<HTMLInputElement>) =>
     setTodoText(event.target.value);
 
+  const onChangeText = (event: ChangeEvent<HTMLInputElement>) => {
+    setTodoText(event.target.value);
+  };
+
   const onClickAdd = () => {
     // 入力が空の場合 何も動作しない
     if (todoText === "") return;
@@ -41,25 +45,13 @@ function App() {
     setTodos(newTodos);
   };
 
-  const onClickComplete = (index: number) => {
-    const newIncompleteTodos = [...incompleteTodos];
-    newIncompleteTodos.splice(index, 1);
-    setIncompleteTodos(newIncompleteTodos);
-    const newCompletedTodos = [...completeTodos, incompleteTodos[index]];
-    setCompleteTodos(newCompletedTodos);
-  };
-
-  // 戻る機能
-  const onClickBack = (index: number) => {
-    const newCompleteTodos = [...completeTodos];
-    newCompleteTodos.splice(index, 1);
-    // 完了のTODOの更新
-    setCompleteTodos(newCompleteTodos);
-
-    // 未完了のTODO
-    const newInCompletedTodos = [...incompleteTodos, completeTodos[index]];
-    setIncompleteTodos(newInCompletedTodos);
-  };
+  // const onClickComplete = (index: number) => {
+  //   const newIncompleteTodos = [...incompleteTodos];
+  //   newIncompleteTodos.splice(index, 1);
+  //   setIncompleteTodos(newIncompleteTodos);
+  //   const newCompletedTodos = [...completeTodos, incompleteTodos[index]];
+  //   setCompleteTodos(newCompletedTodos);
+  // };
 
   // タスクの上限
   const isMaxLimitIncompleteTodos = incompleteTodos.length >= 5;
@@ -108,11 +100,12 @@ function App() {
                     type="checkbox"
                     onClick={() => handleCompleted(todo.id)}
                   />
-                  <p
+                  <input
+                    type="text"
                     className={`todo-item ${todo.completed ? "completed" : ""}`}
-                  >
-                    {todo.text}
-                  </p>
+                    value={todo.text}
+                    onChange={onChangeText}
+                  />
                   <button>保存</button>
                   <button>編集</button>
                   <button onClick={() => onClickDelete(index)}>削除</button>
