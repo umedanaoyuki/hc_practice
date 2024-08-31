@@ -3,8 +3,16 @@
   justify-content: center;
   width: 100%;
   font-size: 16px;
+  margin-top: 2px;
 }
 
 .input-area {
-  width: 20em;
+  width: 70em;
+  border-width: 1px;
+}
+
+.add-button {
+  color: white;
+  background-color: purple;
+  border-color: black;
 }

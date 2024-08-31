@@ -10,7 +10,9 @@ export const InputTodo = ({ todoText, onChange, onClick }: InputTodoType) => {
         value={todoText}
         onChange={onChange}
       />
-      <button onClick={onClick}>追加</button>
+      <button className="add-button" onClick={onClick}>
+        追加
+      </button>
     </div>
   );
 };
