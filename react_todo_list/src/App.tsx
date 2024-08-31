@@ -6,13 +6,14 @@ type Todo = {
   id: number;
   text: string;
   completed: boolean;
+  active: boolean;
 };
 
 function App() {
   const [todoText, setTodoText] = useState<string>("");
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
 
+  const [incompleteTodos, setIncompleteTodos] = useState<string[]>([]);
   const [completeTodos, setCompleteTodos] = useState<string[]>([]);
 
   const onChangeTodoText = (event: ChangeEvent<HTMLInputElement>) =>
@@ -31,6 +32,7 @@ function App() {
         id: todos.length,
         text: todoText,
         completed: false,
+        active: true,
       },
     ];
     setTodos(newTodos);
@@ -45,13 +47,9 @@ function App() {
     setTodos(newTodos);
   };
 
-  // const onClickComplete = (index: number) => {
-  //   const newIncompleteTodos = [...incompleteTodos];
-  //   newIncompleteTodos.splice(index, 1);
-  //   setIncompleteTodos(newIncompleteTodos);
-  //   const newCompletedTodos = [...completeTodos, incompleteTodos[index]];
-  //   setCompleteTodos(newCompletedTodos);
-  // };
+  const onClickEdit = (index: number) => {
+    // console.log(todos[index]);
+  };
 
   // タスクの上限
   const isMaxLimitIncompleteTodos = incompleteTodos.length >= 5;
@@ -101,13 +99,14 @@ function App() {
                     onClick={() => handleCompleted(todo.id)}
                   />
                   <input
+                    disabled={todo.active}
                     type="text"
                     className={`todo-item ${todo.completed ? "completed" : ""}`}
                     value={todo.text}
                     onChange={onChangeText}
                   />
                   <button>保存</button>
-                  <button>編集</button>
+                  <button onClick={() => onClickEdit(index)}>編集</button>
                   <button onClick={() => onClickDelete(index)}>削除</button>
                 </div>
               </li>
