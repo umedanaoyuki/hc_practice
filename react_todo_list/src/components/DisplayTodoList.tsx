@@ -16,7 +16,7 @@ export const DisplayTodoList = ({
   const inputRefObject = useRef<(HTMLInputElement | null)[]>([]);
 
   return (
-    <div>
+    <div className="display-todo-list">
       <ul>
         {todos.map((todo, index) => {
           return (
@@ -37,11 +37,11 @@ export const DisplayTodoList = ({
                   onChange={(e) => onChangeText(e, todo.id)}
                 />
                 {todo.active ? (
-                  <button onClick={() => onClickEdit(index)}>編集</button>
+                  <button className="edit-button" onClick={() => onClickEdit(index)}>編集</button>
                 ) : (
-                  <button onClick={() => onClickSave(index)}>保存</button>
+                  <button className="save-button" onClick={() => onClickSave(index)}>保存</button>
                 )}
-                <button onClick={() => onClickDelete(index)}>削除</button>
+                <button className="delete-button" onClick={() => onClickDelete(index)}>削除</button>
               </div>
             </li>
           );
