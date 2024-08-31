@@ -4,7 +4,6 @@ type InputTodoProps = {
   todoText: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onClick: () => void;
-  disabled?: boolean;
 };
 
 const style = {
@@ -16,23 +15,11 @@ const style = {
   borderRadius: "8px",
 };
 
-export const InputTodo = ({
-  todoText,
-  onChange,
-  onClick,
-  disabled,
-}: InputTodoProps) => {
+export const InputTodo = ({ todoText, onChange, onClick }: InputTodoProps) => {
   return (
     <div style={style}>
-      <input
-        placeholder="TODOを入力"
-        value={todoText}
-        onChange={onChange}
-        disabled={disabled}
-      />
-      <button onClick={onClick} disabled={disabled}>
-        追加
-      </button>
+      <input placeholder="TODOを入力" value={todoText} onChange={onChange} />
+      <button onClick={onClick}>追加</button>
     </div>
   );
 };

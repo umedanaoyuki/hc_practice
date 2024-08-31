@@ -4,15 +4,19 @@ import { InputTodo } from "./components/InputTodo";
 
 type Todo = {
   id: number;
+  // TODOの内容
   text: string;
-  // 完了したかどうか
+  // TODOの完了ステータス
   completed: boolean;
   // 編集モードかどうか
   active: boolean;
 };
 
 function App() {
+  // TODOの入力欄の状態
   const [todoText, setTodoText] = useState<string>("");
+
+  // 全TODOリストの状態
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const inputRefObject = useRef<(HTMLInputElement | null)[]>([]);
@@ -32,6 +36,9 @@ function App() {
     );
   };
 
+  /**
+   * TODOを追加するためのメソッド
+   */
   const onClickAdd = () => {
     // 入力が空の場合 何も動作しない
     if (todoText === "") return;
@@ -51,12 +58,18 @@ function App() {
     console.log(todoText);
   };
 
+  /**
+   * TODOを削除するためのメソッド
+   */
   const onClickDelete = (index: number) => {
     const newTodos = [...todos];
     newTodos.splice(index, 1);
     setTodos(newTodos);
   };
 
+  /**
+   * TODOを編集するためのメソッド
+   */
   const onClickEdit = (id: number) => {
     inputRefObject.current[id]?.focus();
 
@@ -74,9 +87,10 @@ function App() {
     );
   };
 
+  /**
+   * 編集したTODOを保存するためのメソッド
+   */
   const onClickSave = (id: number) => {
-    console.log("保存ボタンの押下");
-
     setTodos(
       todos.map((todo) => {
         if (id === todo.id) {
