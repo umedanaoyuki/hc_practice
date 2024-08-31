@@ -20,8 +20,16 @@ function App() {
   const onChangeTodoText = (event: ChangeEvent<HTMLInputElement>) =>
     setTodoText(event.target.value);
 
-  const onChangeText = (event: ChangeEvent<HTMLInputElement>) => {
-    setTodoText(event.target.value);
+  const onChangeText = (event: ChangeEvent<HTMLInputElement>, id: number) => {
+    // console.log("onChangeText実行中");
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          return { ...todo, text: event.target.value };
+        }
+        return todo;
+      })
+    );
   };
 
   const onClickAdd = () => {
@@ -49,16 +57,13 @@ function App() {
     setTodos(newTodos);
   };
 
-  const onClickEdit = (id: number, value: string) => {
-    // console.log(todos[index]);
-    console.log("編集ボタン押下");
-    console.log(inputRefObject.current);
+  const onClickEdit = (id: number) => {
     inputRefObject.current[id]?.focus();
 
     setTodos(
       todos.map((todo) => {
         if (id === todo.id) {
-          todo.text = value;
+          // todo.text = value;
           return {
             ...todo,
             active: false,
@@ -84,9 +89,6 @@ function App() {
       })
     );
   };
-
-  // タスクの上限
-  // const isMaxLimitIncompleteTodos = incompleteTodos.length >= 5;
 
   /**
    * 取り消し線の追加
@@ -133,7 +135,6 @@ function App() {
         todoText={todoText}
         onChange={onChangeTodoText}
         onClick={onClickAdd}
-        // disabled={isMaxLimitIncompleteTodos}
       />
       <div>
         <ul>
@@ -145,6 +146,7 @@ function App() {
                     type="checkbox"
                     checked={todo.completed}
                     onClick={() => handleCompleted(todo.id)}
+                    onChange={() => {}}
                   />
                   <input
                     ref={(el) => (inputRefObject.current[index] = el)}
@@ -152,12 +154,10 @@ function App() {
                     type="text"
                     className={`todo-item ${todo.completed ? "completed" : ""}`}
                     value={todo.text}
-                    onChange={onChangeText}
+                    onChange={(e) => onChangeText(e, todo.id)}
                   />
                   {todo.active ? (
-                    <button onClick={() => onClickEdit(index, todo.text)}>
-                      編集
-                    </button>
+                    <button onClick={() => onClickEdit(index)}>編集</button>
                   ) : (
                     <button onClick={() => onClickSave(index)}>保存</button>
                   )}

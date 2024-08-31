@@ -22,8 +22,6 @@ export const InputTodo = ({
   onClick,
   disabled,
 }: InputTodoProps) => {
-  console.log("コンポーネントの中");
-
   return (
     <div style={style}>
       <input
