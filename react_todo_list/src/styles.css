@@ -20,11 +20,6 @@ button {
   margin: 0px 8px;
 }
 
-ul {
-  display: flex;
-  justify-content: center;
-}
-
 li {
   list-style: none;
 }
