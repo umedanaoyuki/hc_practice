@@ -129,7 +129,7 @@ function App() {
           完了済のタスク:&nbsp;
           {
             todos.filter((todo) => {
-              return todo.completed == true;
+              return todo.completed;
             }).length
           }
         </p>
