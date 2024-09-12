@@ -24,7 +24,7 @@ export const DisplayTodoList = ({
               <div className="list-row">
                 <input
                   type="checkbox"
-                  checked={todo.completed}
+                  defaultChecked={todo.completed}
                   onClick={() => handleCompleted(todo.id)}
                 />
                 <input
@@ -38,21 +38,21 @@ export const DisplayTodoList = ({
                 {todo.active ? (
                   <button
                     className="edit-button"
-                    onClick={() => onClickEdit(index)}
+                    onClick={() => onClickEdit(todo.id)}
                   >
                     編集
                   </button>
                 ) : (
                   <button
                     className="save-button"
-                    onClick={() => onClickSave(index)}
+                    onClick={() => onClickSave(todo.id)}
                   >
                     保存
                   </button>
                 )}
                 <button
                   className="delete-button"
-                  onClick={() => onClickDelete(index)}
+                  onClick={() => onClickDelete(todo.id)}
                 >
                   削除
                 </button>
