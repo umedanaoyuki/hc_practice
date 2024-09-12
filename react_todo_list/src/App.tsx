@@ -120,6 +120,16 @@ function App() {
     );
   };
 
+  // 完了済タスクの数
+  const completedTasksTotal = todos.filter((todo) => {
+    return todo.completed;
+  }).length;
+
+  // 未完了タスクの数
+  const unCompletedTasksTotal = todos.filter((todo) => {
+    return todo.completed == false;
+  }).length;
+
   return (
     <>
       <h1>TODO リスト</h1>
@@ -127,19 +137,11 @@ function App() {
         <p className="indivisual-task">すべてのタスク:&nbsp;{todos.length}</p>
         <p className="indivisual-task">
           完了済のタスク:&nbsp;
-          {
-            todos.filter((todo) => {
-              return todo.completed;
-            }).length
-          }
+          {completedTasksTotal}
         </p>
         <p className="indivisual-task">
           未完了のタスク:&nbsp;
-          {
-            todos.filter((todo) => {
-              return todo.completed == false;
-            }).length
-          }
+          {unCompletedTasksTotal}
         </p>
       </div>
       <InputTodo
