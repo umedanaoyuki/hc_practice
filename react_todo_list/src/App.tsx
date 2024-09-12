@@ -26,8 +26,6 @@ function App() {
   const onChangeText = (event: ChangeEvent<HTMLInputElement>, id: number) => {
     setTodos(
       todos.map((todo) => {
-        console.log(`todo.idは${todo.id}`);
-
         if (todo.id === id) {
           return { ...todo, text: event.target.value };
         }
@@ -41,7 +39,6 @@ function App() {
    */
   const onClickAdd = () => {
     const uniqueId = uuidv4();
-    console.log(uniqueId);
     // 入力が空の場合 何も動作しない
     if (todoText === "") return;
     const newTodos = [
@@ -75,13 +72,9 @@ function App() {
   const onClickEdit = (id: number) => {
     inputRefObject.current[id]?.focus();
 
-    console.log(`受け取ったidは${id}`);
-
     setTodos(
       todos.map((todo) => {
-        console.log(`todo.idは${todo.id}`);
         if (id === todo.id) {
-          // todo.text = value;
           return {
             ...todo,
             active: false,
