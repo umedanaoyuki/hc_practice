@@ -38,7 +38,7 @@ export const DisplayTodoList = ({
                 {todo.active ? (
                   <button
                     className="edit-button"
-                    onClick={() => onClickEdit(todo.id)}
+                    onClick={() => onClickEdit(todo.id, index)}
                   >
                     編集
                   </button>
@@ -52,7 +52,7 @@ export const DisplayTodoList = ({
                 )}
                 <button
                   className="delete-button"
-                  onClick={() => onClickDelete(todo.id)}
+                  onClick={() => onClickDelete(index)}
                 >
                   削除
                 </button>

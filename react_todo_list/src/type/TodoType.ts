@@ -1,5 +1,5 @@
 export type TodoType = {
-  id: number;
+  id: string;
   // TODOの内容
   text: string;
   // TODOの完了ステータス

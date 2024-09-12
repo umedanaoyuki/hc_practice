@@ -2,10 +2,10 @@ import { ChangeEvent } from "react";
 import { TodoType } from "./TodoType";
 
 export type DisplayTodoListType = {
-  onClickDelete: (index: number) => void;
-  onClickEdit: (index: number) => void;
-  onClickSave: (index: number) => void;
-  handleCompleted: (index: number) => void;
-  onChangeText: (event: ChangeEvent<HTMLInputElement>, id: number) => void;
+  onClickDelete: (id: number) => void;
+  onClickEdit: (id: string, index: number) => void;
+  onClickSave: (id: string) => void;
+  handleCompleted: (id: string) => void;
+  onChangeText: (event: ChangeEvent<HTMLInputElement>, id: string) => void;
   todos: TodoType[];
 };

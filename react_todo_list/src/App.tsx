@@ -23,7 +23,7 @@ function App() {
   /**
    * TODOの内容を書き換えるメソッド
    */
-  const onChangeText = (event: ChangeEvent<HTMLInputElement>, id: number) => {
+  const onChangeText = (event: ChangeEvent<HTMLInputElement>, id: string) => {
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
@@ -57,11 +57,11 @@ function App() {
   /**
    * TODOを削除するためのメソッド
    */
-  const onClickDelete = (index: number) => {
+  const onClickDelete = (id: number) => {
     const result = window.confirm("本当によろしいですか？");
     if (result) {
       const newTodos = [...todos];
-      newTodos.splice(index, 1);
+      newTodos.splice(id, 1);
       setTodos(newTodos);
     }
   };
@@ -69,8 +69,8 @@ function App() {
   /**
    * TODOを編集するためのメソッド
    */
-  const onClickEdit = (id: number) => {
-    inputRefObject.current[id]?.focus();
+  const onClickEdit = (id: string, index: number) => {
+    inputRefObject.current[index]?.focus();
 
     setTodos(
       todos.map((todo) => {
@@ -88,7 +88,7 @@ function App() {
   /**
    * 編集したTODOを保存するためのメソッド
    */
-  const onClickSave = (id: number) => {
+  const onClickSave = (id: string) => {
     setTodos(
       todos.map((todo) => {
         if (id === todo.id) {
@@ -105,7 +105,7 @@ function App() {
   /**
    * 取り消し線の追加
    */
-  const handleCompleted = (id: number) => {
+  const handleCompleted = (id: string) => {
     setTodos(
       todos.map((todo) => {
         if (id === todo.id) {
