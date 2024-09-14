@@ -57,11 +57,11 @@ function App() {
   /**
    * TODOを削除するためのメソッド
    */
-  const onClickDelete = (id: number) => {
+  const onClickDelete = (index: number) => {
     const result = window.confirm("本当によろしいですか？");
     if (result) {
       const newTodos = [...todos];
-      newTodos.splice(id, 1);
+      newTodos.splice(index, 1);
       setTodos(newTodos);
     }
   };
