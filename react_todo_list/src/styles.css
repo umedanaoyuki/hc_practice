@@ -1,0 +1,34 @@
+body {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  text-align: center;
+  color: darkcyan;
+}
+input {
+  border-radius: 8px;
+  padding: 6px 16px;
+}
+
+button {
+  border-radius: 8px;
+  border: none;
+  padding: 4px 16px;
+  margin: 0px 8px;
+}
+
+li {
+  list-style: none;
+}
+
+.task-info {
+  text-align: center;
+}
+
+.indivisual-task {
+  margin-top: 0;
+  margin-bottom: 0;
+}

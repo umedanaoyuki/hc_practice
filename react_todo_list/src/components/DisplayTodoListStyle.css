@@ -1,0 +1,29 @@
+.todo-item {
+  margin: 6px;
+  width: 50em;
+}
+
+/* 取り消し線 */
+.completed {
+  text-decoration: line-through;
+}
+
+.edit-button {
+  border: 1px solid lightgray;
+  background-color: orange;
+}
+
+.save-button {
+  border: 1px solid lightgray;
+  background-color: greenyellow;
+}
+
+.delete-button {
+  border: 1px solid lightgray;
+  background-color: lightblue;
+}
+
+.display-todo-list {
+  display: flex;
+  justify-content: center;
+}
