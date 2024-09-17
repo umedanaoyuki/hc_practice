@@ -51,20 +51,29 @@ function App() {
   /**
    * 対応可能な生徒
    */
-  const hanleAvailableStudent = (data: MentorDataType) => {};
+  const handleAvailableStudent = (data: MentorDataType) => {
+    const studentArray: string[] = [];
 
-  // console.log(studentsData);
+    studentsData.forEach((studentData) => {
+      if (
+        studentData.taskCode <= data.availableEndCode &&
+        studentData.taskCode >= data.availableStartCode
+      ) {
+        studentArray.push(studentData.name);
+      }
+    });
 
-  // console.log(mentorsData);
+    // 重複した要素の削除
+    const uniqueStudentsArray = studentArray.filter((elm, index) => {
+      return studentArray.indexOf(elm) === index;
+    });
+    return uniqueStudentsArray.join("/");
+  };
 
   /**
    * APIレスポンスの表示
    */
   const handleDisplayData = userListData.map((data) => {
-    if (data.role === "student") {
-      handleAvailableMentor(data);
-    }
-
     return (
       <tr key={data.id}>
         <th scope="row">{data.name}</th>
@@ -87,22 +96,29 @@ function App() {
           </>
         ) : (
           <>
-            <td>{}</td>
-            <td>{}</td>
-            <td>{}</td>
-            <td>{}</td>
-            {/* 対応可能なメンター */}
-            <td>{}</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
           </>
         )}
-        {data.role === "mentor" && (
+        {data.role === "mentor" ? (
           <>
             <td>{data.experienceDays}</td>
             <td>{data.useLangs.join("/")}</td>
             <td>{data.availableStartCode}</td>
             <td>{data.availableEndCode}</td>
             {/* 対応可能な生徒 */}
-            {/* <td>{data.score}</td> */}
+            <td>{handleAvailableStudent(data)}</td>
+          </>
+        ) : (
+          <>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
           </>
         )}
       </tr>
