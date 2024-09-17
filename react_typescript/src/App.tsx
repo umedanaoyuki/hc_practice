@@ -23,7 +23,7 @@ function App() {
           <>
             <td>{data.studyMinutes}</td>
             <td>{data.taskCode}</td>
-            <td>{data.studyLangs}</td>
+            <td>{data.studyLangs.join("/")}</td>
             <td>{data.score}</td>
             {/* 対応可能なメンター */}
             {/* <td>{data.score}</td> */}
@@ -41,7 +41,7 @@ function App() {
         {data.role === "mentor" && (
           <>
             <td>{data.experienceDays}</td>
-            <td>{data.useLangs}</td>
+            <td>{data.useLangs.join("/")}</td>
             <td>{data.availableStartCode}</td>
             <td>{data.availableEndCode}</td>
             {/* 対応可能な生徒 */}
