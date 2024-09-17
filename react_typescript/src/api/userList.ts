@@ -1,4 +1,7 @@
-export const USER_LIST = [
+import { MentorDataType } from "../type/MentorDataType";
+import { StudentDataType } from "../type/StudentDataType";
+
+export const USER_LIST: (MentorDataType | StudentDataType)[] = [
   {
     id: 1,
     name: "鈴木太郎",
