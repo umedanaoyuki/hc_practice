@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { StudentDataType } from "./type/StudentDataType";
 import { USER_LIST } from "./api/userList";
 import { MentorDataType } from "./type/MentorDataType";
+import Tabs from "./components/Tabs";
 
 function App() {
   const [userListData, setUserListData] =
@@ -127,6 +128,7 @@ function App() {
 
   return (
     <>
+      <Tabs />
       <table className="table">
         <thead>
           <tr>
