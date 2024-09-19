@@ -73,7 +73,7 @@ export const ForMentorsTable = () => {
   /**
    * APIレスポンスの表示
    */
-  const handleDisplayData = userListData.map((data) => {
+  const handleDisplayData = mentorsData.map((data) => {
     return (
       <tr key={data.id}>
         <th scope="row">{data.name}</th>
@@ -84,25 +84,6 @@ export const ForMentorsTable = () => {
         <td>{data.phone}</td>
         <td>{data.hobbies.join("/")}</td>
         <td>{data.url}</td>
-        {/* studyMinutes と taskCode が存在する場合のみ表示 */}
-        {data.role === "student" ? (
-          <>
-            <td>{data.studyMinutes}</td>
-            <td>{data.taskCode}</td>
-            <td>{data.studyLangs.join("/")}</td>
-            <td>{data.score}</td>
-            {/* 対応可能なメンター */}
-            <td>{handleAvailableMentor(data)}</td>
-          </>
-        ) : (
-          <>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-          </>
-        )}
         {data.role === "mentor" ? (
           <>
             <td>{data.experienceDays}</td>
@@ -125,6 +106,8 @@ export const ForMentorsTable = () => {
     );
   });
 
+  console.log(mentorsData);
+
   return (
     <>
       <table className="table">
@@ -138,12 +121,6 @@ export const ForMentorsTable = () => {
             <th scope="col">電話番号</th>
             <th scope="col">趣味（リスト）</th>
             <th scope="col">URL</th>
-            {/* 生徒のみ */}
-            <th scope="col">勉強時間</th>
-            <th scope="col">課題番号</th>
-            <th scope="col">勉強中の言語</th>
-            <th scope="col">ハピネススコア</th>
-            <th scope="col">対応可能なメンター</th>
             {/* メンターのみ */}
             <th scope="col">実務経験月数</th>
             <th scope="col">現場で使っている言語</th>

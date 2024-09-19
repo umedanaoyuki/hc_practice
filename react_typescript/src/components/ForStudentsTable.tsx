@@ -73,7 +73,7 @@ export const ForStudentsTable = () => {
   /**
    * APIレスポンスの表示
    */
-  const handleDisplayData = userListData.map((data) => {
+  const handleDisplayData = studentsData.map((data) => {
     return (
       <tr key={data.id}>
         <th scope="row">{data.name}</th>
@@ -93,24 +93,6 @@ export const ForStudentsTable = () => {
             <td>{data.score}</td>
             {/* 対応可能なメンター */}
             <td>{handleAvailableMentor(data)}</td>
-          </>
-        ) : (
-          <>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-          </>
-        )}
-        {data.role === "mentor" ? (
-          <>
-            <td>{data.experienceDays}</td>
-            <td>{data.useLangs.join("/")}</td>
-            <td>{data.availableStartCode}</td>
-            <td>{data.availableEndCode}</td>
-            {/* 対応可能な生徒 */}
-            <td>{handleAvailableStudent(data)}</td>
           </>
         ) : (
           <>
@@ -144,12 +126,6 @@ export const ForStudentsTable = () => {
             <th scope="col">勉強中の言語</th>
             <th scope="col">ハピネススコア</th>
             <th scope="col">対応可能なメンター</th>
-            {/* メンターのみ */}
-            <th scope="col">実務経験月数</th>
-            <th scope="col">現場で使っている言語</th>
-            <th scope="col">担当できる課題番号初め</th>
-            <th scope="col">担当できる課題番号終わり</th>
-            <th scope="col">対応可能生徒</th>
           </tr>
         </thead>
         <tbody>{handleDisplayData}</tbody>
