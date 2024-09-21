@@ -1,12 +1,15 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
-import Tabs from "./components/Tabs";
+import Top from "./components/Top";
 
 function App() {
   return (
-    <>
-      <Login />
-      {/* <Tabs /> */}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path={"/"} element={<Login />} />
+        <Route path={"/top"} element={<Top />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

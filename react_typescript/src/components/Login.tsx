@@ -1,12 +1,14 @@
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { LoginInputType } from "../type/LoginInputType";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<LoginInputType>({
     defaultValues: {
@@ -15,16 +17,28 @@ const Login = () => {
     },
   });
 
+  const navigate = useNavigate();
+
+  const onSubmit: SubmitHandler<LoginInputType> = (data) => {
+    console.log(data);
+    if (data.accountId === "testUser" && data.password === "testpassword") {
+      loginSuccess();
+    } else {
+      alert("アカウントID or パスワードが間違っております");
+    }
+    reset();
+  };
+
+  const loginSuccess = () => {
+    navigate("/Top");
+  };
+
   return (
     <>
       <div className="login-title-container">
         <h1>ログイン画面</h1>
       </div>
-      <form
-        onSubmit={handleSubmit((data) => {
-          alert(JSON.stringify(data));
-        })}
-      >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label>アカウントID</label>
         <input {...register("accountId", { required: true })} />
         {errors.password && <p>アカウントIDを入力してください</p>}

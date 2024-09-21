@@ -5,7 +5,7 @@ import { ForStudentsTable } from "./ForStudentsTable";
 
 type TabTypes = "all" | "onlyStudents" | "onlyMentors";
 
-const Tabs = () => {
+const Top = () => {
   const [activeTab, setActiveTab] = useState<TabTypes>("all");
 
   console.log(activeTab);
@@ -26,4 +26,4 @@ const Tabs = () => {
   );
 };
 
-export default Tabs;
+export default Top;
