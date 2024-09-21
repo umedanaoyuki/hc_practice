@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { LoginInputType } from "../type/LoginInputType";
 import "./Login.css";
 
 const Login = () => {
@@ -7,7 +8,7 @@ const Login = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm({
+  } = useForm<LoginInputType>({
     defaultValues: {
       accountId: "",
       password: "",
@@ -25,10 +26,11 @@ const Login = () => {
         })}
       >
         <label>アカウントID</label>
-        <input {...register("accountId")} />
+        <input {...register("accountId", { required: true })} />
+        {errors.password && <p>アカウントIDを入力してください</p>}
         <label>パスワード</label>
-        <input {...register("password", { required: true, maxLength: 10 })} />
-        {errors.password && <p>This field is required</p>}
+        <input type="password" {...register("password", { required: true })} />
+        {errors.password && <p>パスワードを入力してください</p>}
         <input type="submit" value={"ログイン"} />
       </form>
     </>
