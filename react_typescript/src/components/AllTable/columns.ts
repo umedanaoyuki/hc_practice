@@ -59,11 +59,31 @@ export const createColumns = (
       const data = row.original;
 
       // カスタム関数のロジック
+      // if (data.role === "student") {
+      //   const availableMentors = mentorsData
+      //     .map((mentor) => mentor.name)
+      //     .join(", ");
+      //   return availableMentors || "なし";
+      // } else {
+      //   return "-";
+      // }
+      const mentorsArray: string[] = [];
+
       if (data.role === "student") {
-        const availableMentors = mentorsData
-          .map((mentor) => mentor.name)
-          .join(", ");
-        return availableMentors || "なし";
+        mentorsData.forEach((mentorData) => {
+          if (
+            mentorData.availableStartCode <= data.taskCode &&
+            mentorData.availableEndCode >= data.taskCode
+          ) {
+            mentorsArray.push(mentorData.name);
+          }
+        });
+        // 重複した要素の削除
+        const uniqueMentorsArray = mentorsArray.filter((elm, index) => {
+          return mentorsArray.indexOf(elm) === index;
+        });
+
+        return uniqueMentorsArray.join("/");
       } else {
         return "-";
       }
@@ -89,13 +109,24 @@ export const createColumns = (
     accessorKey: "availableStudents",
     header: "対応可能生徒",
     cell: ({ row }) => {
+      const studentArray: string[] = [];
       const data = row.original;
       // studentsDataを使ったカスタムロジック
       if (data.role === "mentor") {
-        const availableStudents = studentsData
-          .map((student) => student.name)
-          .join(", ");
-        return availableStudents || "なし";
+        studentsData.forEach((studentData) => {
+          if (
+            studentData.taskCode <= data.availableEndCode &&
+            studentData.taskCode >= data.availableStartCode
+          ) {
+            studentArray.push(studentData.name);
+          }
+        });
+
+        // 重複した要素の削除
+        const uniqueStudentsArray = studentArray.filter((elm, index) => {
+          return studentArray.indexOf(elm) === index;
+        });
+        return uniqueStudentsArray.join("/");
       } else {
         return "-";
       }
