@@ -3,6 +3,7 @@ import { MentorDataType } from "../../type/MentorDataType";
 import {
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -58,11 +59,23 @@ export const ForMentorsTable = () => {
     },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
   });
 
   return (
     <div>
       <main>
+        <div>
+          <input
+            placeholder="趣味でフィルター"
+            value={
+              (table.getColumn("hobbies")?.getFilterValue() as string) ?? ""
+            }
+            onChange={(e) => {
+              table.getColumn("hobbies")?.setFilterValue(e.target.value);
+            }}
+          ></input>
+        </div>
         <table>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (

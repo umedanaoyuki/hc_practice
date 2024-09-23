@@ -3,7 +3,7 @@ import {
   TiArrowSortedDown,
   TiArrowUnsorted,
 } from "react-icons/ti";
-import { ColumnDef, SortDirection } from "@tanstack/react-table";
+import { ColumnDef, Row, SortDirection } from "@tanstack/react-table";
 import { MentorDataType } from "../../type/MentorDataType";
 import { StudentDataType } from "../../type/StudentDataType";
 
@@ -16,6 +16,22 @@ const getSortIcon = (sortDirection: false | SortDirection) => {
     default:
       return <TiArrowUnsorted />;
   }
+};
+
+// カスタムフィルター関数
+const searchHobby = (
+  row: Row<MentorDataType | StudentDataType>,
+  columnId: string,
+  filterValue: string
+) => {
+  const hobbiesArray = row.getValue<string[]>(columnId);
+  if (Array.isArray(hobbiesArray)) {
+    // hobbies 配列内にフィルター値が含まれるかを確認
+    return hobbiesArray.some((hobby) =>
+      hobby.toLowerCase().includes(filterValue.toLowerCase())
+    );
+  }
+  return false;
 };
 
 // columnsの設定を関数に変更し、引数でstudentsDataとmentorsDataを受け取る
@@ -63,6 +79,10 @@ export const createColumns = (
   {
     accessorKey: "hobbies",
     header: "趣味（リスト）",
+    // filterFnを指定
+    filterFn: searchHobby,
+    // cellの表示方法（配列を文字列として表示）
+    cell: ({ getValue }) => getValue<string[]>().join(", "),
   },
   {
     accessorKey: "url",
@@ -97,7 +117,7 @@ export const createColumns = (
     accessorKey: "availableStudents",
     header: "対応可能生徒",
     cell: ({ row }) => {
-      console.log(studentsData);
+      // console.log(studentsData);
       const studentArray: string[] = [];
       const data = row.original;
       // studentsDataを使ったカスタムロジック
