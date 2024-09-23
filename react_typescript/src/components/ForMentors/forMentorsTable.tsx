@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { MentorDataType } from "../../type/MentorDataType";
-import { StudentDataType } from "../../type/StudentDataType";
 import {
   flexRender,
   getCoreRowModel,
@@ -9,9 +8,10 @@ import {
 } from "@tanstack/react-table";
 import { data } from "../../api/data";
 import { createColumns } from "./columns";
+import { StudentDataType } from "../../type/StudentDataType";
 
-const getData: () => Promise<(MentorDataType | StudentDataType)[]> = async () =>
-  data;
+const getData: () => Promise<MentorDataType[]> = async () =>
+  data.filter((item): item is MentorDataType => item.role === "mentor");
 
 export const ForMentorsTable = () => {
   // 全データ
@@ -20,7 +20,6 @@ export const ForMentorsTable = () => {
   >([]);
 
   const [mentorsData, setMentorsData] = useState<MentorDataType[]>([]);
-  const [studentsData, setStudentsData] = useState<StudentDataType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,11 +42,11 @@ export const ForMentorsTable = () => {
   }, [userListData]);
 
   // studentsDataとmentorsDataを使ってカラムを生成
-  const columns = createColumns(mentorsData, studentsData);
+  const columns = createColumns(mentorsData);
 
-  const table = useReactTable<MentorDataType | StudentDataType>({
+  const table = useReactTable<MentorDataType>({
     columns,
-    data,
+    data: mentorsData,
     initialState: {
       // メールアドレスでソート
       sorting: [{ id: "mail", desc: true }],

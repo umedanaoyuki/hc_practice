@@ -5,7 +5,6 @@ import {
 } from "react-icons/ti";
 import { ColumnDef, SortDirection } from "@tanstack/react-table";
 import { MentorDataType } from "../../type/MentorDataType";
-import { StudentDataType } from "../../type/StudentDataType";
 
 const getSortIcon = (sortDirection: false | SortDirection) => {
   switch (sortDirection) {
@@ -20,9 +19,8 @@ const getSortIcon = (sortDirection: false | SortDirection) => {
 
 // columnsの設定を関数に変更し、引数でstudentsDataとmentorsDataを受け取る
 export const createColumns = (
-  mentorsData: MentorDataType[],
-  studentsData: StudentDataType[]
-): ColumnDef<MentorDataType | StudentDataType>[] => [
+  mentorsData: MentorDataType[]
+): ColumnDef<MentorDataType>[] => [
   {
     accessorKey: "id",
     header: ({ column }) => {
