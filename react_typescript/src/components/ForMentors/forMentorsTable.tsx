@@ -10,8 +10,8 @@ import { data } from "../../api/data";
 import { createColumns } from "./columns";
 import { StudentDataType } from "../../type/StudentDataType";
 
-const getData: () => Promise<MentorDataType[]> = async () =>
-  data.filter((item): item is MentorDataType => item.role === "mentor");
+const getData: () => Promise<(MentorDataType | StudentDataType)[]> = async () =>
+  data;
 
 export const ForMentorsTable = () => {
   // 全データ
@@ -20,6 +20,7 @@ export const ForMentorsTable = () => {
   >([]);
 
   const [mentorsData, setMentorsData] = useState<MentorDataType[]>([]);
+  const [studentsData, setStudentsData] = useState<StudentDataType[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,27 +30,31 @@ export const ForMentorsTable = () => {
   }, []);
 
   useEffect(() => {
-    // const students: StudentDataType[] = [];
+    const students: StudentDataType[] = [];
     const mentors: MentorDataType[] = [];
 
     userListData.forEach((data) => {
       if (data.role === "mentor") {
         mentors.push(data as MentorDataType);
+      } else {
+        students.push(data as StudentDataType);
       }
+      setStudentsData(students);
+      setMentorsData(mentors);
     });
-
-    setMentorsData(mentors);
   }, [userListData]);
 
-  // studentsDataとmentorsDataを使ってカラムを生成
-  const columns = createColumns(mentorsData);
+  // console.log(mentorsData);
 
-  const table = useReactTable<MentorDataType>({
+  // studentsDataとmentorsDataを使ってカラムを生成
+  const columns = createColumns(mentorsData, studentsData);
+
+  const table = useReactTable<MentorDataType | StudentDataType>({
     columns,
     data: mentorsData,
     initialState: {
       // メールアドレスでソート
-      sorting: [{ id: "mail", desc: true }],
+      sorting: [{ id: "id", desc: false }],
     },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),

@@ -52,14 +52,13 @@ export const ForAllTable = () => {
     columns,
     data,
     initialState: {
-      // メールアドレスでソート
-      sorting: [{ id: "mail", desc: true }],
+      sorting: [{ id: "id", desc: false }],
     },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   });
 
-  console.log(studentsData);
+  // console.log(studentsData);
 
   return (
     <div>

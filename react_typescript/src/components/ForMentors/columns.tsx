@@ -5,6 +5,7 @@ import {
 } from "react-icons/ti";
 import { ColumnDef, SortDirection } from "@tanstack/react-table";
 import { MentorDataType } from "../../type/MentorDataType";
+import { StudentDataType } from "../../type/StudentDataType";
 
 const getSortIcon = (sortDirection: false | SortDirection) => {
   switch (sortDirection) {
@@ -19,8 +20,9 @@ const getSortIcon = (sortDirection: false | SortDirection) => {
 
 // columnsの設定を関数に変更し、引数でstudentsDataとmentorsDataを受け取る
 export const createColumns = (
-  mentorsData: MentorDataType[]
-): ColumnDef<MentorDataType>[] => [
+  mentorsData: MentorDataType[],
+  studentsData: StudentDataType[]
+): ColumnDef<MentorDataType | StudentDataType>[] => [
   {
     accessorKey: "id",
     header: ({ column }) => {
@@ -85,5 +87,31 @@ export const createColumns = (
   {
     accessorKey: "availableStudents",
     header: "対応可能生徒",
+    cell: ({ row }) => {
+      console.log(studentsData);
+      const studentArray: string[] = [];
+      const data = row.original;
+      // studentsDataを使ったカスタムロジック
+      if (data.role === "mentor") {
+        studentsData.forEach((studentData) => {
+          if (
+            studentData.taskCode <= data.availableEndCode &&
+            studentData.taskCode >= data.availableStartCode
+          ) {
+            studentArray.push(studentData.name);
+          }
+        });
+      }
+
+      return studentArray.join(",");
+      // 重複した要素の削除
+      //   const uniqueStudentsArray = studentArray.filter((elm, index) => {
+      //     return studentArray.indexOf(elm) === index;
+      //   });
+      //   return uniqueStudentsArray.join("/");
+      // } else {
+      //   return "-";
+      // }
+    },
   },
 ];

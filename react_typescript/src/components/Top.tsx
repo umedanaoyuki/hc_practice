@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ForAllTable } from "./ForAll/forAllTable";
 import { ForMentorsTable } from "./ForMentors/forMentorsTable";
+import { ForStudentsTable } from "./ForStudents/forStudentsTable";
 
 type TabTypes = "all" | "onlyStudents" | "onlyMentors";
 
@@ -19,7 +20,7 @@ const Top = () => {
         </button>
       </div>
       {activeTab === "all" && <ForAllTable />}
-      {/* {activeTab === "onlyStudents" && <ForStudentsTable />} */}
+      {activeTab === "onlyStudents" && <ForStudentsTable />}
       {activeTab === "onlyMentors" && <ForMentorsTable />}
     </>
   );
