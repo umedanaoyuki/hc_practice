@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ForAllTable } from "./ForAllTable";
+import { ForAllTable } from "./ForAll/forAllTable";
 import { ForMentorsTable } from "./ForMentorsTable";
 import { ForStudentsTable } from "./ForStudentsTable";
 

@@ -1,6 +1,9 @@
-import { MentorDataType } from "../../type/MentorDataType";
-import { StudentDataType } from "../../type/StudentDataType";
+import { MentorDataType } from "../type/MentorDataType";
+import { StudentDataType } from "../type/StudentDataType";
 
+/**
+ * USER_LIST
+ */
 export const data: (MentorDataType | StudentDataType)[] = [
   {
     id: 1,

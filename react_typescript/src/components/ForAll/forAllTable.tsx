@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { MentorDataType } from "../type/MentorDataType";
-import { StudentDataType } from "../type/StudentDataType";
+import { MentorDataType } from "../../type/MentorDataType";
+import { StudentDataType } from "../../type/StudentDataType";
 import {
   flexRender,
   getCoreRowModel,
+  getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { data } from "./AllTable/data";
-import { createColumns } from "./AllTable/columns";
+import { data } from "../../api/data";
+import { createColumns } from "./columns";
 
 const getData: () => Promise<(MentorDataType | StudentDataType)[]> = async () =>
   data;
@@ -50,7 +51,12 @@ export const ForAllTable = () => {
   const table = useReactTable<MentorDataType | StudentDataType>({
     columns,
     data,
+    initialState: {
+      // メールアドレスでソート
+      sorting: [{ id: "mail", desc: true }],
+    },
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   console.log(studentsData);
