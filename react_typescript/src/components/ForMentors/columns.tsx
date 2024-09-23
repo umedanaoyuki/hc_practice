@@ -70,7 +70,16 @@ export const createColumns = (
   },
   {
     accessorKey: "experienceDays",
-    header: "実務経験月数",
+    header: ({ column }) => {
+      return (
+        <div
+          style={{ flex: "auto", alignItems: "center", cursor: "pointer" }}
+          onClick={column.getToggleSortingHandler()}
+        >
+          実務経験月数{getSortIcon(column.getIsSorted())}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "useLangs",

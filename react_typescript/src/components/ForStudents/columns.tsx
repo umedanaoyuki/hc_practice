@@ -70,7 +70,16 @@ export const createColumns = (
   },
   {
     accessorKey: "studyMinutes",
-    header: "勉強時間",
+    header: ({ column }) => {
+      return (
+        <div
+          style={{ flex: "auto", alignItems: "center", cursor: "pointer" }}
+          onClick={column.getToggleSortingHandler()}
+        >
+          勉強時間{getSortIcon(column.getIsSorted())}
+        </div>
+      );
+    },
     cell: ({ row }) => {
       const data = row.original;
 
@@ -96,7 +105,16 @@ export const createColumns = (
   },
   {
     accessorKey: "score",
-    header: "ハピネススコア",
+    header: ({ column }) => {
+      return (
+        <div
+          style={{ flex: "auto", alignItems: "center", cursor: "pointer" }}
+          onClick={column.getToggleSortingHandler()}
+        >
+          ハピネススコア{getSortIcon(column.getIsSorted())}
+        </div>
+      );
+    },
     cell: ({ row }) => {
       const data = row.original;
 
