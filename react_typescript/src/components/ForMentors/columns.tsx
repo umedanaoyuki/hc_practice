@@ -34,6 +34,20 @@ const searchHobby = (
   return false;
 };
 
+const searchUseLangs = (
+  row: Row<MentorDataType | StudentDataType>,
+  columnId: string,
+  filterValue: string
+) => {
+  const langsArray = row.getValue<string[]>(columnId);
+  if (Array.isArray(langsArray)) {
+    return langsArray.some((lang) =>
+      lang.toLowerCase().includes(filterValue.toLowerCase())
+    );
+  }
+  return false;
+};
+
 // columnsの設定を関数に変更し、引数でstudentsDataとmentorsDataを受け取る
 export const createColumns = (
   mentorsData: MentorDataType[],
@@ -103,6 +117,7 @@ export const createColumns = (
   },
   {
     accessorKey: "useLangs",
+    filterFn: searchUseLangs,
     header: "現場で使っている言語",
   },
   {

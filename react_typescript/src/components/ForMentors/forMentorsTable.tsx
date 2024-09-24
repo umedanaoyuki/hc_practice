@@ -76,6 +76,17 @@ export const ForMentorsTable = () => {
             }}
           ></input>
         </div>
+        <div>
+          <input
+            placeholder="言語でフィルター"
+            value={
+              (table.getColumn("useLangs")?.getFilterValue() as string) ?? ""
+            }
+            onChange={(e) => {
+              table.getColumn("useLangs")?.setFilterValue(e.target.value);
+            }}
+          ></input>
+        </div>
         <table>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
