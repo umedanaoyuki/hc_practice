@@ -4,6 +4,7 @@ import { StudentDataType } from "../../type/StudentDataType";
 import {
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -56,13 +57,39 @@ export const ForStudentsTable = () => {
     },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
   });
 
-  // console.log(studentsData);
+  // console.log("getColumns");
+  // console.log(table.getColumn("hobbies")?.getFilterValue());
 
   return (
     <div>
       <main>
+        <div>
+          <input
+            placeholder="趣味でフィルター"
+            value={
+              (table.getColumn("hobbies")?.getFilterValue() as string) ?? ""
+            }
+            onChange={(e) => {
+              table.getColumn("hobbies")?.setFilterValue(e.target.value);
+              // console.log(e.target.value);
+            }}
+          ></input>
+        </div>
+        <div>
+          <input
+            placeholder="言語でフィルター"
+            value={
+              (table.getColumn("studyLangs")?.getFilterValue() as string) ?? ""
+            }
+            onChange={(e) => {
+              table.getColumn("studyLangs")?.setFilterValue(e.target.value);
+              // console.log(e.target.value);
+            }}
+          ></input>
+        </div>
         <table>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (

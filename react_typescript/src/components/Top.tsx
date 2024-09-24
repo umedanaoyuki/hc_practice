@@ -8,7 +8,7 @@ type TabTypes = "all" | "onlyStudents" | "onlyMentors";
 const Top = () => {
   const [activeTab, setActiveTab] = useState<TabTypes>("all");
 
-  console.log(activeTab);
+  // console.log(activeTab);
 
   return (
     <>

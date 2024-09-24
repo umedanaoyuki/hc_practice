@@ -3,7 +3,7 @@ import {
   TiArrowSortedDown,
   TiArrowUnsorted,
 } from "react-icons/ti";
-import { ColumnDef, SortDirection } from "@tanstack/react-table";
+import { ColumnDef, Row, SortDirection } from "@tanstack/react-table";
 import { MentorDataType } from "../../type/MentorDataType";
 import { StudentDataType } from "../../type/StudentDataType";
 
@@ -16,6 +16,39 @@ const getSortIcon = (sortDirection: false | SortDirection) => {
     default:
       return <TiArrowUnsorted />;
   }
+};
+
+// カスタムフィルター関数
+const searchHobby = (
+  row: Row<MentorDataType | StudentDataType>,
+  columnId: string,
+  filterValue: string
+) => {
+  console.log("カスタムフィルター作動");
+  const hobbiesArray = row.getValue<string[]>(columnId);
+  if (Array.isArray(hobbiesArray)) {
+    // hobbies 配列内にフィルター値が含まれるかを確認
+    return hobbiesArray.some((hobby) =>
+      hobby.toLowerCase().includes(filterValue.toLowerCase())
+    );
+  }
+  return false;
+};
+
+const searchStudyLangs = (
+  row: Row<MentorDataType | StudentDataType>,
+  columnId: string,
+  filterValue: string
+) => {
+  console.log("カスタムフィルター作動");
+  const studyLangsArray = row.getValue<string[]>(columnId);
+  if (Array.isArray(studyLangsArray)) {
+    // hobbies 配列内にフィルター値が含まれるかを確認
+    return studyLangsArray.some((lang) =>
+      lang.toLowerCase().includes(filterValue.toLowerCase())
+    );
+  }
+  return false;
 };
 
 // columnsの設定を関数に変更し、引数でstudentsDataとmentorsDataを受け取る
@@ -63,6 +96,8 @@ export const createColumns = (
   {
     accessorKey: "hobbies",
     header: "趣味（リスト）",
+    filterFn: searchHobby,
+    cell: ({ getValue }) => getValue<string[]>().join(","),
   },
   {
     accessorKey: "url",
@@ -93,6 +128,7 @@ export const createColumns = (
   {
     accessorKey: "studyLangs",
     header: "勉強中の言語",
+    filterFn: searchStudyLangs,
     cell: ({ row }) => {
       const data = row.original;
 

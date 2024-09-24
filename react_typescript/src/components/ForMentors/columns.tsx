@@ -24,6 +24,7 @@ const searchHobby = (
   columnId: string,
   filterValue: string
 ) => {
+  // console.log("カスタムフィルター作動");
   const hobbiesArray = row.getValue<string[]>(columnId);
   if (Array.isArray(hobbiesArray)) {
     // hobbies 配列内にフィルター値が含まれるかを確認
@@ -96,7 +97,7 @@ export const createColumns = (
     // filterFnを指定
     filterFn: searchHobby,
     // cellの表示方法（配列を文字列として表示）
-    cell: ({ getValue }) => getValue<string[]>().join(", "),
+    cell: ({ getValue }) => getValue<string[]>().join(","),
   },
   {
     accessorKey: "url",
