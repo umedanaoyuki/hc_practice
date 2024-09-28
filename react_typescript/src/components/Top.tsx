@@ -5,6 +5,7 @@ import { MentorDataType } from "../type/MentorDataType";
 import { StudentDataType } from "../type/StudentDataType";
 import { ForAllTable } from "./ForAll/forAllTable";
 import { ForStudentsTable } from "./ForStudents/forStudentsTable";
+import { ForMentorsTable } from "./ForMentors/forMentorsTable";
 
 type TabTypes = "all" | "onlyStudents" | "onlyMentors";
 
@@ -66,7 +67,12 @@ const Top = () => {
           mentorsData={mentorsData}
         />
       )}
-      {/* {activeTab === "onlyMentors" && <ForMentorsTable />} */}
+      {activeTab === "onlyMentors" && (
+        <ForMentorsTable
+          studentsData={studentsData}
+          mentorsData={mentorsData}
+        />
+      )}
       <div>
         <NewRegisterForm />
       </div>

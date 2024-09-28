@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { MentorDataType } from "../../type/MentorDataType";
 import {
   flexRender,
@@ -7,46 +6,15 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { data } from "../../api/data";
 import { createColumns } from "./columns";
 import { StudentDataType } from "../../type/StudentDataType";
 
-const getData: () => Promise<(MentorDataType | StudentDataType)[]> = async () =>
-  data;
+type Data = {
+  studentsData: StudentDataType[];
+  mentorsData: MentorDataType[];
+};
 
-export const ForMentorsTable = () => {
-  // 全データ
-  const [userListData, setUserListData] = useState<
-    (MentorDataType | StudentDataType)[]
-  >([]);
-
-  const [mentorsData, setMentorsData] = useState<MentorDataType[]>([]);
-  const [studentsData, setStudentsData] = useState<StudentDataType[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setUserListData(await getData());
-    };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const students: StudentDataType[] = [];
-    const mentors: MentorDataType[] = [];
-
-    userListData.forEach((data) => {
-      if (data.role === "mentor") {
-        mentors.push(data as MentorDataType);
-      } else {
-        students.push(data as StudentDataType);
-      }
-      setStudentsData(students);
-      setMentorsData(mentors);
-    });
-  }, [userListData]);
-
-  // console.log(mentorsData);
-
+export const ForMentorsTable = ({ studentsData, mentorsData }: Data) => {
   // studentsDataとmentorsDataを使ってカラムを生成
   const columns = createColumns(mentorsData, studentsData);
 
