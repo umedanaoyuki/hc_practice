@@ -108,6 +108,7 @@ Modal.setAppElement("#root");
 
 export const NewRegisterForm = () => {
   let subtitle;
+  // モーダルオープン・クローズの状態管理
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -223,6 +224,7 @@ export const NewRegisterForm = () => {
               <input type="submit" value="登録" />
             </form>
           </div>
+          <button onClick={closeModal}>閉じる</button>
         </div>
       </Modal>
     </div>
