@@ -113,7 +113,9 @@ type UserListData = {
 };
 
 export const NewRegisterForm = ({ userListData }: UserListData) => {
+  
   let subtitle: { style: { color: string } };
+
   // モーダルオープン・クローズの状態管理
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -144,7 +146,7 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
   });
 
   const onSubmit: SubmitHandler<LoginInputType> = (data) => {
-    console.log(data);
+    console.log({ ...userListData, data });
     return null;
   };
 

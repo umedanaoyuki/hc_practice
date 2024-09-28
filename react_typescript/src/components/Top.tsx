@@ -6,6 +6,8 @@ import { StudentDataType } from "../type/StudentDataType";
 import { ForAllTable } from "./ForAll/forAllTable";
 import { ForStudentsTable } from "./ForStudents/forStudentsTable";
 import { ForMentorsTable } from "./ForMentors/forMentorsTable";
+import { useRecoilState } from "recoil";
+import { userListDataAtom } from "../Atoms/UserListData";
 
 type TabTypes = "all" | "onlyStudents" | "onlyMentors";
 
@@ -16,9 +18,8 @@ const Top = () => {
   const [activeTab, setActiveTab] = useState<TabTypes>("all");
 
   // 全データ
-  const [userListData, setUserListData] = useState<
-    (MentorDataType | StudentDataType)[]
-  >([]);
+  const [userListData, setUserListData] =
+    useRecoilState<(MentorDataType | StudentDataType)[]>(userListDataAtom);
 
   const [studentsData, setStudentsData] = useState<StudentDataType[]>([]);
   const [mentorsData, setMentorsData] = useState<MentorDataType[]>([]);
@@ -28,6 +29,8 @@ const Top = () => {
       setUserListData(await getData());
     };
     fetchData();
+    console.log("ログ出力");
+    console.log(userListData);
   }, []);
 
   useEffect(() => {
@@ -46,8 +49,8 @@ const Top = () => {
     setMentorsData(mentors);
   }, [userListData]);
 
-  console.log("データ表示");
-  console.log(studentsData);
+  // console.log("データ表示");
+  // console.log(studentsData);
 
   return (
     <>

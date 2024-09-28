@@ -3,6 +3,8 @@ import { Login } from "./components/Login";
 import Top from "./components/Top";
 import { createGlobalStyle } from "styled-components";
 import { NewRegisterForm } from "./components/NewRegisterForm";
+import { Test } from "./components/Test";
+import { RecoilRoot } from "recoil";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -17,21 +19,22 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path={"/"}
-          element={
-            <>
-              <GlobalStyle />
-              <Login />
-            </>
-          }
-        />
-        <Route path={"/top"} element={<Top />} />
-        <Route path={"/test"} element={<NewRegisterForm />} />
-      </Routes>
-    </BrowserRouter>
+    <RecoilRoot>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path={"/"}
+            element={
+              <>
+                <GlobalStyle />
+                <Login />
+              </>
+            }
+          />
+          <Route path={"/top"} element={<Top />} />
+        </Routes>
+      </BrowserRouter>
+    </RecoilRoot>
   );
 }
 
