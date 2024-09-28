@@ -28,7 +28,8 @@ export const ForAllTable = ({ studentsData, mentorsData }: Data) => {
     getSortedRowModel: getSortedRowModel(),
   });
 
-  // console.log(studentsData);
+  console.log("ForAllTable");
+  console.log(studentsData);
 
   return (
     <div>

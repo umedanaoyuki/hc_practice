@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NewRegisterForm } from "./NewRegisterForm";
+import { NewRegisterForm } from "./NewRegisterForm/NewRegisterForm";
 import { data } from "../api/data";
 import { MentorDataType } from "../type/MentorDataType";
 import { StudentDataType } from "../type/StudentDataType";
@@ -7,7 +7,7 @@ import { ForAllTable } from "./ForAll/forAllTable";
 import { ForStudentsTable } from "./ForStudents/forStudentsTable";
 import { ForMentorsTable } from "./ForMentors/forMentorsTable";
 import { useRecoilState } from "recoil";
-import { userListDataAtom } from "../Atoms/UserListData";
+import { userListDataSelector } from "../Atoms/UserListData";
 
 type TabTypes = "all" | "onlyStudents" | "onlyMentors";
 
@@ -19,7 +19,7 @@ const Top = () => {
 
   // 全データ
   const [userListData, setUserListData] =
-    useRecoilState<(MentorDataType | StudentDataType)[]>(userListDataAtom);
+    useRecoilState<(MentorDataType | StudentDataType)[]>(userListDataSelector);
 
   const [studentsData, setStudentsData] = useState<StudentDataType[]>([]);
   const [mentorsData, setMentorsData] = useState<MentorDataType[]>([]);
@@ -48,7 +48,7 @@ const Top = () => {
   }, [userListData]);
 
   console.log("データ表示");
-  console.log(userListData);
+  console.log(studentsData);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 import { MentorDataType } from "../type/MentorDataType";
 import { StudentDataType } from "../type/StudentDataType";
 
@@ -7,7 +7,8 @@ export const userListDataAtom = atom<(MentorDataType | StudentDataType)[]>({
   default: [],
 });
 
-// export const todoListState = atom<(MentorDataType | StudentDataType)[]>({
-//   key: "TodoList",
-//   default: [],
-// });
+export const userListDataSelector = selector({
+  key: "UserListDataSelector",
+  get: ({ get }) => get(userListDataAtom),
+  set: ({ set }, newValue) => set(userListDataAtom, newValue),
+});

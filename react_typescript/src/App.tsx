@@ -20,16 +20,7 @@ function App() {
     <RecoilRoot>
       <BrowserRouter>
         <Routes>
-          <Route
-            path={"/"}
-            element={
-              <>
-                <GlobalStyle />
-                <Login />
-              </>
-            }
-          />
-          <Route path={"/top"} element={<Top />} />
+          <Route path={"/"} element={<Top />} />
         </Routes>
       </BrowserRouter>
     </RecoilRoot>

@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import * as Yup from "yup"; //【追記】Yupのインポート
+import { yupResolver } from "@hookform/resolvers/yup";
 import Modal from "react-modal";
-import { NewRegisterInputType } from "../type/NewRegisterInputType";
+import { NewRegisterInputType } from "../../type/NewRegisterInputType";
 import styled from "styled-components";
-import { MentorDataType } from "../type/MentorDataType";
-import { StudentDataType } from "../type/StudentDataType";
+import { MentorDataType } from "../../type/MentorDataType";
+import { StudentDataType } from "../../type/StudentDataType";
 import { useSetRecoilState } from "recoil";
-import { userListDataAtom } from "../Atoms/UserListData";
+import {
+  userListDataAtom,
+  userListDataSelector,
+} from "../../Atoms/UserListData";
 
 const StyledLoginPageWrapper = styled.div`
   text-align: center;
@@ -136,7 +141,6 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm<NewRegisterInputType>({
@@ -162,7 +166,7 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
     },
   });
 
-  const setUserListData = useSetRecoilState(userListDataAtom);
+  const setUserListData = useSetRecoilState(userListDataSelector);
 
   const onSubmit: SubmitHandler<NewRegisterInputType> = (data) => {
     const newUser = {
