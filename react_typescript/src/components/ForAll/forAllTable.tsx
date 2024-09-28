@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { MentorDataType } from "../../type/MentorDataType";
 import { StudentDataType } from "../../type/StudentDataType";
 import {
@@ -10,41 +9,12 @@ import {
 import { data } from "../../api/data";
 import { createColumns } from "./columns";
 
-const getData: () => Promise<(MentorDataType | StudentDataType)[]> = async () =>
-  data;
+type Data = {
+  studentsData: StudentDataType[];
+  mentorsData: MentorDataType[];
+};
 
-export const ForAllTable = () => {
-  // 全データ
-  const [userListData, setUserListData] = useState<
-    (MentorDataType | StudentDataType)[]
-  >([]);
-
-  const [studentsData, setStudentsData] = useState<StudentDataType[]>([]);
-  const [mentorsData, setMentorsData] = useState<MentorDataType[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setUserListData(await getData());
-    };
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const students: StudentDataType[] = [];
-    const mentors: MentorDataType[] = [];
-
-    userListData.forEach((data) => {
-      if (data.role === "student") {
-        students.push(data as StudentDataType);
-      } else {
-        mentors.push(data as MentorDataType);
-      }
-    });
-
-    setStudentsData(students);
-    setMentorsData(mentors);
-  }, [userListData]);
-
+export const ForAllTable = ({ studentsData, mentorsData }: Data) => {
   // studentsDataとmentorsDataを使ってカラムを生成
   const columns = createColumns(studentsData, mentorsData);
 
