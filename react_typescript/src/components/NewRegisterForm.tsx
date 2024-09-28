@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Modal from "react-modal";
 import { LoginInputType } from "../type/LoginInputType";
@@ -107,7 +107,7 @@ const customStyles = {
 Modal.setAppElement("#root");
 
 export const NewRegisterForm = () => {
-  let subtitle;
+  let subtitle: { style: { color: string } };
   // モーダルオープン・クローズの状態管理
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -152,16 +152,6 @@ export const NewRegisterForm = () => {
         style={customStyles}
         contentLabel="MewRegistrationModal"
       >
-        {/* <h2 ref={(_subtitle) => (subtitle = _subtitle)}>新規登録</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
-        <form>
-          <input />
-          <button>tab navigation</button>
-          <button>stays</button>
-          <button>inside</button>
-          <button>the modal</button>
-        </form> */}
         <div>
           <div>
             <h1>新規登録</h1>
