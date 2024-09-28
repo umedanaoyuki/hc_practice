@@ -4,6 +4,7 @@ import { data } from "../api/data";
 import { MentorDataType } from "../type/MentorDataType";
 import { StudentDataType } from "../type/StudentDataType";
 import { ForAllTable } from "./ForAll/forAllTable";
+import { ForStudentsTable } from "./ForStudents/forStudentsTable";
 
 type TabTypes = "all" | "onlyStudents" | "onlyMentors";
 
@@ -59,7 +60,12 @@ const Top = () => {
       {activeTab === "all" && (
         <ForAllTable studentsData={studentsData} mentorsData={mentorsData} />
       )}
-      {/* {activeTab === "onlyStudents" && <ForStudentsTable />} */}
+      {activeTab === "onlyStudents" && (
+        <ForStudentsTable
+          studentsData={studentsData}
+          mentorsData={mentorsData}
+        />
+      )}
       {/* {activeTab === "onlyMentors" && <ForMentorsTable />} */}
       <div>
         <NewRegisterForm />
