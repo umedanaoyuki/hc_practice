@@ -3,6 +3,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Modal from "react-modal";
 import { LoginInputType } from "../type/LoginInputType";
 import styled from "styled-components";
+import { MentorDataType } from "../type/MentorDataType";
+import { StudentDataType } from "../type/StudentDataType";
 
 const StyledLoginPageWrapper = styled.div`
   text-align: center;
@@ -106,7 +108,11 @@ const customStyles = {
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
 
-export const NewRegisterForm = () => {
+type UserListData = {
+  userListData: (MentorDataType | StudentDataType)[];
+};
+
+export const NewRegisterForm = ({ userListData }: UserListData) => {
   let subtitle: { style: { color: string } };
   // モーダルオープン・クローズの状態管理
   const [modalIsOpen, setIsOpen] = useState(false);
