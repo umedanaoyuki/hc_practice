@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ForAllTable } from "./ForAll/forAllTable";
 import { ForMentorsTable } from "./ForMentors/forMentorsTable";
 import { ForStudentsTable } from "./ForStudents/forStudentsTable";
+import { NewRegisterForm } from "./NewRegisterForm";
 
 type TabTypes = "all" | "onlyStudents" | "onlyMentors";
 
@@ -22,6 +23,9 @@ const Top = () => {
       {activeTab === "all" && <ForAllTable />}
       {activeTab === "onlyStudents" && <ForStudentsTable />}
       {activeTab === "onlyMentors" && <ForMentorsTable />}
+      <div>
+        <NewRegisterForm />
+      </div>
     </>
   );
 };

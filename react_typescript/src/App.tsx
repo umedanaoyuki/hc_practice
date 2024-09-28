@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from "./components/Login";
 import Top from "./components/Top";
 import { createGlobalStyle } from "styled-components";
-import { Test } from "./components/Test";
+import { NewRegisterForm } from "./components/NewRegisterForm";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -29,7 +29,7 @@ function App() {
           }
         />
         <Route path={"/top"} element={<Top />} />
-        <Route path={"/test"} element={<Test />} />
+        <Route path={"/test"} element={<NewRegisterForm />} />
       </Routes>
     </BrowserRouter>
   );
