@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import Modal from "react-modal";
-import { LoginInputType } from "../type/LoginInputType";
+import { NewRegisterInputType } from "../type/NewRegisterInputType";
 import styled from "styled-components";
 import { MentorDataType } from "../type/MentorDataType";
 import { StudentDataType } from "../type/StudentDataType";
+import { useSetRecoilState } from "recoil";
+import { userListDataAtom } from "../Atoms/UserListData";
 
 const StyledLoginPageWrapper = styled.div`
   text-align: center;
@@ -113,7 +115,6 @@ type UserListData = {
 };
 
 export const NewRegisterForm = ({ userListData }: UserListData) => {
-  
   let subtitle: { style: { color: string } };
 
   // モーダルオープン・クローズの状態管理
@@ -138,17 +139,42 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
     watch,
     reset,
     formState: { errors },
-  } = useForm<LoginInputType>({
+  } = useForm<NewRegisterInputType>({
     defaultValues: {
-      accountId: "",
+      id: undefined,
       password: "",
+      name: "",
+      email: "",
+      role: "",
+      age: undefined,
+      postCode: "",
+      phone: "",
+      hobbies: [],
+      url: "",
+      studyMinutes: undefined,
+      taskCode: undefined,
+      taskLangs: undefined,
+      score: undefined,
+      experienceDays: undefined,
+      useLangs: [],
+      availableStartCode: undefined,
+      availableEndCode: undefined,
     },
   });
 
-  const onSubmit: SubmitHandler<LoginInputType> = (data) => {
-    console.log({ ...userListData, data });
-    return null;
+  const setUserListData = useSetRecoilState(userListDataAtom);
+
+  const onSubmit: SubmitHandler<NewRegisterInputType> = (data) => {
+    const newUser = {
+      ...data,
+    } as StudentDataType | MentorDataType;
+
+    setUserListData((prevUserListData) => [...prevUserListData, newUser]);
+    closeModal();
+    reset();
   };
+
+  // const [seleced, isSelected] = useState("");
 
   return (
     <div>
@@ -166,58 +192,89 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
           </div>
           <div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <label htmlFor="">アカウントID</label>
-              <input {...register("accountId", { required: true })} />
+              <label htmlFor="id">アカウントID</label>
+              <input {...register("id", { required: true })} />
               {errors.password && (
                 <p className="">アカウントIDを入力してください</p>
               )}
-              <label>パスワード</label>
+              <label htmlFor="password">パスワード</label>
               <input
                 type="password"
                 {...register("password", { required: true })}
               />
               {errors.password && <p>パスワードを入力してください</p>}
               {/* ラジオボタン */}
-
-              <label htmlFor="">ロール</label>
+              <label htmlFor="role">ロール</label>
               <div>
-                <input type="radio" value="生徒" checked />
-                生徒
-                <input type="radio" value="先生" />
-                先生
+                <input
+                  type="radio"
+                  value="student"
+                  {...register("role", { required: true })}
+                />
+                <label htmlFor="">生徒</label>
+                <input
+                  type="radio"
+                  value="mentor"
+                  {...register("role", { required: true })}
+                />
+                <label htmlFor="">先生</label>
               </div>
-              <label htmlFor="">名前</label>
-              <input type="text" />
-              <label htmlFor="">メールアドレス</label>
-              <input type="email"></input>
-              <label htmlFor="">年齢</label>
-              <input type="number" />
-              <label htmlFor="">郵便番号</label>
-              <input type="number" />
-              <label htmlFor="">電話番号</label>
-              <input type="number" />
-              <label htmlFor="">趣味(3つまで)</label>
-              <input type="text" />
-              <label htmlFor="">URL</label>
-              <input type="text" />
+              <label htmlFor="name">名前</label>
+              <input type="text" {...register("name", { required: true })} />
+              <label htmlFor="email">メールアドレス</label>
+              <input type="email" {...register("email", { required: true })} />
+              <label htmlFor="age">年齢</label>
+              <input type="number" {...register("age", { required: true })} />
+              <label htmlFor="postCode">郵便番号</label>
+              <input
+                type="number"
+                {...register("postCode", { required: true })}
+              />
+              <label htmlFor="phone">電話番号</label>
+              <input type="number" {...register("phone", { required: true })} />
+              <label htmlFor="hobbies">趣味(3つまで)</label>
+              <input type="text" {...register("hobbies", { required: true })} />
+              <label htmlFor="url">URL</label>
+              <input type="text" {...register("url", { required: true })} />
 
-              <label htmlFor="">勉強時間</label>
-              <input type="number" />
-              <label htmlFor="">課題番号</label>
-              <input type="number" />
-              <label htmlFor="">勉強中の言語(2つまで)</label>
-              <input type="text" />
-              <label htmlFor="">ハピネススコア</label>
-              <input type="number" />
+              <label htmlFor="studyMinutes">勉強時間</label>
+              <input
+                type="number"
+                {...register("studyMinutes", { required: true })}
+              />
+              <label htmlFor="taskCode">課題番号</label>
+              <input
+                type="number"
+                {...register("taskCode", { required: true })}
+              />
+              <label htmlFor="taskLangs">勉強中の言語(2つまで)</label>
+              <input
+                type="text"
+                {...register("taskLangs", { required: true })}
+              />
+              <label htmlFor="score">ハピネススコア</label>
+              <input type="number" {...register("score", { required: true })} />
 
-              <label htmlFor="">実務経験年数</label>
-              <input type="number" />
-              <label htmlFor="">現場で使っている言語(2つまで)</label>
-              <input type="text" />
-              <label htmlFor="">担当できる課題番号初め</label>
-              <input type="number" />
-              <label htmlFor="">担当できる課題番号終わり</label>
-              <input type="number" />
+              <label htmlFor="experienceDays">実務経験年数</label>
+              <input
+                type="number"
+                {...register("experienceDays", { required: true })}
+              />
+              <label htmlFor="useLangs">現場で使っている言語(2つまで)</label>
+              <input
+                type="text"
+                {...register("useLangs", { required: true })}
+              />
+              <label htmlFor="availableStartCode">担当できる課題番号初め</label>
+              <input
+                type="number"
+                {...register("availableStartCode", { required: true })}
+              />
+              <label htmlFor="availableEndCode">担当できる課題番号終わり</label>
+              <input
+                type="number"
+                {...register("availableEndCode", { required: true })}
+              />
 
               <input type="submit" value="登録" />
             </form>

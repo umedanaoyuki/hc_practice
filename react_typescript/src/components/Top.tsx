@@ -29,8 +29,6 @@ const Top = () => {
       setUserListData(await getData());
     };
     fetchData();
-    console.log("ログ出力");
-    console.log(userListData);
   }, []);
 
   useEffect(() => {
@@ -49,8 +47,8 @@ const Top = () => {
     setMentorsData(mentors);
   }, [userListData]);
 
-  // console.log("データ表示");
-  // console.log(studentsData);
+  console.log("データ表示");
+  console.log(userListData);
 
   return (
     <>

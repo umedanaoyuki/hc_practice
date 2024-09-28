@@ -2,8 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from "./components/Login";
 import Top from "./components/Top";
 import { createGlobalStyle } from "styled-components";
-import { NewRegisterForm } from "./components/NewRegisterForm";
-import { Test } from "./components/Test";
 import { RecoilRoot } from "recoil";
 
 const GlobalStyle = createGlobalStyle`

@@ -1,0 +1,20 @@
+export type NewRegisterInputType = {
+  id: number;
+  password: string;
+  name: string;
+  email: string;
+  role: string;
+  age: number;
+  postCode: string;
+  phone: string;
+  hobbies: string[];
+  url: string;
+  studyMinutes: number;
+  taskCode: number;
+  taskLangs: number;
+  score: number;
+  experienceDays: number;
+  useLangs: string[];
+  availableStartCode: number;
+  availableEndCode: number;
+};

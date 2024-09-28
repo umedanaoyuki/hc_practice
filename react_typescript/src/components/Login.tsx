@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { LoginInputType } from "../type/LoginInputType";
+import { LoginInputType } from "../type/NewRegisterInputType";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
