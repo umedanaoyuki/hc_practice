@@ -7,7 +7,7 @@ export const schema = yup.object({
     .label("名前")
     .required("${label}は入力必須です")
     .max(20, "${label}は${max}文字以内で入力してください。"),
-  roleType: yup
+  role: yup
     .string()
     .label("ロール")
     .oneOf(["student", "mentor"])

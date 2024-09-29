@@ -2,101 +2,104 @@ import { useState } from "react";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Modal from "react-modal";
-import { NewRegisterInputType } from "../../type/NewRegisterInputType";
-import styled from "styled-components";
+import {
+  NewRegisterInputMentorType,
+  NewRegisterInputStudentType,
+} from "../../type/NewRegisterInputType";
+// import styled from "styled-components";
 import { MentorDataType } from "../../type/MentorDataType";
 import { StudentDataType } from "../../type/StudentDataType";
 import { useSetRecoilState } from "recoil";
 import { userListDataSelector } from "../../Atoms/UserListData";
 import { schema } from "./schema";
 
-const StyledLoginPageWrapper = styled.div`
-  text-align: center;
-  color: white;
-  line-height: 2;
-  text-align: left;
-  display: block;
-  margin-bottom: 13px;
-  margin-top: 20px;
-  font-size: 14px;
-  font-weight: 200;
-`;
+// const StyledLoginPageWrapper = styled.div`
+//   text-align: center;
+//   color: white;
+//   line-height: 2;
+//   text-align: left;
+//   display: block;
+//   margin-bottom: 13px;
+//   margin-top: 20px;
+//   font-size: 14px;
+//   font-weight: 200;
+// `;
 
-const StyledLoginTitleContainer = styled.div`
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+// const StyledLoginTitleContainer = styled.div`
+//   color: white;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// `;
 
-const StyledForm = styled.form`
-  max-width: 500px;
-  margin: 0 auto;
-`;
+// const StyledForm = styled.form`
+//   max-width: 500px;
+//   margin: 0 auto;
+// `;
 
-const StyledFormWrapper = styled.div`
-  background: #0e101c;
-  max-width: 400px;
-  margin: 0 auto;
-`;
+// const StyledFormWrapper = styled.div`
+//   background: #0e101c;
+//   max-width: 400px;
+//   margin: 0 auto;
+// `;
 
-const StyledLabel = styled.label`
-  line-height: 2;
-  text-align: left;
-  display: block;
-  margin-bottom: 13px;
-  margin-top: 20px;
-  color: white;
-  font-size: 14px;
-  font-weight: 200;
-`;
+// const StyledLabel = styled.label`
+//   line-height: 2;
+//   text-align: left;
+//   display: block;
+//   margin-bottom: 13px;
+//   margin-top: 20px;
+//   color: white;
+//   font-size: 14px;
+//   font-weight: 200;
+// `;
 
-const StyledInput = styled.input`
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  border-radius: 4px;
-  border: 1px solid white;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-  font-size: 14px;
+// const StyledInput = styled.input`
+//   display: block;
+//   box-sizing: border-box;
+//   width: 100%;
+//   border-radius: 4px;
+//   border: 1px solid white;
+//   padding: 10px 15px;
+//   margin-bottom: 10px;
+//   font-size: 14px;
 
-  &:disabled {
-    opacity: 0.4;
-  }
+//   &:disabled {
+//     opacity: 0.4;
+//   }
 
-  &[type="submit"] {
-    background: #ec5990;
-    color: white;
-    text-transform: uppercase;
-    border: none;
-    margin-top: 40px;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: 100;
-    letter-spacing: 5px;
+//   &[type="submit"] {
+//     background: #ec5990;
+//     color: white;
+//     text-transform: uppercase;
+//     border: none;
+//     margin-top: 40px;
+//     padding: 15px;
+//     font-size: 16px;
+//     font-weight: 100;
+//     letter-spacing: 5px;
 
-    &:hover {
-      background: #bf1650;
-    }
+//     &:hover {
+//       background: #bf1650;
+//     }
 
-    &:active {
-      transition: 0.3s all;
-      transform: translateY(3px);
-      border: 1px solid transparent;
-      opacity: 0.8;
-    }
-  }
-`;
+//     &:active {
+//       transition: 0.3s all;
+//       transform: translateY(3px);
+//       border: 1px solid transparent;
+//       opacity: 0.8;
+//     }
+//   }
+// `;
 
-const StyledErrorMessage = styled.p`
-  color: #bf1650;
+// const StyledErrorMessage = styled.p`
+//   color: #bf1650;
 
-  &::before {
-    display: inline;
-    content: "⚠ ";
-  }
-`;
+//   &::before {
+//     display: inline;
+//     content: "⚠ ";
+//   }
+// `;
 
 const customStyles = {
   content: {
@@ -142,12 +145,12 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
     control,
     watch,
     formState: { errors },
-  } = useForm<NewRegisterInputType>({
+  } = useForm<NewRegisterInputStudentType | NewRegisterInputMentorType>({
     defaultValues: {
       id: 23,
       name: "",
       email: "",
-      roleType: "student",
+      role: "student",
       age: undefined,
       postCode: "",
       phone: "",
@@ -155,12 +158,8 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
       url: "",
       studyMinutes: undefined,
       taskCode: undefined,
-      taskLangs: undefined,
+      studyLangs: undefined,
       score: undefined,
-      experienceDays: undefined,
-      useLangs: [],
-      availableStartCode: undefined,
-      availableEndCode: undefined,
     },
     resolver: yupResolver(schema),
   });
@@ -177,12 +176,12 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
   });
 
   const {
-    fields: taskLangsFields,
-    append: appendTaskLang,
-    remove: removeTaskLang,
+    fields: studyLangsFields,
+    append: appendStudyLang,
+    remove: removeStudyLang,
   } = useFieldArray({
     control,
-    name: "taskLangs",
+    name: "studyLangs",
   });
 
   const {
@@ -194,10 +193,14 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
     name: "useLangs",
   });
 
-  const onSubmit: SubmitHandler<NewRegisterInputType> = (data) => {
+  const onSubmit: SubmitHandler<
+    NewRegisterInputMentorType | NewRegisterInputStudentType
+  > = (data) => {
+    console.log({ data });
+
     const newUser = {
       ...data,
-    } as StudentDataType | MentorDataType;
+    } as MentorDataType | StudentDataType;
 
     setUserListData((prevUserListData) => [...prevUserListData, newUser]);
     closeModal();
@@ -206,7 +209,7 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
 
   const onerror = (err) => console.log(err);
 
-  const roleType = watch("roleType");
+  const roleType = watch("role");
 
   return (
     <div>
@@ -230,12 +233,12 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
               {/* ラジオボタン */}
               <label htmlFor="role">ロール</label>
               <div>
-                <input type="radio" value="student" {...register("roleType")} />
+                <input type="radio" value="student" {...register("role")} />
                 <label htmlFor="">生徒</label>
-                <input type="radio" value="mentor" {...register("roleType")} />
+                <input type="radio" value="mentor" {...register("role")} />
                 <label htmlFor="">先生</label>
               </div>
-              <div>{errors.roleType?.message}</div>
+              <div>{errors.role?.message}</div>
               <label htmlFor="email">メールアドレス</label>
               <input type="email" {...register("email")} />
               <div>{errors.email?.message}</div>
@@ -281,25 +284,25 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
                   <input type="number" {...register("studyMinutes")} />
                   <label htmlFor="taskCode">課題番号</label>
                   <input type="number" {...register("taskCode")} />
-                  <label htmlFor="taskLangs">勉強中の言語(2つまで)</label>
-                  {taskLangsFields.map((field, index) => (
+                  <label htmlFor="studyLangs">勉強中の言語(2つまで)</label>
+                  {studyLangsFields.map((field, index) => (
                     <div key={field.id}>
                       <input
                         type="text"
-                        {...register(`taskLangs.${index}` as const)}
+                        {...register(`studyLangs.${index}` as const)}
                         placeholder={`言語 ${index + 1}`}
                       />
                       <button
                         type="button"
-                        onClick={() => removeTaskLang(index)}
-                        disabled={taskLangsFields.length <= 1}
+                        onClick={() => removeStudyLang(index)}
+                        disabled={studyLangsFields.length <= 1}
                       >
                         削除
                       </button>
                     </div>
                   ))}
-                  {taskLangsFields.length < 2 && (
-                    <button type="button" onClick={() => appendTaskLang("")}>
+                  {studyLangsFields.length < 2 && (
+                    <button type="button" onClick={() => appendStudyLang("")}>
                       言語を追加
                     </button>
                   )}
