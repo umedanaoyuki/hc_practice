@@ -158,7 +158,7 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
       url: "",
       studyMinutes: undefined,
       taskCode: undefined,
-      studyLangs: undefined,
+      studyLangs: [""],
       score: undefined,
     },
     resolver: yupResolver(schema),
