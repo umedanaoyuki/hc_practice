@@ -147,7 +147,7 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
       id: 23,
       name: "",
       email: "",
-      role: "",
+      roleType: "student",
       age: undefined,
       postCode: "",
       phone: "",

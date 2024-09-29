@@ -10,7 +10,7 @@ export type NewRegisterInputType = {
   url: string;
   studyMinutes: number;
   taskCode: number;
-  taskLangs: number;
+  taskLangs: string[];
   score: number;
   experienceDays: number;
   useLangs: string[];
