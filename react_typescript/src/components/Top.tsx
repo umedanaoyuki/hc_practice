@@ -45,10 +45,12 @@ const Top = () => {
 
     setStudentsData(students);
     setMentorsData(mentors);
+    // console.log({ students });
+    // console.log({ mentors });
   }, [userListData]);
 
-  console.log("データ表示");
-  console.log(studentsData);
+  // console.log("データ表示");
+  // console.log(userListData);
 
   return (
     <>

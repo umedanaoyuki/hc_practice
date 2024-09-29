@@ -82,6 +82,10 @@ export const createColumns = (
     },
   },
   {
+    accessorKey: "taskCode",
+    header: "課題番号",
+  },
+  {
     accessorKey: "studyLangs",
     header: "勉強中の言語",
     cell: ({ row }) => {
@@ -114,15 +118,6 @@ export const createColumns = (
       // 行データの取得
       const data = row.original;
 
-      // カスタム関数のロジック
-      // if (data.role === "student") {
-      //   const availableMentors = mentorsData
-      //     .map((mentor) => mentor.name)
-      //     .join(", ");
-      //   return availableMentors || "なし";
-      // } else {
-      //   return "-";
-      // }
       const mentorsArray: string[] = [];
 
       if (data.role === "student") {

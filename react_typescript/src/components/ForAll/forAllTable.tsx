@@ -16,6 +16,10 @@ type Data = {
 
 export const ForAllTable = ({ studentsData, mentorsData }: Data) => {
   // studentsDataとmentorsDataを使ってカラムを生成
+
+  console.log({ studentsData });
+  console.log({ mentorsData });
+
   const columns = createColumns(studentsData, mentorsData);
 
   const table = useReactTable<MentorDataType | StudentDataType>({
@@ -27,9 +31,6 @@ export const ForAllTable = ({ studentsData, mentorsData }: Data) => {
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
   });
-
-  console.log("ForAllTable");
-  console.log(studentsData);
 
   return (
     <div>

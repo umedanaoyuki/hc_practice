@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Login } from "./components/Login";
 import Top from "./components/Top";
 import { createGlobalStyle } from "styled-components";
 import { RecoilRoot } from "recoil";

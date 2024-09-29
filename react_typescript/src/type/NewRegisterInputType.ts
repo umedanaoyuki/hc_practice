@@ -1,9 +1,8 @@
 export type NewRegisterInputType = {
   id: number;
-  password: string;
   name: string;
   email: string;
-  role: string;
+  roleType: string;
   age: number;
   postCode: string;
   phone: string;
