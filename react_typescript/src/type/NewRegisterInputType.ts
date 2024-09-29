@@ -1,3 +1,4 @@
+
 export type NewRegisterInputType = {
   id: number;
   name: string;

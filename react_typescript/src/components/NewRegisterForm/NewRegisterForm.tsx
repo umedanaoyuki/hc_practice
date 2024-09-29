@@ -282,7 +282,6 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
                   <label htmlFor="taskCode">課題番号</label>
                   <input type="number" {...register("taskCode")} />
                   <label htmlFor="taskLangs">勉強中の言語(2つまで)</label>
-                  {/* <input type="text" {...register("taskLangs")} /> */}
                   {taskLangsFields.map((field, index) => (
                     <div key={field.id}>
                       <input
