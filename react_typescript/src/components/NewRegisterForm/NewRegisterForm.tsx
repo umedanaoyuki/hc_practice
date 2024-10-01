@@ -1,17 +1,13 @@
 import { useState } from "react";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import Modal from "react-modal";
-import {
-  NewRegisterInputMentorType,
-  NewRegisterInputStudentType,
-} from "../../type/NewRegisterInputType";
 // import styled from "styled-components";
 import { MentorDataType } from "../../type/MentorDataType";
 import { StudentDataType } from "../../type/StudentDataType";
 import { useSetRecoilState } from "recoil";
 import { userListDataSelector } from "../../Atoms/UserListData";
-import { schema } from "./schema";
+import { NewRegisterInputMentorType } from "../../type/NewRegisterInputMentorType";
+import { NewRegisterInputStudentType } from "../../type/NewRegisterInputStudentType";
 
 // const StyledLoginPageWrapper = styled.div`
 //   text-align: center;
@@ -115,15 +111,16 @@ const customStyles = {
 // react-modalの使用
 Modal.setAppElement("#root");
 
-type UserListData = {
-  userListData: (MentorDataType | StudentDataType)[];
-};
+// type UserListData = {
+//   userListData: (MentorDataType | StudentDataType)[];
+// };
 
-export const NewRegisterForm = ({ userListData }: UserListData) => {
+export const NewRegisterForm = () => {
   let subtitle: { style: { color: string } };
 
   // モーダルオープン・クローズの状態管理
   const [modalIsOpen, setIsOpen] = useState(false);
+  const setUserListData = useSetRecoilState(userListDataSelector);
 
   const openModal = () => {
     setIsOpen(true);
@@ -137,7 +134,6 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
     // references are now sync'd and can be accessed.
     subtitle.style.color = "#f00";
   }
-
   const {
     register,
     handleSubmit,
@@ -150,21 +146,26 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
       id: 23,
       name: "",
       email: "",
-      role: "student",
-      age: undefined,
+      role: "student", // 初期値は "student" に設定
+      age: 0,
       postCode: "",
       phone: "",
-      hobbies: [""],
+      hobbies: [],
       url: "",
-      studyMinutes: undefined,
-      taskCode: undefined,
-      studyLangs: [""],
-      score: undefined,
+      // "student" の場合のフィールド
+      studyMinutes: 0,
+      taskCode: 0,
+      studyLangs: [],
+      score: 0,
+      // "mentor" の場合のフィールド
+      // experienceDays: 0,
+      // useLangs: [],
+      // availableStartCode: 0,
+      // availableEndCode: 0,
     },
-    resolver: yupResolver(schema),
   });
 
-  const setUserListData = useSetRecoilState(userListDataSelector);
+  const roleType = watch("role");
 
   const {
     fields: hobbiesFields,
@@ -181,7 +182,7 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
     remove: removeStudyLang,
   } = useFieldArray({
     control,
-    name: "studyLangs",
+    name: "studyLang",
   });
 
   const {
@@ -190,7 +191,7 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
     remove: removeUseLang,
   } = useFieldArray({
     control,
-    name: "useLangs",
+    name: "useLang",
   });
 
   const onSubmit: SubmitHandler<
@@ -207,9 +208,7 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
     reset();
   };
 
-  const onerror = (err) => console.log(err);
-
-  const roleType = watch("role");
+  // const onerror = (err) => console.log(err);
 
   return (
     <div>
@@ -226,7 +225,7 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
             <h1>新規登録</h1>
           </div>
           <div>
-            <form onSubmit={handleSubmit(onSubmit, onerror)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <label htmlFor="name">名前</label>
               <input type="text" {...register("name")} />
               <div>{errors.name?.message}</div>
@@ -256,8 +255,10 @@ export const NewRegisterForm = ({ userListData }: UserListData) => {
                 <div key={field.id}>
                   <input
                     type="text"
-                    {...register(`hobbies.${index}` as const)}
                     placeholder={`趣味 ${index + 1}`}
+                    {...register(`hobbies.${index}` as const, {
+                      required: true,
+                    })}
                   />
                   <button
                     type="button"

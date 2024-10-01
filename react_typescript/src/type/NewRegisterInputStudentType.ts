@@ -1,10 +1,8 @@
-
-
-export type NewRegisterInputType = {
+export type NewRegisterInputStudentType = {
   id: number;
   name: string;
   email: string;
-  role: "student" | "mentor";
+  role: "student";
   age: number;
   postCode: string;
   phone: string;
@@ -14,8 +12,4 @@ export type NewRegisterInputType = {
   taskCode: number;
   studyLangs: string[];
   score: number;
-  experienceDays: number;
-  useLangs: string[];
-  availableStartCode: number;
-  availableEndCode: number;
 };

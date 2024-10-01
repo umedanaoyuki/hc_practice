@@ -77,7 +77,7 @@ const Top = () => {
         />
       )}
       <div>
-        <NewRegisterForm userListData={userListData} />
+        <NewRegisterForm />
       </div>
     </>
   );
