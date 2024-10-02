@@ -6,8 +6,7 @@ import { MentorDataType } from "../../type/MentorDataType";
 import { StudentDataType } from "../../type/StudentDataType";
 import { useSetRecoilState } from "recoil";
 import { userListDataSelector } from "../../Atoms/UserListData";
-import { useMyForm } from "./schema";
-import { NewRegisterInputType } from "../../type/NewRegisterInputType";
+import { NewRegisterInputType, useMyForm } from "./schema";
 
 // const StyledLoginPageWrapper = styled.div`
 //   text-align: center;
@@ -175,6 +174,7 @@ export const NewRegisterForm = () => {
 
   const onSubmit: SubmitHandler<NewRegisterInputType> = (formData) => {
     console.log("登録ボタン押下");
+
     try {
       const commonData = {
         id: formData.id,
@@ -347,7 +347,6 @@ export const NewRegisterForm = () => {
                   <label htmlFor="useLangs">
                     現場で使っている言語(2つまで)
                   </label>
-                  {/* <input type="text" {...register("useLangs")} /> */}
                   {useLangsFields.map((field, index) => (
                     <div key={field.id}>
                       <input

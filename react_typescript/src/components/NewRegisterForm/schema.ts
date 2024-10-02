@@ -141,7 +141,10 @@ export const schema = yup.object().shape({
   }),
   studyLangs: yup.array(yup.string()).when("role", {
     is: (val: string) => val == "student",
-    then: (schema) => schema.required("入力必須です").min(1, "少なくとも1つの言語を入力してください"),
+    then: (schema) =>
+      schema
+        .required("入力必須です")
+        .min(1, "少なくとも1つの言語を入力してください"),
     otherwise: (schema) => schema.notRequired(),
   }),
   score: yup.number().when("role", {
@@ -156,7 +159,10 @@ export const schema = yup.object().shape({
   }),
   useLangs: yup.array(yup.string()).when("role", {
     is: (val: string) => val == "mentor",
-    then: (schema) => schema.required("入力必須です").min(1, "少なくとも1つの言語を入力してください"),
+    then: (schema) =>
+      schema
+        .required("入力必須です")
+        .min(1, "少なくとも1つの言語を入力してください"),
     otherwise: (schema) => schema.notRequired(),
   }),
   availableStartCode: yup.number().when("role", {
@@ -177,14 +183,14 @@ export const useMyForm = () => {
   return useForm<NewRegisterInputType>({
     resolver: yupResolver(schema),
     defaultValues: {
-      id: undefined,
+      id: 23,
       name: "",
       role: "student",
       email: "",
       age: undefined,
       postCode: undefined,
       phone: undefined,
-      hobbies: [""],
+      hobbies: [],
       url: "",
       studyMinutes: undefined,
       taskCode: undefined,
