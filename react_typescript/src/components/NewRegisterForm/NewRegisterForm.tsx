@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
+import { SubmitHandler, useFieldArray } from "react-hook-form";
 import Modal from "react-modal";
 // import styled from "styled-components";
 import { MentorDataType } from "../../type/MentorDataType";
 import { StudentDataType } from "../../type/StudentDataType";
 import { useSetRecoilState } from "recoil";
 import { userListDataSelector } from "../../Atoms/UserListData";
-import { NewRegisterInputMentorType } from "../../type/NewRegisterInputMentorType";
-import { NewRegisterInputStudentType } from "../../type/NewRegisterInputStudentType";
+import { useMyForm } from "./schema";
+import { NewRegisterInputType } from "../../type/NewRegisterInputType";
 
 // const StyledLoginPageWrapper = styled.div`
 //   text-align: center;
@@ -116,7 +116,7 @@ Modal.setAppElement("#root");
 // };
 
 export const NewRegisterForm = () => {
-  let subtitle: { style: { color: string } };
+  // let subtitle: { style: { color: string } };
 
   // モーダルオープン・クローズの状態管理
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -127,12 +127,13 @@ export const NewRegisterForm = () => {
   };
 
   const closeModal = () => {
+    console.log("モーダル閉じる");
     setIsOpen(false);
   };
 
   function afterOpenModal() {
     // references are now sync'd and can be accessed.
-    subtitle.style.color = "#f00";
+    // subtitle.style.color = "#f00";
   }
   const {
     register,
@@ -141,29 +142,7 @@ export const NewRegisterForm = () => {
     control,
     watch,
     formState: { errors },
-  } = useForm<NewRegisterInputStudentType | NewRegisterInputMentorType>({
-    defaultValues: {
-      id: 23,
-      name: "",
-      email: "",
-      role: "student", // 初期値は "student" に設定
-      age: 0,
-      postCode: "",
-      phone: "",
-      hobbies: [],
-      url: "",
-      // "student" の場合のフィールド
-      studyMinutes: 0,
-      taskCode: 0,
-      studyLangs: [],
-      score: 0,
-      // "mentor" の場合のフィールド
-      // experienceDays: 0,
-      // useLangs: [],
-      // availableStartCode: 0,
-      // availableEndCode: 0,
-    },
-  });
+  } = useMyForm();
 
   const roleType = watch("role");
 
@@ -182,7 +161,7 @@ export const NewRegisterForm = () => {
     remove: removeStudyLang,
   } = useFieldArray({
     control,
-    name: "studyLang",
+    name: "studyLangs",
   });
 
   const {
@@ -191,21 +170,70 @@ export const NewRegisterForm = () => {
     remove: removeUseLang,
   } = useFieldArray({
     control,
-    name: "useLang",
+    name: "useLangs",
   });
 
-  const onSubmit: SubmitHandler<
-    NewRegisterInputMentorType | NewRegisterInputStudentType
-  > = (data) => {
-    console.log({ data });
+  const onSubmit: SubmitHandler<NewRegisterInputType> = (formData) => {
+    console.log("登録ボタン押下");
+    try {
+      const commonData = {
+        id: formData.id,
+        name: formData.name,
+        email: formData.email,
+        role: formData.role,
+        age: formData.age,
+        postCode: formData.postCode,
+        phone: formData.phone,
+        hobbies: formData.hobbies,
+        url: formData.url,
+      };
 
-    const newUser = {
-      ...data,
-    } as MentorDataType | StudentDataType;
+      const cleanedFormData = {
+        ...commonData,
+        studyMinutes: formData.studyMinutes ?? null,
+        taskCode: formData.taskCode ?? null,
+        studyLangs:
+          formData.studyLangs?.filter(
+            (lang): lang is string => lang != undefined
+          ) || [],
+        score: formData.score ?? null,
+        experienceDays: formData.experienceDays ?? null,
+        useLangs:
+          formData.useLangs?.filter(
+            (lang): lang is string => lang != undefined
+          ) || [],
+        availableStartCode: formData.availableStartCode ?? null,
+        availableEndCode: formData.availableEndCode ?? null,
+      };
 
-    setUserListData((prevUserListData) => [...prevUserListData, newUser]);
-    closeModal();
-    reset();
+      if (cleanedFormData.role === "student") {
+        const newUser = {
+          ...cleanedFormData,
+          studyMinutes: cleanedFormData.studyMinutes,
+          taskCode: cleanedFormData.taskCode,
+          studyLangs: cleanedFormData.studyLangs,
+          score: cleanedFormData.score,
+        } as StudentDataType;
+
+        setUserListData((prevUserListData) => [...prevUserListData, newUser]);
+        closeModal();
+        reset();
+      } else {
+        const newUser = {
+          ...cleanedFormData,
+          experienceDays: cleanedFormData.experienceDays,
+          useLangs: cleanedFormData.useLangs,
+          availableStartCode: cleanedFormData.availableStartCode,
+          availableEndCode: cleanedFormData.availableEndCode,
+        } as MentorDataType;
+
+        setUserListData((prevUserListData) => [...prevUserListData, newUser]);
+        closeModal();
+        reset();
+      }
+    } catch {
+      console.log(errors);
+    }
   };
 
   // const onerror = (err) => console.log(err);

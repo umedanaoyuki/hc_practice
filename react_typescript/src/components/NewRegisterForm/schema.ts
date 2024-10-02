@@ -1,3 +1,5 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 /**
@@ -32,7 +34,7 @@ export const studentSchema = yup.object({
   postCode: yup.string().label("郵便番号").required("${label}は入力必須です"),
   phone: yup.string().label("電話番号").required("${label}は入力必須です"),
   hobbies: yup
-    .array(yup.string())
+    .array(yup.string().required())
     .label("趣味")
     .required("${label}は入力必須です"),
   url: yup
@@ -91,7 +93,7 @@ export const mentorSchema = yup.object({
   availableEndCode: yup.number(),
 });
 
-export const schema = yup.object({
+export const schema = yup.object().shape({
   id: yup.number().required(),
   name: yup
     .string()
@@ -119,7 +121,7 @@ export const schema = yup.object({
   postCode: yup.string().label("郵便番号").required("${label}は入力必須です"),
   phone: yup.string().label("電話番号").required("${label}は入力必須です"),
   hobbies: yup
-    .array(yup.string())
+    .array(yup.string().required())
     .label("趣味")
     .required("${label}は入力必須です"),
   url: yup
@@ -127,12 +129,71 @@ export const schema = yup.object({
     .label("URL")
     .url("URLを登録してください")
     .required("${label}は入力必須です"),
-  studyMinutes: yup.number(),
-  taskCode: yup.number(),
-  studyLangs: yup.array(yup.string()),
-  score: yup.number(),
-  experienceDays: yup.number(),
-  useLangs: yup.array(yup.string()),
-  availableStartCode: yup.number(),
-  availableEndCode: yup.number(),
+  studyMinutes: yup.number().when("role", {
+    is: (val: string) => val == "student",
+    then: (schema) => schema.required("入力必須です"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+  taskCode: yup.number().when("role", {
+    is: (val: string) => val == "student",
+    then: (schema) => schema.required("入力必須です"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+  studyLangs: yup.array(yup.string()).when("role", {
+    is: (val: string) => val == "student",
+    then: (schema) => schema.required("入力必須です").min(1, "少なくとも1つの言語を入力してください"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+  score: yup.number().when("role", {
+    is: (val: string) => val == "student",
+    then: (schema) => schema.required("入力必須です"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+  experienceDays: yup.number().when("role", {
+    is: (val: string) => val == "mentor",
+    then: (schema) => schema.required("入力必須です"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+  useLangs: yup.array(yup.string()).when("role", {
+    is: (val: string) => val == "mentor",
+    then: (schema) => schema.required("入力必須です").min(1, "少なくとも1つの言語を入力してください"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+  availableStartCode: yup.number().when("role", {
+    is: (val: string) => val == "mentor",
+    then: (schema) => schema.required("入力必須です"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+  availableEndCode: yup.number().when("role", {
+    is: (val: string) => val == "mentor",
+    then: (schema) => schema.required("入力必須です"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
 });
+
+export type NewRegisterInputType = yup.InferType<typeof schema>;
+
+export const useMyForm = () => {
+  return useForm<NewRegisterInputType>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      id: undefined,
+      name: "",
+      role: "student",
+      email: "",
+      age: undefined,
+      postCode: undefined,
+      phone: undefined,
+      hobbies: [""],
+      url: "",
+      studyMinutes: undefined,
+      taskCode: undefined,
+      studyLangs: [],
+      score: undefined,
+      experienceDays: undefined,
+      useLangs: [],
+      availableStartCode: undefined,
+      availableEndCode: undefined,
+    },
+  });
+};

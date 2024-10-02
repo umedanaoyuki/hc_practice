@@ -1,5 +1,3 @@
-
-
 export type NewRegisterInputType = {
   id: number;
   name: string;
@@ -10,12 +8,12 @@ export type NewRegisterInputType = {
   phone: string;
   hobbies: string[];
   url: string;
-  studyMinutes: number;
-  taskCode: number;
-  studyLangs: string[];
-  score: number;
-  experienceDays: number;
-  useLangs: string[];
-  availableStartCode: number;
-  availableEndCode: number;
+  studyMinutes?: number;
+  taskCode?: number;
+  studyLangs?: (string | undefined)[];
+  score?: number;
+  experienceDays?: number;
+  useLangs?: (string | undefined)[];
+  availableStartCode?: number;
+  availableEndCode?: number;
 };
