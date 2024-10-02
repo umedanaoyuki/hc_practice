@@ -2,10 +2,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
-/**
- * このスキーマを複数作る（studentSchema/mentorsSchema）
- */
-
 export const studentSchema = yup.object({
   id: yup.number().required(),
   name: yup
