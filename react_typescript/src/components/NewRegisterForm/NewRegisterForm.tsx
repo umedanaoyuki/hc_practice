@@ -126,7 +126,7 @@ export const NewRegisterForm = () => {
   };
 
   const closeModal = () => {
-    console.log("モーダル閉じる");
+    // console.log("モーダル閉じる");
     setIsOpen(false);
   };
 
@@ -173,7 +173,8 @@ export const NewRegisterForm = () => {
   });
 
   const onSubmit: SubmitHandler<NewRegisterInputType> = (formData) => {
-    console.log("登録ボタン押下");
+    console.log("formData出力");
+    console.log({ formData });
 
     try {
       const commonData = {
@@ -184,7 +185,10 @@ export const NewRegisterForm = () => {
         age: formData.age,
         postCode: formData.postCode,
         phone: formData.phone,
-        hobbies: formData.hobbies,
+        hobbies:
+          formData.hobbies?.filter(
+            (lang): lang is string => lang != undefined
+          ) || [],
         url: formData.url,
       };
 
@@ -238,6 +242,8 @@ export const NewRegisterForm = () => {
 
   // const onerror = (err) => console.log(err);
 
+  console.log({ errors });
+
   return (
     <div>
       <button onClick={openModal}>Open Modal</button>
@@ -257,7 +263,6 @@ export const NewRegisterForm = () => {
               <label htmlFor="name">名前</label>
               <input type="text" {...register("name")} />
               <div>{errors.name?.message}</div>
-              {/* ラジオボタン */}
               <label htmlFor="role">ロール</label>
               <div>
                 <input type="radio" value="student" {...register("role")} />
@@ -283,10 +288,8 @@ export const NewRegisterForm = () => {
                 <div key={field.id}>
                   <input
                     type="text"
+                    {...register(`hobbies.${index}` as const)}
                     placeholder={`趣味 ${index + 1}`}
-                    {...register(`hobbies.${index}` as const, {
-                      required: true,
-                    })}
                   />
                   <button
                     type="button"
@@ -298,11 +301,14 @@ export const NewRegisterForm = () => {
                 </div>
               ))}
               {hobbiesFields.length < 3 && (
-                <button type="button" onClick={() => appendHobby("")}>
-                  趣味を追加
-                </button>
+                <>
+                  <button type="button" onClick={() => appendHobby("")}>
+                    趣味を追加
+                  </button>
+                  <div>{errors.hobbies?.message}</div>
+                </>
               )}
-              <div>{errors.hobbies?.message}</div>
+
               <label htmlFor="url">URL</label>
               <input type="text" {...register("url")} />
               <div>{errors.url?.message}</div>
@@ -311,8 +317,10 @@ export const NewRegisterForm = () => {
                 <>
                   <label htmlFor="studyMinutes">勉強時間</label>
                   <input type="number" {...register("studyMinutes")} />
+                  <div>{errors.studyMinutes?.message}</div>
                   <label htmlFor="taskCode">課題番号</label>
                   <input type="number" {...register("taskCode")} />
+                  <div>{errors.taskCode?.message}</div>
                   <label htmlFor="studyLangs">勉強中の言語(2つまで)</label>
                   {studyLangsFields.map((field, index) => (
                     <div key={field.id}>
@@ -331,12 +339,16 @@ export const NewRegisterForm = () => {
                     </div>
                   ))}
                   {studyLangsFields.length < 2 && (
-                    <button type="button" onClick={() => appendStudyLang("")}>
-                      言語を追加
-                    </button>
+                    <>
+                      <button type="button" onClick={() => appendStudyLang("")}>
+                        言語を追加
+                      </button>
+                      <div>{errors.studyLangs?.message}</div>
+                    </>
                   )}
                   <label htmlFor="score">ハピネススコア</label>
                   <input type="number" {...register("score")} />
+                  <div>{errors.score?.message}</div>
                 </>
               )}
 
@@ -344,6 +356,7 @@ export const NewRegisterForm = () => {
                 <>
                   <label htmlFor="experienceDays">実務経験年数</label>
                   <input type="number" {...register("experienceDays")} />
+                  <div>{errors.experienceDays?.message}</div>
                   <label htmlFor="useLangs">
                     現場で使っている言語(2つまで)
                   </label>
@@ -364,19 +377,24 @@ export const NewRegisterForm = () => {
                     </div>
                   ))}
                   {useLangsFields.length < 2 && (
-                    <button type="button" onClick={() => appendUseLang("")}>
-                      言語を追加
-                    </button>
+                    <>
+                      <button type="button" onClick={() => appendUseLang("")}>
+                        言語を追加
+                      </button>
+                      <div>{errors.useLangs?.message}</div>
+                    </>
                   )}
 
                   <label htmlFor="availableStartCode">
                     担当できる課題番号初め
                   </label>
                   <input type="number" {...register("availableStartCode")} />
+                  <div>{errors.availableStartCode?.message}</div>
                   <label htmlFor="availableEndCode">
                     担当できる課題番号終わり
                   </label>
                   <input type="number" {...register("availableEndCode")} />
+                  <div>{errors.availableEndCode?.message}</div>
                 </>
               )}
 

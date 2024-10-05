@@ -19,6 +19,7 @@ export const ForAllTable = ({ studentsData, mentorsData }: Data) => {
 
   console.log({ studentsData });
   console.log({ mentorsData });
+  console.log({ data });
 
   const columns = createColumns(studentsData, mentorsData);
 

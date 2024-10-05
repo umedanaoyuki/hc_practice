@@ -117,9 +117,10 @@ export const schema = yup.object().shape({
   postCode: yup.string().label("郵便番号").required("${label}は入力必須です"),
   phone: yup.string().label("電話番号").required("${label}は入力必須です"),
   hobbies: yup
-    .array(yup.string().required())
-    .label("趣味")
-    .required("${label}は入力必須です"),
+    .array()
+    .of(yup.string().required("趣味を入力してください"))
+    .min(1, "少なくとも1つの趣味を入力してください")
+    .required("趣味は入力必須です"),
   url: yup
     .string()
     .label("URL")
@@ -186,7 +187,7 @@ export const useMyForm = () => {
       age: undefined,
       postCode: undefined,
       phone: undefined,
-      hobbies: [],
+      hobbies: undefined,
       url: "",
       studyMinutes: undefined,
       taskCode: undefined,

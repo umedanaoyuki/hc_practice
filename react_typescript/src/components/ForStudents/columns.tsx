@@ -24,7 +24,7 @@ const searchHobby = (
   columnId: string,
   filterValue: string
 ) => {
-  console.log("カスタムフィルター作動");
+  // console.log("カスタムフィルター作動");
   const hobbiesArray = row.getValue<string[]>(columnId);
   if (Array.isArray(hobbiesArray)) {
     // hobbies 配列内にフィルター値が含まれるかを確認
@@ -40,7 +40,7 @@ const searchStudyLangs = (
   columnId: string,
   filterValue: string
 ) => {
-  console.log("カスタムフィルター作動");
+  // console.log("カスタムフィルター作動");
   const studyLangsArray = row.getValue<string[]>(columnId);
   if (Array.isArray(studyLangsArray)) {
     // hobbies 配列内にフィルター値が含まれるかを確認
