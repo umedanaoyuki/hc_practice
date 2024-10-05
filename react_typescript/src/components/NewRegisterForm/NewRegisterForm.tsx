@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useFieldArray } from "react-hook-form";
 import Modal from "react-modal";
 // import styled from "styled-components";
@@ -194,13 +194,13 @@ export const NewRegisterForm = () => {
 
       const cleanedFormData = {
         ...commonData,
+        score: formData.score ?? null,
         studyMinutes: formData.studyMinutes ?? null,
         taskCode: formData.taskCode ?? null,
         studyLangs:
           formData.studyLangs?.filter(
             (lang): lang is string => lang != undefined
           ) || [],
-        score: formData.score ?? null,
         experienceDays: formData.experienceDays ?? null,
         useLangs:
           formData.useLangs?.filter(
@@ -242,6 +242,7 @@ export const NewRegisterForm = () => {
 
   // const onerror = (err) => console.log(err);
 
+  console.log({ roleType });
   console.log({ errors });
 
   return (
@@ -313,45 +314,6 @@ export const NewRegisterForm = () => {
               <input type="text" {...register("url")} />
               <div>{errors.url?.message}</div>
 
-              {roleType === "student" && (
-                <>
-                  <label htmlFor="studyMinutes">勉強時間</label>
-                  <input type="number" {...register("studyMinutes")} />
-                  <div>{errors.studyMinutes?.message}</div>
-                  <label htmlFor="taskCode">課題番号</label>
-                  <input type="number" {...register("taskCode")} />
-                  <div>{errors.taskCode?.message}</div>
-                  <label htmlFor="studyLangs">勉強中の言語(2つまで)</label>
-                  {studyLangsFields.map((field, index) => (
-                    <div key={field.id}>
-                      <input
-                        type="text"
-                        {...register(`studyLangs.${index}` as const)}
-                        placeholder={`言語 ${index + 1}`}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeStudyLang(index)}
-                        disabled={studyLangsFields.length <= 1}
-                      >
-                        削除
-                      </button>
-                    </div>
-                  ))}
-                  {studyLangsFields.length < 2 && (
-                    <>
-                      <button type="button" onClick={() => appendStudyLang("")}>
-                        言語を追加
-                      </button>
-                      <div>{errors.studyLangs?.message}</div>
-                    </>
-                  )}
-                  <label htmlFor="score">ハピネススコア</label>
-                  <input type="number" {...register("score")} />
-                  <div>{errors.score?.message}</div>
-                </>
-              )}
-
               {roleType === "mentor" && (
                 <>
                   <label htmlFor="experienceDays">実務経験年数</label>
@@ -395,6 +357,45 @@ export const NewRegisterForm = () => {
                   </label>
                   <input type="number" {...register("availableEndCode")} />
                   <div>{errors.availableEndCode?.message}</div>
+                </>
+              )}
+
+              {roleType === "student" && (
+                <>
+                  <label htmlFor="studyMinutes">勉強時間</label>
+                  <input type="number" {...register("studyMinutes")} />
+                  <div>{errors.studyMinutes?.message}</div>
+                  <label htmlFor="taskCode">課題番号</label>
+                  <input type="number" {...register("taskCode")} />
+                  <div>{errors.taskCode?.message}</div>
+                  <label htmlFor="studyLangs">勉強中の言語(2つまで)</label>
+                  {studyLangsFields.map((field, index) => (
+                    <div key={field.id}>
+                      <input
+                        type="text"
+                        {...register(`studyLangs.${index}` as const)}
+                        placeholder={`言語 ${index + 1}`}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeStudyLang(index)}
+                        disabled={studyLangsFields.length <= 1}
+                      >
+                        削除
+                      </button>
+                    </div>
+                  ))}
+                  {studyLangsFields.length < 2 && (
+                    <>
+                      <button type="button" onClick={() => appendStudyLang("")}>
+                        言語を追加
+                      </button>
+                      <div>{errors.studyLangs?.message}</div>
+                    </>
+                  )}
+                  <label htmlFor="score">ハピネススコア</label>
+                  <input type="number" {...register("score")} />
+                  <div>{errors.score?.message}</div>
                 </>
               )}
 

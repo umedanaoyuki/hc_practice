@@ -126,16 +126,22 @@ export const schema = yup.object().shape({
     .label("URL")
     .url("URLを登録してください")
     .required("${label}は入力必須です"),
-  studyMinutes: yup.number().when("role", {
-    is: (val: string) => val == "student",
-    then: (schema) => schema.required("入力必須です"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
-  taskCode: yup.number().when("role", {
-    is: (val: string) => val == "student",
-    then: (schema) => schema.required("入力必須です"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
+  studyMinutes: yup
+    .number()
+    .nullable()
+    .when("role", {
+      is: (val: string) => val == "student",
+      then: (schema) => schema.required("入力必須です"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+  taskCode: yup
+    .number()
+    .nullable()
+    .when("role", {
+      is: (val: string) => val == "student",
+      then: (schema) => schema.required("入力必須です"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   studyLangs: yup.array(yup.string()).when("role", {
     is: (val: string) => val == "student",
     then: (schema) =>
@@ -144,11 +150,14 @@ export const schema = yup.object().shape({
         .min(1, "少なくとも1つの言語を入力してください"),
     otherwise: (schema) => schema.notRequired(),
   }),
-  score: yup.number().when("role", {
-    is: (val: string) => val == "student",
-    then: (schema) => schema.required("入力必須です"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
+  score: yup
+    .number()
+    .nullable()
+    .when("role", {
+      is: (val: string) => val == "student",
+      then: (schema) => schema.required("入力必須です"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   experienceDays: yup.number().when("role", {
     is: (val: string) => val == "mentor",
     then: (schema) => schema.required("入力必須です"),
@@ -189,10 +198,10 @@ export const useMyForm = () => {
       phone: undefined,
       hobbies: undefined,
       url: "",
-      studyMinutes: undefined,
-      taskCode: undefined,
+      studyMinutes: null,
+      taskCode: null,
       studyLangs: [],
-      score: undefined,
+      score: null,
       experienceDays: undefined,
       useLangs: [],
       availableStartCode: undefined,
