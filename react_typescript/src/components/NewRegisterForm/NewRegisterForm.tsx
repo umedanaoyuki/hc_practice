@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useFieldArray } from "react-hook-form";
 import Modal from "react-modal";
 // import styled from "styled-components";

@@ -6,8 +6,8 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { data } from "../../api/data";
 import { createColumns } from "./columns";
+import { useMemo } from "react";
 
 type Data = {
   studentsData: StudentDataType[];
@@ -19,13 +19,15 @@ export const ForAllTable = ({ studentsData, mentorsData }: Data) => {
 
   console.log({ studentsData });
   console.log({ mentorsData });
-  console.log({ data });
 
+  const newData = useMemo(() => {
+    return [...studentsData, ...mentorsData];
+  }, [studentsData, mentorsData]);
   const columns = createColumns(studentsData, mentorsData);
 
   const table = useReactTable<MentorDataType | StudentDataType>({
     columns,
-    data,
+    data: newData,
     initialState: {
       sorting: [{ id: "id", desc: false }],
     },
