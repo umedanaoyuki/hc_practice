@@ -24,10 +24,8 @@ const searchHobby = (
   columnId: string,
   filterValue: string
 ) => {
-  // console.log("カスタムフィルター作動");
   const hobbiesArray = row.getValue<string[]>(columnId);
   if (Array.isArray(hobbiesArray)) {
-    // hobbies 配列内にフィルター値が含まれるかを確認
     return hobbiesArray.some((hobby) =>
       hobby.toLowerCase().includes(filterValue.toLowerCase())
     );
@@ -49,7 +47,6 @@ const searchUseLangs = (
   return false;
 };
 
-// columnsの設定を関数に変更し、引数でstudentsDataとmentorsDataを受け取る
 export const createColumns = (
   mentorsData: MentorDataType[],
   studentsData: StudentDataType[]
@@ -94,7 +91,6 @@ export const createColumns = (
   {
     accessorKey: "hobbies",
     header: "趣味（リスト）",
-    // filterFnを指定
     filterFn: searchHobby,
     // cellの表示方法（配列を文字列として表示）
     cell: ({ getValue }) => getValue<string[]>().join(","),
@@ -133,7 +129,6 @@ export const createColumns = (
     accessorKey: "availableStudents",
     header: "対応可能生徒",
     cell: ({ row }) => {
-      // console.log(studentsData);
       const studentArray: string[] = [];
       const data = row.original;
       // studentsDataを使ったカスタムロジック
@@ -149,14 +144,6 @@ export const createColumns = (
       }
 
       return studentArray.join(",");
-      // 重複した要素の削除
-      //   const uniqueStudentsArray = studentArray.filter((elm, index) => {
-      //     return studentArray.indexOf(elm) === index;
-      //   });
-      //   return uniqueStudentsArray.join("/");
-      // } else {
-      //   return "-";
-      // }
     },
   },
 ];

@@ -110,13 +110,7 @@ const customStyles = {
 // react-modalの使用
 Modal.setAppElement("#root");
 
-// type UserListData = {
-//   userListData: (MentorDataType | StudentDataType)[];
-// };
-
 export const NewRegisterForm = () => {
-  // let subtitle: { style: { color: string } };
-
   // モーダルオープン・クローズの状態管理
   const [modalIsOpen, setIsOpen] = useState(false);
   const setUserListData = useSetRecoilState(userListDataSelector);
@@ -126,7 +120,6 @@ export const NewRegisterForm = () => {
   };
 
   const closeModal = () => {
-    // console.log("モーダル閉じる");
     setIsOpen(false);
   };
 

@@ -24,10 +24,8 @@ const searchHobby = (
   columnId: string,
   filterValue: string
 ) => {
-  // console.log("カスタムフィルター作動");
   const hobbiesArray = row.getValue<string[]>(columnId);
   if (Array.isArray(hobbiesArray)) {
-    // hobbies 配列内にフィルター値が含まれるかを確認
     return hobbiesArray.some((hobby) =>
       hobby.toLowerCase().includes(filterValue.toLowerCase())
     );
@@ -40,10 +38,8 @@ const searchStudyLangs = (
   columnId: string,
   filterValue: string
 ) => {
-  // console.log("カスタムフィルター作動");
   const studyLangsArray = row.getValue<string[]>(columnId);
   if (Array.isArray(studyLangsArray)) {
-    // hobbies 配列内にフィルター値が含まれるかを確認
     return studyLangsArray.some((lang) =>
       lang.toLowerCase().includes(filterValue.toLowerCase())
     );
@@ -51,7 +47,6 @@ const searchStudyLangs = (
   return false;
 };
 
-// columnsの設定を関数に変更し、引数でstudentsDataとmentorsDataを受け取る
 export const createColumns = (
   studentsData: StudentDataType[],
   mentorsData: MentorDataType[]
@@ -167,16 +162,6 @@ export const createColumns = (
     cell: ({ row }) => {
       // 行データの取得
       const data = row.original;
-
-      // カスタム関数のロジック
-      // if (data.role === "student") {
-      //   const availableMentors = mentorsData
-      //     .map((mentor) => mentor.name)
-      //     .join(", ");
-      //   return availableMentors || "なし";
-      // } else {
-      //   return "-";
-      // }
       const mentorsArray: string[] = [];
 
       if (data.role === "student") {

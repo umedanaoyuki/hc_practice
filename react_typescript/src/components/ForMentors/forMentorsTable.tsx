@@ -10,6 +10,9 @@ import { createColumns } from "./columns";
 import { StudentDataType } from "../../type/StudentDataType";
 import { TableDataType } from "../../type/ForAllTableDataType";
 
+/**
+ * メンター情報の表示テーブル
+ */
 export const ForMentorsTable = ({
   studentsData,
   mentorsData,
@@ -21,7 +24,7 @@ export const ForMentorsTable = ({
     columns,
     data: mentorsData,
     initialState: {
-      // メールアドレスでソート
+      // idでソート
       sorting: [{ id: "id", desc: false }],
     },
     getCoreRowModel: getCoreRowModel(),
@@ -73,7 +76,6 @@ export const ForMentorsTable = ({
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => {
-              // console.log(row);
               return (
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {

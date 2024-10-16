@@ -10,6 +10,9 @@ import {
 import { createColumns } from "./columns";
 import { TableDataType } from "../../type/ForAllTableDataType";
 
+/**
+ * 生徒情報の表示テーブル
+ */
 export const ForStudentsTable = ({
   studentsData,
   mentorsData,
@@ -38,7 +41,6 @@ export const ForStudentsTable = ({
             }
             onChange={(e) => {
               table.getColumn("hobbies")?.setFilterValue(e.target.value);
-              // console.log(e.target.value);
             }}
           ></input>
         </div>
@@ -50,7 +52,6 @@ export const ForStudentsTable = ({
             }
             onChange={(e) => {
               table.getColumn("studyLangs")?.setFilterValue(e.target.value);
-              // console.log(e.target.value);
             }}
           ></input>
         </div>
@@ -73,7 +74,6 @@ export const ForStudentsTable = ({
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => {
-              // console.log(row);
               return (
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {

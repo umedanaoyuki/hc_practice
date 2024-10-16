@@ -18,7 +18,6 @@ const getSortIcon = (sortDirection: false | SortDirection) => {
   }
 };
 
-// columnsの設定を関数に変更し、引数でstudentsDataとmentorsDataを受け取る
 export const createColumns = (
   studentsData: StudentDataType[],
   mentorsData: MentorDataType[]
