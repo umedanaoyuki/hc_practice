@@ -143,6 +143,9 @@ export const schema = yup.object().shape({
     .number()
     .nullable()
     .label("勉強時間")
+    .typeError("${label}は数値で入力してください")
+    .positive("${label}は正の数で入力してください")
+    .min(30, "30分以上で入力してください")
     .when("role", {
       is: (val: string) => val == "student",
       then: (schema) => schema.required("${label}は入力必須です"),

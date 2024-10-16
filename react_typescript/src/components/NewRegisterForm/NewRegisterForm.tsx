@@ -362,7 +362,7 @@ export const NewRegisterForm = () => {
 
               {roleType === "student" && (
                 <>
-                  <label htmlFor="studyMinutes">勉強時間</label>
+                  <label htmlFor="studyMinutes">勉強時間（分）</label>
                   <input type="number" {...register("studyMinutes")} />
                   <div>{errors.studyMinutes?.message}</div>
                   <label htmlFor="taskCode">課題番号</label>
