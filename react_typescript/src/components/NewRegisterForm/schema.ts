@@ -148,6 +148,8 @@ export const schema = yup.object().shape({
     }),
   taskCode: yup
     .number()
+    .label("課題番号")
+    .typeError("${label}は数値で入力してください")
     .nullable()
     .when("role", {
       is: (val: string) => val == "student",
@@ -165,6 +167,8 @@ export const schema = yup.object().shape({
   score: yup
     .number()
     .nullable()
+    .label("ハピネススコア")
+    .typeError("${label}は数値で入力してください")
     .when("role", {
       is: (val: string) => val == "student",
       then: (schema) => schema.required("入力必須です"),
