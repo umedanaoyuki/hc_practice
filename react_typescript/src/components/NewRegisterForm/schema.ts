@@ -129,10 +129,11 @@ export const schema = yup.object().shape({
     .required("${label}は入力必須です"),
   hobbies: yup
     .array()
+    .label("趣味")
     .of(yup.string().required("趣味を入力してください"))
     .min(1, "少なくとも1つの趣味を入力してください")
     .max(20, "${label}は${max}文字以内で入力してください。")
-    .required("趣味は入力必須です"),
+    .required("${label}は入力必須です"),
   url: yup
     .string()
     .label("URL")
@@ -141,9 +142,10 @@ export const schema = yup.object().shape({
   studyMinutes: yup
     .number()
     .nullable()
+    .label("勉強時間")
     .when("role", {
       is: (val: string) => val == "student",
-      then: (schema) => schema.required("入力必須です"),
+      then: (schema) => schema.required("${label}は入力必須です"),
       otherwise: (schema) => schema.notRequired(),
     }),
   taskCode: yup
@@ -153,17 +155,20 @@ export const schema = yup.object().shape({
     .nullable()
     .when("role", {
       is: (val: string) => val == "student",
-      then: (schema) => schema.required("入力必須です"),
+      then: (schema) => schema.required("${label}は入力必須です"),
       otherwise: (schema) => schema.notRequired(),
     }),
-  studyLangs: yup.array(yup.string()).when("role", {
-    is: (val: string) => val == "student",
-    then: (schema) =>
-      schema
-        .required("入力必須です")
-        .min(1, "少なくとも1つの言語を入力してください"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
+  studyLangs: yup
+    .array(yup.string())
+    .label("勉強している言語")
+    .when("role", {
+      is: (val: string) => val == "student",
+      then: (schema) =>
+        schema
+          .required("${label}は入力必須です")
+          .min(1, "少なくとも1つの言語を入力してください"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   score: yup
     .number()
     .nullable()
@@ -171,32 +176,45 @@ export const schema = yup.object().shape({
     .typeError("${label}は数値で入力してください")
     .when("role", {
       is: (val: string) => val == "student",
-      then: (schema) => schema.required("入力必須です"),
+      then: (schema) => schema.required("${label}は入力必須です"),
       otherwise: (schema) => schema.notRequired(),
     }),
-  experienceDays: yup.number().when("role", {
-    is: (val: string) => val == "mentor",
-    then: (schema) => schema.required("入力必須です"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
+  experienceDays: yup
+    .number()
+    .nullable()
+    .label("実務経験年数")
+    .typeError("${label}は数値で入力してください")
+    .when("role", {
+      is: (val: string) => val == "mentor",
+      then: (schema) => schema.required("${label}は入力必須です"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
   useLangs: yup.array(yup.string()).when("role", {
     is: (val: string) => val == "mentor",
     then: (schema) =>
       schema
-        .required("入力必須です")
+        .required("${label}は入力必須です")
         .min(1, "少なくとも1つの言語を入力してください"),
     otherwise: (schema) => schema.notRequired(),
   }),
-  availableStartCode: yup.number().when("role", {
-    is: (val: string) => val == "mentor",
-    then: (schema) => schema.required("入力必須です"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
-  availableEndCode: yup.number().when("role", {
-    is: (val: string) => val == "mentor",
-    then: (schema) => schema.required("入力必須です"),
-    otherwise: (schema) => schema.notRequired(),
-  }),
+  availableStartCode: yup
+    .number()
+    .nullable()
+    .typeError("数値で入力してください")
+    .when("role", {
+      is: (val: string) => val == "mentor",
+      then: (schema) => schema.required("入力必須です"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
+  availableEndCode: yup
+    .number()
+    .nullable()
+    .typeError("数値で入力してください")
+    .when("role", {
+      is: (val: string) => val == "mentor",
+      then: (schema) => schema.required("入力必須です"),
+      otherwise: (schema) => schema.notRequired(),
+    }),
 });
 
 export type NewRegisterInputType = yup.InferType<typeof schema>;
