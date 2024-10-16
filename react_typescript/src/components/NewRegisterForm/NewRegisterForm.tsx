@@ -279,10 +279,10 @@ export const NewRegisterForm = () => {
               <input type="number" {...register("age")} />
               <div>{errors.age?.message}</div>
               <label htmlFor="postCode">郵便番号</label>
-              <input type="number" {...register("postCode")} />
+              <input type="text" {...register("postCode")} />
               <div>{errors.postCode?.message}</div>
-              <label htmlFor="phone">電話番号</label>
-              <input type="number" {...register("phone")} />
+              <label htmlFor="phone">電話番号(ハイフンなし)</label>
+              <input type="text" {...register("phone")} />
               <div>{errors.phone?.message}</div>
               <label htmlFor="hobbies">趣味(3つまで)</label>
               {hobbiesFields.map((field, index) => (

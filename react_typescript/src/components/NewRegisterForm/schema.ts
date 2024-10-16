@@ -114,12 +114,24 @@ export const schema = yup.object().shape({
     .positive("${label}は正の数で入力してください")
     .max(100, "100歳以上は登録できません")
     .required("${label}は入力必須です"),
-  postCode: yup.string().label("郵便番号").required("${label}は入力必須です"),
-  phone: yup.string().label("電話番号").required("${label}は入力必須です"),
+  postCode: yup
+    .string()
+    .matches(/^\d{3}-\d{4}$/, "郵便番号は123-4567の形式で入力してください")
+    .label("郵便番号")
+    .required("${label}は入力必須です"),
+  phone: yup
+    .string()
+    .matches(
+      /^(0[5-9]0\d{8}|0[1-9][1-9]\d{7}|0120\d{6})$/,
+      "有効な電話番号を入力してください"
+    )
+    .label("電話番号")
+    .required("${label}は入力必須です"),
   hobbies: yup
     .array()
     .of(yup.string().required("趣味を入力してください"))
     .min(1, "少なくとも1つの趣味を入力してください")
+    .max(20, "${label}は${max}文字以内で入力してください。")
     .required("趣味は入力必須です"),
   url: yup
     .string()

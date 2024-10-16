@@ -84,6 +84,15 @@ export const createColumns = (
   {
     accessorKey: "taskCode",
     header: "課題番号",
+    cell: ({ row }) => {
+      const data = row.original;
+
+      if (data.role === "mentor") {
+        return "-";
+      } else {
+        return data.taskCode;
+      }
+    },
   },
   {
     accessorKey: "studyLangs",
