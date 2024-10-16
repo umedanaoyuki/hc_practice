@@ -8,13 +8,12 @@ import {
 } from "@tanstack/react-table";
 import { createColumns } from "./columns";
 import { StudentDataType } from "../../type/StudentDataType";
+import { TableDataType } from "../../type/ForAllTableDataType";
 
-type Data = {
-  studentsData: StudentDataType[];
-  mentorsData: MentorDataType[];
-};
-
-export const ForMentorsTable = ({ studentsData, mentorsData }: Data) => {
+export const ForMentorsTable = ({
+  studentsData,
+  mentorsData,
+}: TableDataType) => {
   // studentsDataとmentorsDataを使ってカラムを生成
   const columns = createColumns(mentorsData, studentsData);
 

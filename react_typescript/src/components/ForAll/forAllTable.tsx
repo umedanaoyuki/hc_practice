@@ -8,18 +8,9 @@ import {
 } from "@tanstack/react-table";
 import { createColumns } from "./columns";
 import { useMemo } from "react";
+import { TableDataType } from "../../type/ForAllTableDataType";
 
-type Data = {
-  studentsData: StudentDataType[];
-  mentorsData: MentorDataType[];
-};
-
-export const ForAllTable = ({ studentsData, mentorsData }: Data) => {
-  // studentsDataとmentorsDataを使ってカラムを生成
-
-  console.log({ studentsData });
-  console.log({ mentorsData });
-
+export const ForAllTable = ({ studentsData, mentorsData }: TableDataType) => {
   const newData = useMemo(() => {
     return [...studentsData, ...mentorsData];
   }, [studentsData, mentorsData]);
@@ -57,7 +48,6 @@ export const ForAllTable = ({ studentsData, mentorsData }: Data) => {
           </thead>
           <tbody>
             {table.getRowModel().rows.map((row) => {
-              // console.log(row);
               return (
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {

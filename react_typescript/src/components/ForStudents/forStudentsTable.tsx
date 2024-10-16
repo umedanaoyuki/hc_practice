@@ -8,13 +8,12 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { createColumns } from "./columns";
+import { TableDataType } from "../../type/ForAllTableDataType";
 
-type Data = {
-  studentsData: StudentDataType[];
-  mentorsData: MentorDataType[];
-};
-
-export const ForStudentsTable = ({ studentsData, mentorsData }: Data) => {
+export const ForStudentsTable = ({
+  studentsData,
+  mentorsData,
+}: TableDataType) => {
   const columns = createColumns(studentsData, mentorsData);
 
   const table = useReactTable<MentorDataType | StudentDataType>({
