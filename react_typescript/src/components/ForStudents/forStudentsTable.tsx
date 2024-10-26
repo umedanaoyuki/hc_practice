@@ -9,6 +9,9 @@ import {
 } from "@tanstack/react-table";
 import { createColumns } from "./columns";
 import { TableDataType } from "../../type/ForAllTableDataType";
+import { Table } from "../../common/Table";
+import { TableHeader } from "../../common/TableHeader";
+import { TableData } from "../../common/TableData";
 
 /**
  * 生徒情報の表示テーブル
@@ -55,19 +58,19 @@ export const ForStudentsTable = ({
             }}
           ></input>
         </div>
-        <table>
+        <Table>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <TableHeader key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
                           header.getContext()
                         )}
-                  </th>
+                  </TableHeader>
                 ))}
               </tr>
             ))}
@@ -78,19 +81,19 @@ export const ForStudentsTable = ({
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
                     return (
-                      <td key={cell.id}>
+                      <TableData key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
                         )}
-                      </td>
+                      </TableData>
                     );
                   })}
                 </tr>
               );
             })}
           </tbody>
-        </table>
+        </Table>
       </main>
     </div>
   );

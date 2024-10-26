@@ -9,6 +9,9 @@ import {
 import { createColumns } from "./columns";
 import { StudentDataType } from "../../type/StudentDataType";
 import { TableDataType } from "../../type/ForAllTableDataType";
+import { Table } from "../../common/Table";
+import { TableData } from "../../common/TableData";
+import { TableHeader } from "../../common/TableHeader";
 
 /**
  * メンター情報の表示テーブル
@@ -57,19 +60,19 @@ export const ForMentorsTable = ({
             }}
           ></input>
         </div>
-        <table>
+        <Table>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <TableHeader key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
                           header.getContext()
                         )}
-                  </th>
+                  </TableHeader>
                 ))}
               </tr>
             ))}
@@ -80,19 +83,19 @@ export const ForMentorsTable = ({
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
                     return (
-                      <td key={cell.id}>
+                      <TableData key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
                         )}
-                      </td>
+                      </TableData>
                     );
                   })}
                 </tr>
               );
             })}
           </tbody>
-        </table>
+        </Table>
       </main>
     </div>
   );

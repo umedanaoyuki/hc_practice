@@ -8,6 +8,13 @@ import { ForStudentsTable } from "./ForStudents/forStudentsTable";
 import { ForMentorsTable } from "./ForMentors/forMentorsTable";
 import { useRecoilState } from "recoil";
 import { userListDataSelector } from "../Atoms/UserListData";
+import { Button } from "../common/Button";
+import styled from "styled-components";
+
+const FlexDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 type TabTypes = "all" | "onlyStudents" | "onlyMentors";
 
@@ -49,13 +56,18 @@ const Top = () => {
 
   return (
     <>
-      <div>
-        <button onClick={() => setActiveTab("all")}>全員</button>
-        <button onClick={() => setActiveTab("onlyStudents")}>生徒のみ</button>
-        <button onClick={() => setActiveTab("onlyMentors")}>
-          メンターのみ
-        </button>
-      </div>
+      <FlexDiv>
+        <div>
+          <Button onClick={() => setActiveTab("all")}>全員</Button>
+          <Button onClick={() => setActiveTab("onlyStudents")}>生徒のみ</Button>
+          <Button onClick={() => setActiveTab("onlyMentors")}>
+            メンターのみ
+          </Button>
+        </div>
+        <div>
+          <NewRegisterForm />
+        </div>
+      </FlexDiv>
       {activeTab === "all" && (
         <ForAllTable studentsData={studentsData} mentorsData={mentorsData} />
       )}
@@ -71,9 +83,6 @@ const Top = () => {
           mentorsData={mentorsData}
         />
       )}
-      <div>
-        <NewRegisterForm />
-      </div>
     </>
   );
 };

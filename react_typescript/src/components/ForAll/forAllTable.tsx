@@ -9,6 +9,9 @@ import {
 import { createColumns } from "./columns";
 import { useMemo } from "react";
 import { TableDataType } from "../../type/ForAllTableDataType";
+import { Table } from "../../common/Table";
+import { TableData } from "../../common/TableData";
+import { TableHeader } from "../../common/TableHeader";
 
 export const ForAllTable = ({ studentsData, mentorsData }: TableDataType) => {
   const newData = useMemo(() => {
@@ -29,19 +32,19 @@ export const ForAllTable = ({ studentsData, mentorsData }: TableDataType) => {
   return (
     <div>
       <main>
-        <table>
+        <Table>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <TableHeader key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
                           header.getContext()
                         )}
-                  </th>
+                  </TableHeader>
                 ))}
               </tr>
             ))}
@@ -52,19 +55,19 @@ export const ForAllTable = ({ studentsData, mentorsData }: TableDataType) => {
                 <tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
                     return (
-                      <td key={cell.id}>
+                      <TableData key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
                         )}
-                      </td>
+                      </TableData>
                     );
                   })}
                 </tr>
               );
             })}
           </tbody>
-        </table>
+        </Table>
       </main>
     </div>
   );
