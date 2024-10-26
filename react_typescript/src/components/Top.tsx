@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { NewRegisterForm } from "./NewRegisterForm/NewRegisterForm";
+import {
+  NewRegisterButton,
+  NewRegisterForm,
+} from "./NewRegisterForm/NewRegisterForm";
 import { data } from "../api/data";
 import { MentorDataType } from "../type/MentorDataType";
 import { StudentDataType } from "../type/StudentDataType";
@@ -11,9 +14,23 @@ import { userListDataSelector } from "../Atoms/UserListData";
 import { Button } from "../common/Button";
 import styled from "styled-components";
 
-const FlexDiv = styled.div`
+const CustomDiv = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+`;
+
+const TableDiv = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const TableButtonDiv = styled.div`
+  justify-content: center;
+  /* justify-content: center; */
+`;
+
+const H1 = styled.h1`
+  text-align: center;
 `;
 
 type TabTypes = "all" | "onlyStudents" | "onlyMentors";
@@ -56,32 +73,35 @@ const Top = () => {
 
   return (
     <>
-      <FlexDiv>
-        <div>
-          <Button onClick={() => setActiveTab("all")}>全員</Button>
-          <Button onClick={() => setActiveTab("onlyStudents")}>生徒のみ</Button>
-          <Button onClick={() => setActiveTab("onlyMentors")}>
-            メンターのみ
-          </Button>
-        </div>
-        <div>
-          <NewRegisterForm />
-        </div>
-      </FlexDiv>
+      <H1>React Typescript課題</H1>
+      <CustomDiv>
+        <Button onClick={() => setActiveTab("all")}>全員</Button>
+        <Button onClick={() => setActiveTab("onlyStudents")}>生徒のみ</Button>
+        <Button onClick={() => setActiveTab("onlyMentors")}>
+          メンターのみ
+        </Button>
+        <NewRegisterForm />
+      </CustomDiv>
       {activeTab === "all" && (
-        <ForAllTable studentsData={studentsData} mentorsData={mentorsData} />
+        <TableDiv>
+          <ForAllTable studentsData={studentsData} mentorsData={mentorsData} />
+        </TableDiv>
       )}
       {activeTab === "onlyStudents" && (
-        <ForStudentsTable
-          studentsData={studentsData}
-          mentorsData={mentorsData}
-        />
+        <TableDiv>
+          <ForStudentsTable
+            studentsData={studentsData}
+            mentorsData={mentorsData}
+          />
+        </TableDiv>
       )}
       {activeTab === "onlyMentors" && (
-        <ForMentorsTable
-          studentsData={studentsData}
-          mentorsData={mentorsData}
-        />
+        <TableDiv>
+          <ForMentorsTable
+            studentsData={studentsData}
+            mentorsData={mentorsData}
+          />
+        </TableDiv>
       )}
     </>
   );

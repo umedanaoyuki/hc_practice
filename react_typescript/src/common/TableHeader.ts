@@ -5,4 +5,7 @@ export const TableHeader = styled.th`
   color: white;
   border-collapse: collapse;
   border: 2px solid white;
+  /* border: 1px dotted #000099; */
+  vertical-align: middle;
+  text-align: center;
 `;

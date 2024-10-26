@@ -12,6 +12,15 @@ import { TableDataType } from "../../type/ForAllTableDataType";
 import { Table } from "../../common/Table";
 import { TableHeader } from "../../common/TableHeader";
 import { TableData } from "../../common/TableData";
+import styled from "styled-components";
+import { Filter } from "../../common/Filter";
+import { Thead } from "../../common/Thead";
+
+const FlexDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+`;
 
 /**
  * 生徒情報の表示テーブル
@@ -36,30 +45,28 @@ export const ForStudentsTable = ({
   return (
     <div>
       <main>
-        <div>
-          <input
-            placeholder="趣味でフィルター"
+        <FlexDiv>
+          <Filter
+            placeholder="趣味で検索"
             value={
               (table.getColumn("hobbies")?.getFilterValue() as string) ?? ""
             }
             onChange={(e) => {
               table.getColumn("hobbies")?.setFilterValue(e.target.value);
             }}
-          ></input>
-        </div>
-        <div>
-          <input
-            placeholder="言語でフィルター"
+          />
+          <Filter
+            placeholder="言語で検索"
             value={
               (table.getColumn("studyLangs")?.getFilterValue() as string) ?? ""
             }
             onChange={(e) => {
               table.getColumn("studyLangs")?.setFilterValue(e.target.value);
             }}
-          ></input>
-        </div>
+          />
+        </FlexDiv>
         <Table>
-          <thead>
+          <Thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
@@ -74,7 +81,7 @@ export const ForStudentsTable = ({
                 ))}
               </tr>
             ))}
-          </thead>
+          </Thead>
           <tbody>
             {table.getRowModel().rows.map((row) => {
               return (

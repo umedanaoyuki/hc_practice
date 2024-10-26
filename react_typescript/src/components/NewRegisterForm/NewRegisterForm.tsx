@@ -7,6 +7,7 @@ import { useSetRecoilState } from "recoil";
 import { userListDataSelector } from "../../Atoms/UserListData";
 import { NewRegisterInputType, useMyForm } from "./schema";
 import { Button } from "../../common/Button";
+import styled from "styled-components";
 
 const customStyles = {
   content: {
@@ -18,6 +19,10 @@ const customStyles = {
     transform: "translate(-50%, -50%)",
   },
 };
+
+const CustomDiv = styled.div`
+  justify-content: center;
+`;
 
 // react-modalの使用
 Modal.setAppElement("#root");
@@ -151,7 +156,7 @@ export const NewRegisterForm = () => {
   console.log({ errors });
 
   return (
-    <div>
+    <CustomDiv>
       <Button $primary onClick={openModal}>
         新規登録
       </Button>
@@ -312,6 +317,6 @@ export const NewRegisterForm = () => {
           <button onClick={closeModal}>閉じる</button>
         </div>
       </Modal>
-    </div>
+    </CustomDiv>
   );
 };
