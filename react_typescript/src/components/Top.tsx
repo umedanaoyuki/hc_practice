@@ -1,8 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  NewRegisterButton,
-  NewRegisterForm,
-} from "./NewRegisterForm/NewRegisterForm";
+import { NewRegisterForm } from "./NewRegisterForm/NewRegisterForm";
 import { data } from "../api/data";
 import { MentorDataType } from "../type/MentorDataType";
 import { StudentDataType } from "../type/StudentDataType";
@@ -11,8 +8,8 @@ import { ForStudentsTable } from "./ForStudents/forStudentsTable";
 import { ForMentorsTable } from "./ForMentors/forMentorsTable";
 import { useRecoilState } from "recoil";
 import { userListDataSelector } from "../Atoms/UserListData";
-import { Button } from "../common/Button";
 import styled from "styled-components";
+import { TabButton } from "../common/TabButton";
 
 const CustomDiv = styled.div`
   display: flex;
@@ -22,11 +19,7 @@ const CustomDiv = styled.div`
 const TableDiv = styled.div`
   display: flex;
   justify-content: center;
-`;
-
-const TableButtonDiv = styled.div`
-  justify-content: center;
-  /* justify-content: center; */
+  margin-top: 16px;
 `;
 
 const H1 = styled.h1`
@@ -75,11 +68,24 @@ const Top = () => {
     <>
       <H1>React Typescript課題</H1>
       <CustomDiv>
-        <Button onClick={() => setActiveTab("all")}>全員</Button>
-        <Button onClick={() => setActiveTab("onlyStudents")}>生徒のみ</Button>
-        <Button onClick={() => setActiveTab("onlyMentors")}>
+        <TabButton
+          active={activeTab === "all"}
+          onClick={() => setActiveTab("all")}
+        >
+          全員
+        </TabButton>
+        <TabButton
+          active={activeTab === "onlyStudents"}
+          onClick={() => setActiveTab("onlyStudents")}
+        >
+          生徒のみ
+        </TabButton>
+        <TabButton
+          active={activeTab === "onlyMentors"}
+          onClick={() => setActiveTab("onlyMentors")}
+        >
           メンターのみ
-        </Button>
+        </TabButton>
         <NewRegisterForm />
       </CustomDiv>
       {activeTab === "all" && (
