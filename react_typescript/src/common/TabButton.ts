@@ -4,8 +4,10 @@ export const TabButton = styled.button<{ $active: boolean }>`
   padding: 20px 20px;
   background-color: ${({ $active }) => ($active ? "#007BFF" : "#f1f1f1")};
   color: ${({ $active }) => ($active ? "#fff" : "#333")};
-  border: none;
-  border-bottom: ${({ $active }) => ($active ? "2px solid #007BFF" : "none")};
+  /* border-color: black; */
+  /* border-bottom: ${({ $active }) =>
+    $active ? "1px solid #007BFF" : "none"}; */
+  border-bottom: 2px solid black;
   outline: none;
   cursor: pointer;
   margin-left: 8px;
