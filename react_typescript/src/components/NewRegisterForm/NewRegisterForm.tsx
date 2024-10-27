@@ -239,8 +239,8 @@ export const NewRegisterForm = () => {
 
   // const onerror = (err) => console.log(err);
 
-  console.log({ roleType });
-  console.log({ errors });
+  // console.log({ roleType });
+  // console.log({ errors });
 
   return (
     <PositionDiv>

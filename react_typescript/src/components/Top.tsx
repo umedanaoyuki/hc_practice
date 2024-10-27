@@ -69,19 +69,19 @@ const Top = () => {
       <H1>React Typescript課題</H1>
       <CustomDiv>
         <TabButton
-          active={activeTab === "all"}
+          $active={activeTab === "all"}
           onClick={() => setActiveTab("all")}
         >
           全員
         </TabButton>
         <TabButton
-          active={activeTab === "onlyStudents"}
+          $active={activeTab === "onlyStudents"}
           onClick={() => setActiveTab("onlyStudents")}
         >
           生徒のみ
         </TabButton>
         <TabButton
-          active={activeTab === "onlyMentors"}
+          $active={activeTab === "onlyMentors"}
           onClick={() => setActiveTab("onlyMentors")}
         >
           メンターのみ

@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Top from "./components/Top";
 import { createGlobalStyle } from "styled-components";
 import { RecoilRoot } from "recoil";
-import Tabs from "./Tabs";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -21,7 +20,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path={"/"} element={<Top />} />
-          {/* <Route path={"/tabs"} element={<Tabs />} /> */}
         </Routes>
       </BrowserRouter>
     </RecoilRoot>

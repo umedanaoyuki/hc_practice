@@ -226,7 +226,7 @@ export const useMyForm = () => {
   return useForm<NewRegisterInputType>({
     resolver: yupResolver(schema),
     defaultValues: {
-      id: 23,
+      id: Math.random(),
       name: "",
       role: "student",
       email: "",

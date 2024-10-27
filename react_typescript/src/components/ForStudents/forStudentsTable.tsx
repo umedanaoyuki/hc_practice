@@ -35,7 +35,7 @@ export const ForStudentsTable = ({
     columns,
     data: studentsData,
     initialState: {
-      sorting: [{ id: "id", desc: false }],
+      sorting: [{ id: "name", desc: false }],
     },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),

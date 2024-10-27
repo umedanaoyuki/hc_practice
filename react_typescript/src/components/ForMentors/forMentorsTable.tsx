@@ -37,7 +37,7 @@ export const ForMentorsTable = ({
     data: mentorsData,
     initialState: {
       // idでソート
-      sorting: [{ id: "id", desc: false }],
+      sorting: [{ id: "name", desc: false }],
     },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),

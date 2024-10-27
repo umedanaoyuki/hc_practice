@@ -23,7 +23,7 @@ export const ForAllTable = ({ studentsData, mentorsData }: TableDataType) => {
     columns,
     data: newData,
     initialState: {
-      sorting: [{ id: "id", desc: false }],
+      sorting: [{ id: "name", desc: false }],
     },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
