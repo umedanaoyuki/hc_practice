@@ -8,6 +8,7 @@ import { userListDataSelector } from "../../Atoms/UserListData";
 import { NewRegisterInputType, useMyForm } from "./schema";
 import styled from "styled-components";
 import { Button } from "../../common/Button";
+import { ErrorMessage } from "../../common/ErrorMessage";
 
 const customStyles = {
   content: {
@@ -261,7 +262,7 @@ export const NewRegisterForm = () => {
                   <label htmlFor="name">名前</label>
                   <br />
                   <CustomInput type="text" {...register("name")} />
-                  <div>{errors.name?.message}</div>
+                  <ErrorMessage>{errors.name?.message}</ErrorMessage>
 
                   <InputContainer>
                     <label htmlFor="role">ロール</label>
@@ -283,34 +284,34 @@ export const NewRegisterForm = () => {
                       </CustomDiv3>
                     </CustomDiv4>
                     {/* <br /> */}
-                    <div>{errors.role?.message}</div>
+                    <ErrorMessage>{errors.role?.message}</ErrorMessage>
                   </InputContainer>
 
                   <InputContainer>
                     <label htmlFor="email">メールアドレス</label>
                     <br />
                     <CustomInput type="email" {...register("email")} />
-                    <div>{errors.email?.message}</div>
+                    <ErrorMessage>{errors.email?.message}</ErrorMessage>
                   </InputContainer>
                   <InputContainer>
                     <label htmlFor="age">年齢</label>
                     <br />
                     <CustomInput type="number" {...register("age")} />
-                    <div>{errors.age?.message}</div>
+                    <ErrorMessage>{errors.age?.message}</ErrorMessage>
                   </InputContainer>
 
                   <InputContainer>
                     <label htmlFor="postCode">郵便番号</label>
                     <br />
                     <CustomInput type="text" {...register("postCode")} />
-                    <div>{errors.postCode?.message}</div>
+                    <ErrorMessage>{errors.postCode?.message}</ErrorMessage>
                   </InputContainer>
 
                   <InputContainer>
                     <label htmlFor="phone">電話番号(ハイフンなし)</label>
                     <br />
                     <CustomInput type="text" {...register("phone")} />
-                    <div>{errors.phone?.message}</div>
+                    <ErrorMessage>{errors.phone?.message}</ErrorMessage>
                   </InputContainer>
                 </div>
 
@@ -342,7 +343,7 @@ export const NewRegisterForm = () => {
                         >
                           趣味を追加
                         </AdditionalButton>
-                        <div>{errors.hobbies?.message}</div>
+                        <ErrorMessage>{errors.hobbies?.message}</ErrorMessage>
                       </>
                     )}
                   </div>
@@ -351,7 +352,7 @@ export const NewRegisterForm = () => {
                     <label htmlFor="url">URL</label>
                     <br />
                     <CustomInput type="text" {...register("url")} />
-                    <div>{errors.url?.message}</div>
+                    <ErrorMessage>{errors.url?.message}</ErrorMessage>
                   </InputContainer>
 
                   <InputContainer>
@@ -362,7 +363,9 @@ export const NewRegisterForm = () => {
                           type="number"
                           {...register("experienceDays")}
                         />
-                        <div>{errors.experienceDays?.message}</div>
+                        <ErrorMessage>
+                          {errors.experienceDays?.message}
+                        </ErrorMessage>
                         <label htmlFor="useLangs">
                           現場で使っている言語(2つまで)
                         </label>
@@ -390,7 +393,9 @@ export const NewRegisterForm = () => {
                             >
                               言語を追加
                             </AdditionalButton>
-                            <div>{errors.useLangs?.message}</div>
+                            <ErrorMessage>
+                              {errors.useLangs?.message}
+                            </ErrorMessage>
                           </>
                         )}
 
@@ -401,7 +406,9 @@ export const NewRegisterForm = () => {
                           type="number"
                           {...register("availableStartCode")}
                         />
-                        <div>{errors.availableStartCode?.message}</div>
+                        <ErrorMessage>
+                          {errors.availableStartCode?.message}
+                        </ErrorMessage>
                         <label htmlFor="availableEndCode">
                           担当できる課題番号終わり
                         </label>
@@ -409,7 +416,9 @@ export const NewRegisterForm = () => {
                           type="number"
                           {...register("availableEndCode")}
                         />
-                        <div>{errors.availableEndCode?.message}</div>
+                        <ErrorMessage>
+                          {errors.availableEndCode?.message}
+                        </ErrorMessage>
                       </>
                     )}
                   </InputContainer>
@@ -424,7 +433,9 @@ export const NewRegisterForm = () => {
                             type="number"
                             {...register("studyMinutes")}
                           />
-                          <div>{errors.studyMinutes?.message}</div>
+                          <ErrorMessage>
+                            {errors.studyMinutes?.message}
+                          </ErrorMessage>
                         </InputContainer>
                         <InputContainer>
                           <label htmlFor="taskCode">課題番号</label>
@@ -433,7 +444,9 @@ export const NewRegisterForm = () => {
                             type="number"
                             {...register("taskCode")}
                           />
-                          <div>{errors.taskCode?.message}</div>
+                          <ErrorMessage>
+                            {errors.taskCode?.message}
+                          </ErrorMessage>
                         </InputContainer>
                         <InputContainer>
                           <label htmlFor="studyLangs">
@@ -465,7 +478,9 @@ export const NewRegisterForm = () => {
                               >
                                 言語を追加
                               </AdditionalButton>
-                              <div>{errors.studyLangs?.message}</div>
+                              <ErrorMessage>
+                                {errors.studyLangs?.message}
+                              </ErrorMessage>
                             </>
                           )}
                         </InputContainer>
@@ -473,7 +488,7 @@ export const NewRegisterForm = () => {
                           <label htmlFor="score">ハピネススコア</label>
                           <br />
                           <CustomInput type="number" {...register("score")} />
-                          <div>{errors.score?.message}</div>
+                          <ErrorMessage>{errors.score?.message}</ErrorMessage>
                         </InputContainer>
                       </>
                     )}
