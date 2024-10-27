@@ -6,8 +6,8 @@ import { StudentDataType } from "../../type/StudentDataType";
 import { useSetRecoilState } from "recoil";
 import { userListDataSelector } from "../../Atoms/UserListData";
 import { NewRegisterInputType, useMyForm } from "./schema";
-import { Button } from "../../common/Button";
 import styled from "styled-components";
+import { Button } from "../../common/Button";
 
 const customStyles = {
   content: {
@@ -17,11 +17,83 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    width: "35%",
   },
 };
 
-const CustomDiv = styled.div`
+const PositionDiv = styled.div`
   justify-content: center;
+`;
+
+const H1 = styled.h1`
+  margin: 0 auto 20px;
+  text-align: center;
+`;
+
+const CustomInput = styled.input`
+  margin-top: 4px;
+  border: 1px solid black;
+`;
+
+const CustomDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const CustomDiv2 = styled.div`
+  margin-left: 20px;
+`;
+
+const CustomDiv3 = styled.div`
+  margin-top: 2px;
+  margin-left: 10px;
+`;
+
+const CustomDiv4 = styled.div`
+  display: flex;
+`;
+
+const CustomButton = styled.button`
+  background-color: transparent;
+  border: none;
+`;
+
+const FormContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const InputContainer = styled.div`
+  margin-top: 20px;
+`;
+
+const FormWrapper = styled.div`
+  display: flex;
+`;
+
+const RegisterButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+const Register = styled.input`
+  background-color: #ff6b3a;
+  color: white;
+  padding: 0.25em 1em;
+  border-radius: 3px;
+  border: 2px solid "FF6B3A";
+`;
+
+const AdditionalButton = styled.button`
+  margin-top: 1.5px;
+  color: white;
+  background-color: #659ad2;
+  border-radius: 3px;
+`;
+
+const Label = styled.label`
+  margin-top: 4px;
 `;
 
 // react-modalの使用
@@ -156,7 +228,7 @@ export const NewRegisterForm = () => {
   console.log({ errors });
 
   return (
-    <CustomDiv>
+    <PositionDiv>
       <Button $primary onClick={openModal}>
         新規登録
       </Button>
@@ -168,155 +240,253 @@ export const NewRegisterForm = () => {
         contentLabel="MewRegistrationModal"
       >
         <div>
+          <CustomDiv>
+            <CustomButton onClick={closeModal}>
+              <img
+                src="../../../public/closeIcon.svg"
+                alt="閉じるボタン"
+                height="25"
+                width="25"
+              />
+              <br />
+            </CustomButton>
+          </CustomDiv>
           <div>
-            <h1>新規登録</h1>
+            <H1>新規登録</H1>
           </div>
-          <div>
+          <FormContainer>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <label htmlFor="name">名前</label>
-              <input type="text" {...register("name")} />
-              <div>{errors.name?.message}</div>
-              <label htmlFor="role">ロール</label>
-              <div>
-                <input type="radio" value="student" {...register("role")} />
-                <label htmlFor="">生徒</label>
-                <input type="radio" value="mentor" {...register("role")} />
-                <label htmlFor="">先生</label>
-              </div>
-              <div>{errors.role?.message}</div>
-              <label htmlFor="email">メールアドレス</label>
-              <input type="email" {...register("email")} />
-              <div>{errors.email?.message}</div>
-              <label htmlFor="age">年齢</label>
-              <input type="number" {...register("age")} />
-              <div>{errors.age?.message}</div>
-              <label htmlFor="postCode">郵便番号</label>
-              <input type="text" {...register("postCode")} />
-              <div>{errors.postCode?.message}</div>
-              <label htmlFor="phone">電話番号(ハイフンなし)</label>
-              <input type="text" {...register("phone")} />
-              <div>{errors.phone?.message}</div>
-              <label htmlFor="hobbies">趣味(3つまで)</label>
-              {hobbiesFields.map((field, index) => (
-                <div key={field.id}>
-                  <input
-                    type="text"
-                    {...register(`hobbies.${index}` as const)}
-                    placeholder={`趣味 ${index + 1}`}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removeHobby(index)}
-                    disabled={hobbiesFields.length <= 1}
-                  >
-                    削除
-                  </button>
+              <FormWrapper>
+                <div>
+                  <label htmlFor="name">名前</label>
+                  <br />
+                  <CustomInput type="text" {...register("name")} />
+                  <div>{errors.name?.message}</div>
+
+                  <InputContainer>
+                    <label htmlFor="role">ロール</label>
+                    <br />
+                    <CustomDiv4>
+                      <CustomInput
+                        type="radio"
+                        value="student"
+                        {...register("role")}
+                      />
+                      <Label>生徒</Label>
+                      <CustomDiv3>
+                        <CustomInput
+                          type="radio"
+                          value="mentor"
+                          {...register("role")}
+                        />
+                        <Label>先生</Label>
+                      </CustomDiv3>
+                    </CustomDiv4>
+                    {/* <br /> */}
+                    <div>{errors.role?.message}</div>
+                  </InputContainer>
+
+                  <InputContainer>
+                    <label htmlFor="email">メールアドレス</label>
+                    <br />
+                    <CustomInput type="email" {...register("email")} />
+                    <div>{errors.email?.message}</div>
+                  </InputContainer>
+                  <InputContainer>
+                    <label htmlFor="age">年齢</label>
+                    <br />
+                    <CustomInput type="number" {...register("age")} />
+                    <div>{errors.age?.message}</div>
+                  </InputContainer>
+
+                  <InputContainer>
+                    <label htmlFor="postCode">郵便番号</label>
+                    <br />
+                    <CustomInput type="text" {...register("postCode")} />
+                    <div>{errors.postCode?.message}</div>
+                  </InputContainer>
+
+                  <InputContainer>
+                    <label htmlFor="phone">電話番号(ハイフンなし)</label>
+                    <br />
+                    <CustomInput type="text" {...register("phone")} />
+                    <div>{errors.phone?.message}</div>
+                  </InputContainer>
                 </div>
-              ))}
-              {hobbiesFields.length < 3 && (
-                <>
-                  <button type="button" onClick={() => appendHobby("")}>
-                    趣味を追加
-                  </button>
-                  <div>{errors.hobbies?.message}</div>
-                </>
-              )}
 
-              <label htmlFor="url">URL</label>
-              <input type="text" {...register("url")} />
-              <div>{errors.url?.message}</div>
+                <CustomDiv2>
+                  <div>
+                    <label htmlFor="hobbies">趣味(3つまで)</label>
+                    {hobbiesFields.map((field, index) => (
+                      <div key={field.id}>
+                        <CustomInput
+                          type="text"
+                          {...register(`hobbies.${index}` as const)}
+                          placeholder={`趣味 ${index + 1}`}
+                        />
+                        <AdditionalButton
+                          type="button"
+                          onClick={() => removeHobby(index)}
+                          disabled={hobbiesFields.length <= 1}
+                        >
+                          削除
+                        </AdditionalButton>
+                      </div>
+                    ))}
+                    {hobbiesFields.length < 3 && (
+                      <>
+                        <br />
+                        <AdditionalButton
+                          type="button"
+                          onClick={() => appendHobby("")}
+                        >
+                          趣味を追加
+                        </AdditionalButton>
+                        <div>{errors.hobbies?.message}</div>
+                      </>
+                    )}
+                  </div>
 
-              {roleType === "mentor" && (
-                <>
-                  <label htmlFor="experienceDays">実務経験年数</label>
-                  <input type="number" {...register("experienceDays")} />
-                  <div>{errors.experienceDays?.message}</div>
-                  <label htmlFor="useLangs">
-                    現場で使っている言語(2つまで)
-                  </label>
-                  {useLangsFields.map((field, index) => (
-                    <div key={field.id}>
-                      <input
-                        type="text"
-                        {...register(`useLangs.${index}` as const)}
-                        placeholder={`言語 ${index + 1}`}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeUseLang(index)}
-                        disabled={useLangsFields.length <= 1}
-                      >
-                        削除
-                      </button>
-                    </div>
-                  ))}
-                  {useLangsFields.length < 2 && (
-                    <>
-                      <button type="button" onClick={() => appendUseLang("")}>
-                        言語を追加
-                      </button>
-                      <div>{errors.useLangs?.message}</div>
-                    </>
-                  )}
+                  <InputContainer>
+                    <label htmlFor="url">URL</label>
+                    <br />
+                    <CustomInput type="text" {...register("url")} />
+                    <div>{errors.url?.message}</div>
+                  </InputContainer>
 
-                  <label htmlFor="availableStartCode">
-                    担当できる課題番号初め
-                  </label>
-                  <input type="number" {...register("availableStartCode")} />
-                  <div>{errors.availableStartCode?.message}</div>
-                  <label htmlFor="availableEndCode">
-                    担当できる課題番号終わり
-                  </label>
-                  <input type="number" {...register("availableEndCode")} />
-                  <div>{errors.availableEndCode?.message}</div>
-                </>
-              )}
+                  <InputContainer>
+                    {roleType === "mentor" && (
+                      <>
+                        <label htmlFor="experienceDays">実務経験年数</label>
+                        <CustomInput
+                          type="number"
+                          {...register("experienceDays")}
+                        />
+                        <div>{errors.experienceDays?.message}</div>
+                        <label htmlFor="useLangs">
+                          現場で使っている言語(2つまで)
+                        </label>
+                        {useLangsFields.map((field, index) => (
+                          <div key={field.id}>
+                            <CustomInput
+                              type="text"
+                              {...register(`useLangs.${index}` as const)}
+                              placeholder={`言語 ${index + 1}`}
+                            />
+                            <button
+                              type="button"
+                              onClick={() => removeUseLang(index)}
+                              disabled={useLangsFields.length <= 1}
+                            >
+                              削除
+                            </button>
+                          </div>
+                        ))}
+                        {useLangsFields.length < 2 && (
+                          <>
+                            <AdditionalButton
+                              type="button"
+                              onClick={() => appendUseLang("")}
+                            >
+                              言語を追加
+                            </AdditionalButton>
+                            <div>{errors.useLangs?.message}</div>
+                          </>
+                        )}
 
-              {roleType === "student" && (
-                <>
-                  <label htmlFor="studyMinutes">勉強時間（分）</label>
-                  <input type="number" {...register("studyMinutes")} />
-                  <div>{errors.studyMinutes?.message}</div>
-                  <label htmlFor="taskCode">課題番号</label>
-                  <input type="number" {...register("taskCode")} />
-                  <div>{errors.taskCode?.message}</div>
-                  <label htmlFor="studyLangs">勉強中の言語(2つまで)</label>
-                  {studyLangsFields.map((field, index) => (
-                    <div key={field.id}>
-                      <input
-                        type="text"
-                        {...register(`studyLangs.${index}` as const)}
-                        placeholder={`言語 ${index + 1}`}
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeStudyLang(index)}
-                        disabled={studyLangsFields.length <= 1}
-                      >
-                        削除
-                      </button>
-                    </div>
-                  ))}
-                  {studyLangsFields.length < 2 && (
-                    <>
-                      <button type="button" onClick={() => appendStudyLang("")}>
-                        言語を追加
-                      </button>
-                      <div>{errors.studyLangs?.message}</div>
-                    </>
-                  )}
-                  <label htmlFor="score">ハピネススコア</label>
-                  <input type="number" {...register("score")} />
-                  <div>{errors.score?.message}</div>
-                </>
-              )}
+                        <label htmlFor="availableStartCode">
+                          担当できる課題番号初め
+                        </label>
+                        <CustomInput
+                          type="number"
+                          {...register("availableStartCode")}
+                        />
+                        <div>{errors.availableStartCode?.message}</div>
+                        <label htmlFor="availableEndCode">
+                          担当できる課題番号終わり
+                        </label>
+                        <CustomInput
+                          type="number"
+                          {...register("availableEndCode")}
+                        />
+                        <div>{errors.availableEndCode?.message}</div>
+                      </>
+                    )}
+                  </InputContainer>
 
-              <input type="submit" value="登録" />
+                  <InputContainer>
+                    {roleType === "student" && (
+                      <>
+                        <InputContainer>
+                          <label htmlFor="studyMinutes">勉強時間（分）</label>
+                          <br />
+                          <CustomInput
+                            type="number"
+                            {...register("studyMinutes")}
+                          />
+                          <div>{errors.studyMinutes?.message}</div>
+                        </InputContainer>
+                        <InputContainer>
+                          <label htmlFor="taskCode">課題番号</label>
+                          <br />
+                          <CustomInput
+                            type="number"
+                            {...register("taskCode")}
+                          />
+                          <div>{errors.taskCode?.message}</div>
+                        </InputContainer>
+                        <InputContainer>
+                          <label htmlFor="studyLangs">
+                            勉強中の言語(2つまで)
+                          </label>
+                          {studyLangsFields.map((field, index) => (
+                            <div key={field.id}>
+                              <CustomInput
+                                type="text"
+                                {...register(`studyLangs.${index}` as const)}
+                                placeholder={`言語 ${index + 1}`}
+                              />
+                              <button
+                                type="button"
+                                onClick={() => removeStudyLang(index)}
+                                disabled={studyLangsFields.length <= 1}
+                              >
+                                削除
+                              </button>
+                            </div>
+                          ))}
+
+                          {studyLangsFields.length < 2 && (
+                            <>
+                              <br />
+                              <AdditionalButton
+                                type="button"
+                                onClick={() => appendStudyLang("")}
+                              >
+                                言語を追加
+                              </AdditionalButton>
+                              <div>{errors.studyLangs?.message}</div>
+                            </>
+                          )}
+                        </InputContainer>
+                        <InputContainer>
+                          <label htmlFor="score">ハピネススコア</label>
+                          <br />
+                          <CustomInput type="number" {...register("score")} />
+                          <div>{errors.score?.message}</div>
+                        </InputContainer>
+                      </>
+                    )}
+                  </InputContainer>
+                </CustomDiv2>
+              </FormWrapper>
+              <RegisterButtonContainer>
+                <Register type="submit" value="登録" />
+              </RegisterButtonContainer>
             </form>
-          </div>
-          <button onClick={closeModal}>閉じる</button>
+          </FormContainer>
         </div>
       </Modal>
-    </CustomDiv>
+    </PositionDiv>
   );
 };
