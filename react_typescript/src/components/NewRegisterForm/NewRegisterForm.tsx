@@ -19,6 +19,7 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     width: "35%",
+    height: "800px",
   },
 };
 
@@ -62,6 +63,9 @@ const CustomButton = styled.button`
 const FormContainer = styled.div`
   display: flex;
   justify-content: center;
+  margin: 0;
+  padding-right: 135px;
+  padding-left: 135px;
 `;
 
 const InputContainer = styled.div`
@@ -91,6 +95,16 @@ const AdditionalButton = styled.button`
   color: white;
   background-color: #659ad2;
   border-radius: 3px;
+`;
+
+const DeleteButton = styled.button`
+  background-color: gray;
+  color: white;
+`;
+
+const DeleteButtonWrapper = styled.div`
+  margin-top: 2px;
+  /* margin-left: 2px; */
 `;
 
 const Label = styled.label`
@@ -325,13 +339,15 @@ export const NewRegisterForm = () => {
                           {...register(`hobbies.${index}` as const)}
                           placeholder={`趣味 ${index + 1}`}
                         />
-                        <AdditionalButton
-                          type="button"
-                          onClick={() => removeHobby(index)}
-                          disabled={hobbiesFields.length <= 1}
-                        >
-                          削除
-                        </AdditionalButton>
+                        <DeleteButtonWrapper>
+                          <DeleteButton
+                            type="button"
+                            onClick={() => removeHobby(index)}
+                            disabled={hobbiesFields.length <= 1}
+                          >
+                            削除
+                          </DeleteButton>
+                        </DeleteButtonWrapper>
                       </div>
                     ))}
                     {hobbiesFields.length < 3 && (
@@ -359,6 +375,7 @@ export const NewRegisterForm = () => {
                     {roleType === "mentor" && (
                       <>
                         <label htmlFor="experienceDays">実務経験年数</label>
+                        <br />
                         <CustomInput
                           type="number"
                           {...register("experienceDays")}
@@ -366,59 +383,70 @@ export const NewRegisterForm = () => {
                         <ErrorMessage>
                           {errors.experienceDays?.message}
                         </ErrorMessage>
-                        <label htmlFor="useLangs">
-                          現場で使っている言語(2つまで)
-                        </label>
-                        {useLangsFields.map((field, index) => (
-                          <div key={field.id}>
-                            <CustomInput
-                              type="text"
-                              {...register(`useLangs.${index}` as const)}
-                              placeholder={`言語 ${index + 1}`}
-                            />
-                            <button
-                              type="button"
-                              onClick={() => removeUseLang(index)}
-                              disabled={useLangsFields.length <= 1}
-                            >
-                              削除
-                            </button>
-                          </div>
-                        ))}
-                        {useLangsFields.length < 2 && (
-                          <>
-                            <AdditionalButton
-                              type="button"
-                              onClick={() => appendUseLang("")}
-                            >
-                              言語を追加
-                            </AdditionalButton>
-                            <ErrorMessage>
-                              {errors.useLangs?.message}
-                            </ErrorMessage>
-                          </>
-                        )}
 
-                        <label htmlFor="availableStartCode">
-                          担当できる課題番号初め
-                        </label>
-                        <CustomInput
-                          type="number"
-                          {...register("availableStartCode")}
-                        />
-                        <ErrorMessage>
-                          {errors.availableStartCode?.message}
-                        </ErrorMessage>
-                        <label htmlFor="availableEndCode">
-                          担当できる課題番号終わり
-                        </label>
-                        <CustomInput
-                          type="number"
-                          {...register("availableEndCode")}
-                        />
-                        <ErrorMessage>
-                          {errors.availableEndCode?.message}
-                        </ErrorMessage>
+                        <InputContainer>
+                          <label htmlFor="useLangs">
+                            現場で使っている言語(2つまで)
+                          </label>
+                          <br />
+                          {useLangsFields.map((field, index) => (
+                            <div key={field.id}>
+                              <CustomInput
+                                type="text"
+                                {...register(`useLangs.${index}` as const)}
+                                placeholder={`言語 ${index + 1}`}
+                              />
+                              <DeleteButtonWrapper>
+                                <button
+                                  type="button"
+                                  onClick={() => removeUseLang(index)}
+                                  disabled={useLangsFields.length <= 1}
+                                >
+                                  削除
+                                </button>
+                              </DeleteButtonWrapper>
+                            </div>
+                          ))}
+                          {useLangsFields.length < 2 && (
+                            <>
+                              <AdditionalButton
+                                type="button"
+                                onClick={() => appendUseLang("")}
+                              >
+                                言語を追加
+                              </AdditionalButton>
+                              <ErrorMessage>
+                                {errors.useLangs?.message}
+                              </ErrorMessage>
+                            </>
+                          )}
+                        </InputContainer>
+                        <InputContainer>
+                          <label htmlFor="availableStartCode">
+                            担当できる課題番号初め
+                          </label>
+                          <br />
+                          <CustomInput
+                            type="number"
+                            {...register("availableStartCode")}
+                          />
+                          <ErrorMessage>
+                            {errors.availableStartCode?.message}
+                          </ErrorMessage>
+                        </InputContainer>
+                        <InputContainer>
+                          <label htmlFor="availableEndCode">
+                            担当できる課題番号終わり
+                          </label>
+                          <br />
+                          <CustomInput
+                            type="number"
+                            {...register("availableEndCode")}
+                          />
+                          <ErrorMessage>
+                            {errors.availableEndCode?.message}
+                          </ErrorMessage>
+                        </InputContainer>
                       </>
                     )}
                   </InputContainer>
@@ -459,13 +487,15 @@ export const NewRegisterForm = () => {
                                 {...register(`studyLangs.${index}` as const)}
                                 placeholder={`言語 ${index + 1}`}
                               />
-                              <button
-                                type="button"
-                                onClick={() => removeStudyLang(index)}
-                                disabled={studyLangsFields.length <= 1}
-                              >
-                                削除
-                              </button>
+                              <DeleteButtonWrapper>
+                                <DeleteButton
+                                  type="button"
+                                  onClick={() => removeStudyLang(index)}
+                                  disabled={studyLangsFields.length <= 1}
+                                >
+                                  削除
+                                </DeleteButton>
+                              </DeleteButtonWrapper>
                             </div>
                           ))}
 
