@@ -250,7 +250,7 @@ export const NewRegisterForm = () => {
           <CustomDiv>
             <CustomButton onClick={closeModal}>
               <CustomImg
-                src="/react_typescript/public/closeIcon.svg"
+                src="public/closeIcon.svg"
                 alt="閉じるボタン"
                 height="25"
                 width="25"

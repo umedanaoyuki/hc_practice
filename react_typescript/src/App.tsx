@@ -5,7 +5,7 @@ import { RecoilRoot } from "recoil";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-image: url("/react_typescript/public/backgroundImage.jpg")
+    background-image: url("public/backgroundImage.jpg")
   }
 `;
 
@@ -13,7 +13,7 @@ function App() {
   return (
     <RecoilRoot>
       <GlobalStyle />
-      <BrowserRouter basename="/react_typescript">
+      <BrowserRouter>
         <Routes>
           <Route path={"/"} element={<Top />} />
         </Routes>
