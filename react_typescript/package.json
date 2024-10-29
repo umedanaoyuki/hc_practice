@@ -1,9 +1,9 @@
 {
+  "homepage": "https://umedanaoyuki.github.io/hc_practice/",
   "name": "react_typescript",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://umedanaoyuki.github.io/hc_practice/react_typescript/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
