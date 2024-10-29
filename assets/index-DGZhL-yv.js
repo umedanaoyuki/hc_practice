@@ -247,4 +247,4 @@ attempted value: ${s}
   body {
     background-image: url("/backgroundImage.jpg")
   }
-`;function lO(){return w.jsxs(TF,{children:[w.jsx(sO,{}),w.jsx(oR,{children:w.jsx(tR,{children:w.jsx(Zy,{path:"/",element:w.jsx(iO,{})})})})]})}zy(document.getElementById("root")).render(w.jsx(le.StrictMode,{children:w.jsx(lO,{})}));
+`;function lO(){return w.jsxs(TF,{children:[w.jsx(sO,{}),w.jsx(oR,{basename:"/react_typescript",children:w.jsx(tR,{children:w.jsx(Zy,{path:"/",element:w.jsx(iO,{})})})})]})}zy(document.getElementById("root")).render(w.jsx(le.StrictMode,{children:w.jsx(lO,{})}));
