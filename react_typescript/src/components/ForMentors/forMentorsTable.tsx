@@ -30,7 +30,7 @@ export const ForMentorsTable = ({
   mentorsData,
 }: TableDataType) => {
   // studentsDataとmentorsDataを使ってカラムを生成
-  const columns = createColumns(mentorsData, studentsData);
+  const columns = createColumns(studentsData);
 
   const table = useReactTable<MentorDataType | StudentDataType>({
     columns,

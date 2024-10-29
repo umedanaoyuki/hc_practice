@@ -29,7 +29,7 @@ export const ForStudentsTable = ({
   studentsData,
   mentorsData,
 }: TableDataType) => {
-  const columns = createColumns(studentsData, mentorsData);
+  const columns = createColumns(mentorsData);
 
   const table = useReactTable<MentorDataType | StudentDataType>({
     columns,

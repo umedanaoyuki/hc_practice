@@ -48,7 +48,7 @@ const searchUseLangs = (
 };
 
 export const createColumns = (
-  mentorsData: MentorDataType[],
+  // mentorsData: MentorDataType[],
   studentsData: StudentDataType[]
 ): ColumnDef<MentorDataType | StudentDataType>[] => [
   {

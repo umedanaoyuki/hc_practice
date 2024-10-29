@@ -146,27 +146,27 @@ export const NewRegisterForm = () => {
     fields: hobbiesFields,
     append: appendHobby,
     remove: removeHobby,
-  } = useFieldArray({
+  } = useFieldArray<NewRegisterInputType>({
     control,
-    name: "hobbies",
+    name: "hobbies" as never,
   });
 
   const {
     fields: studyLangsFields,
     append: appendStudyLang,
     remove: removeStudyLang,
-  } = useFieldArray({
+  } = useFieldArray<NewRegisterInputType>({
     control,
-    name: "studyLangs",
+    name: "studyLangs" as never,
   });
 
   const {
     fields: useLangsFields,
     append: appendUseLang,
     remove: removeUseLang,
-  } = useFieldArray({
+  } = useFieldArray<NewRegisterInputType>({
     control,
-    name: "useLangs",
+    name: "useLangs" as never,
   });
 
   const onSubmit: SubmitHandler<NewRegisterInputType> = (formData) => {
