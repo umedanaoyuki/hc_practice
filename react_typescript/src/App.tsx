@@ -5,7 +5,7 @@ import { RecoilRoot } from "recoil";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-image: url("./../public/backgroundImage.jpg")
+    background-image: url("/backgroundImage.jpg")
   }
 `;
 

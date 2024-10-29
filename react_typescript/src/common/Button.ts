@@ -7,9 +7,6 @@ export const Button = styled.button<{ $primary?: boolean }>`
   font-size: 1em;
   margin-left: 1em;
   cursor: pointer;
-  /* margin: 1em; */
-  /* padding: 0.25em 1em; */
-  /* border: 2px solid ${(props) => (props.$primary ? "FF6B3A" : "#659ad2")}; */
   border-radius: 32px;
   outline: none;
   &:hover {

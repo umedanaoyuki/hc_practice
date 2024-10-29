@@ -51,19 +51,6 @@ export const createColumns = (
   studentsData: StudentDataType[],
   mentorsData: MentorDataType[]
 ): ColumnDef<MentorDataType | StudentDataType>[] => [
-  // {
-  //   accessorKey: "id",
-  //   header: ({ column }) => {
-  //     return (
-  //       <div
-  //         style={{ flex: "auto", alignItems: "center", cursor: "pointer" }}
-  //         onClick={column.getToggleSortingHandler()}
-  //       >
-  //         ID{getSortIcon(column.getIsSorted())}
-  //       </div>
-  //     );
-  //   },
-  // },
   {
     accessorKey: "name",
     header: "名前",

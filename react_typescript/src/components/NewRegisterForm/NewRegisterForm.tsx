@@ -104,11 +104,14 @@ const DeleteButton = styled.button`
 
 const DeleteButtonWrapper = styled.div`
   margin-top: 2px;
-  /* margin-left: 2px; */
 `;
 
 const Label = styled.label`
   margin-top: 4px;
+`;
+
+const CustomImg = styled.img`
+  cursor: pointer;
 `;
 
 // react-modalの使用
@@ -127,10 +130,7 @@ export const NewRegisterForm = () => {
     setIsOpen(false);
   };
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = "#f00";
-  }
+  function afterOpenModal() {}
   const {
     register,
     handleSubmit,
@@ -170,9 +170,6 @@ export const NewRegisterForm = () => {
   });
 
   const onSubmit: SubmitHandler<NewRegisterInputType> = (formData) => {
-    console.log("formData出力");
-    console.log({ formData });
-
     try {
       const commonData = {
         id: formData.id,
@@ -237,11 +234,6 @@ export const NewRegisterForm = () => {
     }
   };
 
-  // const onerror = (err) => console.log(err);
-
-  // console.log({ roleType });
-  // console.log({ errors });
-
   return (
     <PositionDiv>
       <Button $primary onClick={openModal}>
@@ -257,8 +249,8 @@ export const NewRegisterForm = () => {
         <div>
           <CustomDiv>
             <CustomButton onClick={closeModal}>
-              <img
-                src="../../../public/closeIcon.svg"
+              <CustomImg
+                src="/closeIcon.svg"
                 alt="閉じるボタン"
                 height="25"
                 width="25"
@@ -315,7 +307,7 @@ export const NewRegisterForm = () => {
                   </InputContainer>
 
                   <InputContainer>
-                    <label htmlFor="postCode">郵便番号</label>
+                    <label htmlFor="postCode">郵便番号(ハイフンあり)</label>
                     <br />
                     <CustomInput type="text" {...register("postCode")} />
                     <ErrorMessage>{errors.postCode?.message}</ErrorMessage>

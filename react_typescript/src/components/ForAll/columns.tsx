@@ -1,40 +1,11 @@
-import {
-  TiArrowSortedUp,
-  TiArrowSortedDown,
-  TiArrowUnsorted,
-} from "react-icons/ti";
-import { ColumnDef, SortDirection } from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 import { MentorDataType } from "../../type/MentorDataType";
 import { StudentDataType } from "../../type/StudentDataType";
-
-const getSortIcon = (sortDirection: false | SortDirection) => {
-  switch (sortDirection) {
-    case "asc":
-      return <TiArrowSortedUp />;
-    case "desc":
-      return <TiArrowSortedDown />;
-    default:
-      return <TiArrowUnsorted />;
-  }
-};
 
 export const createColumns = (
   studentsData: StudentDataType[],
   mentorsData: MentorDataType[]
 ): ColumnDef<MentorDataType | StudentDataType>[] => [
-  // {
-  //   accessorKey: "id",
-  //   header: ({ column }) => {
-  //     return (
-  //       <div
-  //         style={{ flex: "auto", alignItems: "center", cursor: "pointer" }}
-  //         onClick={column.getToggleSortingHandler()}
-  //       >
-  //         ID{getSortIcon(column.getIsSorted())}
-  //       </div>
-  //     );
-  //   },
-  // },
   {
     accessorKey: "name",
     header: "名前",
