@@ -13,7 +13,7 @@ function App() {
   return (
     <RecoilRoot>
       <GlobalStyle />
-      <BrowserRouter>
+      <BrowserRouter basename="/react_typescript">
         <Routes>
           <Route path={"/"} element={<Top />} />
         </Routes>
