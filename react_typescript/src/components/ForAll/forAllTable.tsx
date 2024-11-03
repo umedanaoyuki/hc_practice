@@ -53,16 +53,14 @@ export const ForAllTable = ({ studentsData, mentorsData }: TableDataType) => {
             {table.getRowModel().rows.map((row) => {
               return (
                 <tr key={row.id}>
-                  {row.getVisibleCells().map((cell) => {
-                    return (
-                      <TableData key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableData>
-                    );
-                  })}
+                  {row.getVisibleCells().map((cell) => (
+                    <TableData key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableData>
+                  ))}
                 </tr>
               );
             })}
