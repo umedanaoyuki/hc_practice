@@ -55,7 +55,7 @@ const Top = () => {
 
   return (
     <>
-      <H1>React Typescript課題</H1>
+      <H1>React Typescript課題 11/3修正</H1>
       <CustomDiv>
         <TabButton
           $active={activeTab === "all"}
