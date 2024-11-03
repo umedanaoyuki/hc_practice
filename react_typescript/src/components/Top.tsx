@@ -79,23 +79,17 @@ const Top = () => {
       </CustomDiv>
       {activeTab === "all" && (
         <TableDiv>
-          <ForAllTable studentsData={studentsData} mentorsData={mentorsData} />
+          <ForAllTable />
         </TableDiv>
       )}
       {activeTab === "onlyStudents" && (
         <TableDiv>
-          <ForStudentsTable
-            studentsData={studentsData}
-            mentorsData={mentorsData}
-          />
+          <ForStudentsTable />
         </TableDiv>
       )}
       {activeTab === "onlyMentors" && (
         <TableDiv>
-          <ForMentorsTable
-            studentsData={studentsData}
-            mentorsData={mentorsData}
-          />
+          <ForMentorsTable />
         </TableDiv>
       )}
     </>
