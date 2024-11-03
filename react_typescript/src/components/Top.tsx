@@ -51,7 +51,7 @@ const Top = () => {
   useEffect(() => {
     setStudentsData(userListData.filter((data) => data.role === "student"));
     setMentorsData(userListData.filter((data) => data.role === "mentor"));
-  }, [userListData]);
+  }, [studentsData, mentorsData]);
 
   return (
     <>

@@ -14,7 +14,7 @@ import { TableHeader } from "../../common/TableHeader";
 import styled from "styled-components";
 import { Filter } from "../../common/Filter";
 import { Thead } from "../../common/Thead";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { userListDataAtom } from "../../Atoms/UserListData";
 import { useMemo } from "react";
 
@@ -28,8 +28,8 @@ const FlexDiv = styled.div`
  * メンター情報の表示テーブル
  */
 export const ForMentorsTable = () => {
-  const [userListData, setUserListData] =
-    useRecoilState<(MentorDataType | StudentDataType)[]>(userListDataAtom);
+  const userListData =
+    useRecoilValue<(MentorDataType | StudentDataType)[]>(userListDataAtom);
 
   const studentsData = useMemo(
     () => userListData.filter((data) => data.role === "student"),
@@ -40,12 +40,7 @@ export const ForMentorsTable = () => {
     [userListData]
   );
 
-  // console.log(studentsData);
-  // console.log(mentorsData);
-
   const columns = createColumns(studentsData);
-
-  console.log(columns);
 
   const table = useReactTable<MentorDataType | StudentDataType>({
     columns,
