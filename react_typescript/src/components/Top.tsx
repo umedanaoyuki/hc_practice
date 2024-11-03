@@ -49,19 +49,8 @@ const Top = () => {
   }, []);
 
   useEffect(() => {
-    const students: StudentDataType[] = [];
-    const mentors: MentorDataType[] = [];
-
-    userListData.forEach((data) => {
-      if (data.role === "student") {
-        students.push(data as StudentDataType);
-      } else {
-        mentors.push(data as MentorDataType);
-      }
-    });
-
-    setStudentsData(students);
-    setMentorsData(mentors);
+    setStudentsData(userListData.filter((data) => data.role === "student"));
+    setMentorsData(userListData.filter((data) => data.role === "mentor"));
   }, [userListData]);
 
   return (
