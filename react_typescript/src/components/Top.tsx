@@ -77,21 +77,15 @@ const Top = () => {
         </TabButton>
         <NewRegisterForm />
       </CustomDiv>
-      {activeTab === "all" && (
-        <TableDiv>
+      <TableDiv>
+        {activeTab === "all" ? (
           <ForAllTable />
-        </TableDiv>
-      )}
-      {activeTab === "onlyStudents" && (
-        <TableDiv>
+        ) : activeTab === "onlyStudents" ? (
           <ForStudentsTable />
-        </TableDiv>
-      )}
-      {activeTab === "onlyMentors" && (
-        <TableDiv>
+        ) : (
           <ForMentorsTable />
-        </TableDiv>
-      )}
+        )}
+      </TableDiv>
     </>
   );
 };
