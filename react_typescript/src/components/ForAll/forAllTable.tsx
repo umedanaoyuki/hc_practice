@@ -7,21 +7,24 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { createColumns } from "./columns";
-import { useMemo } from "react";
-import { TableDataType } from "../../type/ForAllTableDataType";
 import { Table } from "../../common/Table";
 import { TableData } from "../../common/TableData";
 import { TableHeader } from "../../common/TableHeader";
+import { useRecoilState } from "recoil";
+import { userListDataAtom } from "../../Atoms/UserListData";
 
-export const ForAllTable = ({ studentsData, mentorsData }: TableDataType) => {
-  const newData = useMemo(() => {
-    return [...studentsData, ...mentorsData];
-  }, [studentsData, mentorsData]);
+export const ForAllTable = () => {
+  const [userListData, setUserListData] =
+    useRecoilState<(MentorDataType | StudentDataType)[]>(userListDataAtom);
+
+  const studentsData = userListData.filter((data) => data.role === "student");
+  const mentorsData = userListData.filter((data) => data.role === "mentor");
+
   const columns = createColumns(studentsData, mentorsData);
 
   const table = useReactTable<MentorDataType | StudentDataType>({
     columns,
-    data: newData,
+    data: userListData,
     initialState: {
       sorting: [{ id: "name", desc: false }],
     },

@@ -8,13 +8,15 @@ import {
 } from "@tanstack/react-table";
 import { createColumns } from "./columns";
 import { StudentDataType } from "../../type/StudentDataType";
-import { TableDataType } from "../../type/ForAllTableDataType";
 import { Table } from "../../common/Table";
 import { TableData } from "../../common/TableData";
 import { TableHeader } from "../../common/TableHeader";
 import styled from "styled-components";
 import { Filter } from "../../common/Filter";
 import { Thead } from "../../common/Thead";
+import { useRecoilState } from "recoil";
+import { userListDataAtom } from "../../Atoms/UserListData";
+import { useMemo } from "react";
 
 const FlexDiv = styled.div`
   display: flex;
@@ -25,12 +27,25 @@ const FlexDiv = styled.div`
 /**
  * メンター情報の表示テーブル
  */
-export const ForMentorsTable = ({
-  studentsData,
-  mentorsData,
-}: TableDataType) => {
-  // studentsDataとmentorsDataを使ってカラムを生成
+export const ForMentorsTable = () => {
+  const [userListData, setUserListData] =
+    useRecoilState<(MentorDataType | StudentDataType)[]>(userListDataAtom);
+
+  const studentsData = useMemo(
+    () => userListData.filter((data) => data.role === "student"),
+    [userListData]
+  );
+  const mentorsData = useMemo(
+    () => userListData.filter((data) => data.role === "mentor"),
+    [userListData]
+  );
+
+  // console.log(studentsData);
+  // console.log(mentorsData);
+
   const columns = createColumns(studentsData);
+
+  console.log(columns);
 
   const table = useReactTable<MentorDataType | StudentDataType>({
     columns,

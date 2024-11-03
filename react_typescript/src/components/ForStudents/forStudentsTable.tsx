@@ -8,13 +8,15 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { createColumns } from "./columns";
-import { TableDataType } from "../../type/ForAllTableDataType";
 import { Table } from "../../common/Table";
 import { TableHeader } from "../../common/TableHeader";
 import { TableData } from "../../common/TableData";
 import styled from "styled-components";
 import { Filter } from "../../common/Filter";
 import { Thead } from "../../common/Thead";
+import { useRecoilState } from "recoil";
+import { userListDataAtom } from "../../Atoms/UserListData";
+import { useMemo } from "react";
 
 const FlexDiv = styled.div`
   display: flex;
@@ -25,10 +27,19 @@ const FlexDiv = styled.div`
 /**
  * 生徒情報の表示テーブル
  */
-export const ForStudentsTable = ({
-  studentsData,
-  mentorsData,
-}: TableDataType) => {
+export const ForStudentsTable = () => {
+  const [userListData, setUserListData] =
+    useRecoilState<(MentorDataType | StudentDataType)[]>(userListDataAtom);
+
+  const studentsData = useMemo(
+    () => userListData.filter((data) => data.role === "student"),
+    [userListData]
+  );
+  const mentorsData = useMemo(
+    () => userListData.filter((data) => data.role === "mentor"),
+    [userListData]
+  );
+
   const columns = createColumns(mentorsData);
 
   const table = useReactTable<MentorDataType | StudentDataType>({
@@ -41,6 +52,8 @@ export const ForStudentsTable = ({
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
   });
+
+  console.log("forStudentsTable");
 
   return (
     <div>
