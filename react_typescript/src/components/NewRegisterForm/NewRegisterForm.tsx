@@ -1,0 +1,529 @@
+import { useState } from "react";
+import { SubmitHandler, useFieldArray } from "react-hook-form";
+import Modal from "react-modal";
+import { MentorDataType } from "../../type/MentorDataType";
+import { StudentDataType } from "../../type/StudentDataType";
+import { useSetRecoilState } from "recoil";
+import { userListDataSelector } from "../../Atoms/UserListData";
+import { NewRegisterInputType, useMyForm } from "./schema";
+import styled from "styled-components";
+import { Button } from "../../common/Button";
+import { ErrorMessage } from "../../common/ErrorMessage";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    width: "35%",
+    height: "800px",
+  },
+};
+
+const PositionDiv = styled.div`
+  justify-content: center;
+`;
+
+const H1 = styled.h1`
+  margin: 0 auto 20px;
+  text-align: center;
+`;
+
+const CustomInput = styled.input`
+  margin-top: 4px;
+  border: 1px solid black;
+`;
+
+const CustomDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const CustomDiv2 = styled.div`
+  margin-left: 20px;
+`;
+
+const CustomDiv3 = styled.div`
+  margin-top: 2px;
+  margin-left: 10px;
+`;
+
+const CustomDiv4 = styled.div`
+  display: flex;
+`;
+
+const CustomButton = styled.button`
+  background-color: transparent;
+  border: none;
+`;
+
+const FormContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding-right: 135px;
+  padding-left: 135px;
+`;
+
+const InputContainer = styled.div`
+  margin-top: 20px;
+`;
+
+const FormWrapper = styled.div`
+  display: flex;
+`;
+
+const RegisterButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+const Register = styled.input`
+  background-color: #ff6b3a;
+  color: white;
+  padding: 0.25em 1em;
+  border-radius: 3px;
+  border: 2px solid "FF6B3A";
+`;
+
+const AdditionalButton = styled.button`
+  margin-top: 1.5px;
+  color: white;
+  background-color: #659ad2;
+  border-radius: 3px;
+`;
+
+const DeleteButton = styled.button`
+  background-color: gray;
+  color: white;
+`;
+
+const DeleteButtonWrapper = styled.div`
+  margin-top: 2px;
+`;
+
+const Label = styled.label`
+  margin-top: 4px;
+`;
+
+const CustomImg = styled.img`
+  cursor: pointer;
+`;
+
+// react-modalの使用
+Modal.setAppElement("#root");
+
+export const NewRegisterForm = () => {
+  // モーダルオープン・クローズの状態管理
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const setUserListData = useSetRecoilState(userListDataSelector);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  function afterOpenModal() {}
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    watch,
+    formState: { errors },
+  } = useMyForm();
+
+  const roleType = watch("role");
+
+  const {
+    fields: hobbiesFields,
+    append: appendHobby,
+    remove: removeHobby,
+  } = useFieldArray<NewRegisterInputType>({
+    control,
+    name: "hobbies" as never,
+  });
+
+  const {
+    fields: studyLangsFields,
+    append: appendStudyLang,
+    remove: removeStudyLang,
+  } = useFieldArray<NewRegisterInputType>({
+    control,
+    name: "studyLangs" as never,
+  });
+
+  const {
+    fields: useLangsFields,
+    append: appendUseLang,
+    remove: removeUseLang,
+  } = useFieldArray<NewRegisterInputType>({
+    control,
+    name: "useLangs" as never,
+  });
+
+  const onSubmit: SubmitHandler<NewRegisterInputType> = (formData) => {
+    try {
+      const commonData = {
+        id: formData.id,
+        name: formData.name,
+        email: formData.email,
+        role: formData.role,
+        age: formData.age,
+        postCode: formData.postCode,
+        phone: formData.phone,
+        hobbies:
+          formData.hobbies?.filter(
+            (lang): lang is string => lang != undefined
+          ) || [],
+        url: formData.url,
+      };
+
+      const cleanedFormData = {
+        ...commonData,
+        score: formData.score ?? null,
+        studyMinutes: formData.studyMinutes ?? null,
+        taskCode: formData.taskCode ?? null,
+        studyLangs:
+          formData.studyLangs?.filter(
+            (lang): lang is string => lang != undefined
+          ) || [],
+        experienceDays: formData.experienceDays ?? null,
+        useLangs:
+          formData.useLangs?.filter(
+            (lang): lang is string => lang != undefined
+          ) || [],
+        availableStartCode: formData.availableStartCode ?? null,
+        availableEndCode: formData.availableEndCode ?? null,
+      };
+
+      if (cleanedFormData.role === "student") {
+        const newUser = {
+          ...cleanedFormData,
+          studyMinutes: cleanedFormData.studyMinutes,
+          taskCode: cleanedFormData.taskCode,
+          studyLangs: cleanedFormData.studyLangs,
+          score: cleanedFormData.score,
+        } as StudentDataType;
+
+        setUserListData((prevUserListData) => [...prevUserListData, newUser]);
+        closeModal();
+        reset();
+      } else {
+        const newUser = {
+          ...cleanedFormData,
+          experienceDays: cleanedFormData.experienceDays,
+          useLangs: cleanedFormData.useLangs,
+          availableStartCode: cleanedFormData.availableStartCode,
+          availableEndCode: cleanedFormData.availableEndCode,
+        } as MentorDataType;
+
+        setUserListData((prevUserListData) => [...prevUserListData, newUser]);
+        closeModal();
+        reset();
+      }
+    } catch {
+      console.log(errors);
+    }
+  };
+
+  return (
+    <PositionDiv>
+      <Button $primary onClick={openModal}>
+        新規登録
+      </Button>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="MewRegistrationModal"
+      >
+        <div>
+          <CustomDiv>
+            <CustomButton onClick={closeModal}>
+              <CustomImg
+                src="/closeIcon.svg"
+                alt="閉じるボタン"
+                height="25"
+                width="25"
+              />
+              <br />
+            </CustomButton>
+          </CustomDiv>
+          <div>
+            <H1>新規登録</H1>
+          </div>
+          <FormContainer>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <FormWrapper>
+                <div>
+                  <label htmlFor="name">名前</label>
+                  <br />
+                  <CustomInput type="text" {...register("name")} />
+                  <ErrorMessage>{errors.name?.message}</ErrorMessage>
+
+                  <InputContainer>
+                    <label htmlFor="role">ロール</label>
+                    <br />
+                    <CustomDiv4>
+                      <CustomInput
+                        type="radio"
+                        value="student"
+                        {...register("role")}
+                      />
+                      <Label>生徒</Label>
+                      <CustomDiv3>
+                        <CustomInput
+                          type="radio"
+                          value="mentor"
+                          {...register("role")}
+                        />
+                        <Label>先生</Label>
+                      </CustomDiv3>
+                    </CustomDiv4>
+                    {/* <br /> */}
+                    <ErrorMessage>{errors.role?.message}</ErrorMessage>
+                  </InputContainer>
+
+                  <InputContainer>
+                    <label htmlFor="email">メールアドレス</label>
+                    <br />
+                    <CustomInput type="email" {...register("email")} />
+                    <ErrorMessage>{errors.email?.message}</ErrorMessage>
+                  </InputContainer>
+                  <InputContainer>
+                    <label htmlFor="age">年齢</label>
+                    <br />
+                    <CustomInput type="number" {...register("age")} />
+                    <ErrorMessage>{errors.age?.message}</ErrorMessage>
+                  </InputContainer>
+
+                  <InputContainer>
+                    <label htmlFor="postCode">郵便番号(ハイフンあり)</label>
+                    <br />
+                    <CustomInput type="text" {...register("postCode")} />
+                    <ErrorMessage>{errors.postCode?.message}</ErrorMessage>
+                  </InputContainer>
+
+                  <InputContainer>
+                    <label htmlFor="phone">電話番号(ハイフンなし)</label>
+                    <br />
+                    <CustomInput type="text" {...register("phone")} />
+                    <ErrorMessage>{errors.phone?.message}</ErrorMessage>
+                  </InputContainer>
+                </div>
+
+                <CustomDiv2>
+                  <div>
+                    <label htmlFor="hobbies">趣味(3つまで)</label>
+                    {hobbiesFields.map((field, index) => (
+                      <div key={field.id}>
+                        <CustomInput
+                          type="text"
+                          {...register(`hobbies.${index}` as const)}
+                          placeholder={`趣味 ${index + 1}`}
+                        />
+                        <DeleteButtonWrapper>
+                          <DeleteButton
+                            type="button"
+                            onClick={() => removeHobby(index)}
+                            disabled={hobbiesFields.length <= 1}
+                          >
+                            削除
+                          </DeleteButton>
+                        </DeleteButtonWrapper>
+                      </div>
+                    ))}
+                    {hobbiesFields.length < 3 && (
+                      <>
+                        <br />
+                        <AdditionalButton
+                          type="button"
+                          onClick={() => appendHobby("")}
+                        >
+                          趣味を追加
+                        </AdditionalButton>
+                        <ErrorMessage>{errors.hobbies?.message}</ErrorMessage>
+                      </>
+                    )}
+                  </div>
+
+                  <InputContainer>
+                    <label htmlFor="url">URL</label>
+                    <br />
+                    <CustomInput type="text" {...register("url")} />
+                    <ErrorMessage>{errors.url?.message}</ErrorMessage>
+                  </InputContainer>
+
+                  <InputContainer>
+                    {roleType === "mentor" && (
+                      <>
+                        <label htmlFor="experienceDays">実務経験年数</label>
+                        <br />
+                        <CustomInput
+                          type="number"
+                          {...register("experienceDays")}
+                        />
+                        <ErrorMessage>
+                          {errors.experienceDays?.message}
+                        </ErrorMessage>
+
+                        <InputContainer>
+                          <label htmlFor="useLangs">
+                            現場で使っている言語(2つまで)
+                          </label>
+                          <br />
+                          {useLangsFields.map((field, index) => (
+                            <div key={field.id}>
+                              <CustomInput
+                                type="text"
+                                {...register(`useLangs.${index}` as const)}
+                                placeholder={`言語 ${index + 1}`}
+                              />
+                              <DeleteButtonWrapper>
+                                <button
+                                  type="button"
+                                  onClick={() => removeUseLang(index)}
+                                  disabled={useLangsFields.length <= 1}
+                                >
+                                  削除
+                                </button>
+                              </DeleteButtonWrapper>
+                            </div>
+                          ))}
+                          {useLangsFields.length < 2 && (
+                            <>
+                              <AdditionalButton
+                                type="button"
+                                onClick={() => appendUseLang("")}
+                              >
+                                言語を追加
+                              </AdditionalButton>
+                              <ErrorMessage>
+                                {errors.useLangs?.message}
+                              </ErrorMessage>
+                            </>
+                          )}
+                        </InputContainer>
+                        <InputContainer>
+                          <label htmlFor="availableStartCode">
+                            担当できる課題番号初め
+                          </label>
+                          <br />
+                          <CustomInput
+                            type="number"
+                            {...register("availableStartCode")}
+                          />
+                          <ErrorMessage>
+                            {errors.availableStartCode?.message}
+                          </ErrorMessage>
+                        </InputContainer>
+                        <InputContainer>
+                          <label htmlFor="availableEndCode">
+                            担当できる課題番号終わり
+                          </label>
+                          <br />
+                          <CustomInput
+                            type="number"
+                            {...register("availableEndCode")}
+                          />
+                          <ErrorMessage>
+                            {errors.availableEndCode?.message}
+                          </ErrorMessage>
+                        </InputContainer>
+                      </>
+                    )}
+                  </InputContainer>
+
+                  <InputContainer>
+                    {roleType === "student" && (
+                      <>
+                        <InputContainer>
+                          <label htmlFor="studyMinutes">勉強時間（分）</label>
+                          <br />
+                          <CustomInput
+                            type="number"
+                            {...register("studyMinutes")}
+                          />
+                          <ErrorMessage>
+                            {errors.studyMinutes?.message}
+                          </ErrorMessage>
+                        </InputContainer>
+                        <InputContainer>
+                          <label htmlFor="taskCode">課題番号</label>
+                          <br />
+                          <CustomInput
+                            type="number"
+                            {...register("taskCode")}
+                          />
+                          <ErrorMessage>
+                            {errors.taskCode?.message}
+                          </ErrorMessage>
+                        </InputContainer>
+                        <InputContainer>
+                          <label htmlFor="studyLangs">
+                            勉強中の言語(2つまで)
+                          </label>
+                          {studyLangsFields.map((field, index) => (
+                            <div key={field.id}>
+                              <CustomInput
+                                type="text"
+                                {...register(`studyLangs.${index}` as const)}
+                                placeholder={`言語 ${index + 1}`}
+                              />
+                              <DeleteButtonWrapper>
+                                <DeleteButton
+                                  type="button"
+                                  onClick={() => removeStudyLang(index)}
+                                  disabled={studyLangsFields.length <= 1}
+                                >
+                                  削除
+                                </DeleteButton>
+                              </DeleteButtonWrapper>
+                            </div>
+                          ))}
+
+                          {studyLangsFields.length < 2 && (
+                            <>
+                              <br />
+                              <AdditionalButton
+                                type="button"
+                                onClick={() => appendStudyLang("")}
+                              >
+                                言語を追加
+                              </AdditionalButton>
+                              <ErrorMessage>
+                                {errors.studyLangs?.message}
+                              </ErrorMessage>
+                            </>
+                          )}
+                        </InputContainer>
+                        <InputContainer>
+                          <label htmlFor="score">ハピネススコア</label>
+                          <br />
+                          <CustomInput type="number" {...register("score")} />
+                          <ErrorMessage>{errors.score?.message}</ErrorMessage>
+                        </InputContainer>
+                      </>
+                    )}
+                  </InputContainer>
+                </CustomDiv2>
+              </FormWrapper>
+              <RegisterButtonContainer>
+                <Register type="submit" value="登録" />
+              </RegisterButtonContainer>
+            </form>
+          </FormContainer>
+        </div>
+      </Modal>
+    </PositionDiv>
+  );
+};
